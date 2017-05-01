@@ -2,6 +2,7 @@
 
 namespace MeuProjeto\Controllers;
 
+use MeuProjeto\models\ModeloUsuario;
 use MeuProjeto\Entity\Usuario;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -61,10 +62,11 @@ class ControleUsuario {
         }
 
         $cliente = new Usuario(null, $nome, $rg, $cpf, $endereco, $cidade, $uf, $cep, 
-                $telefone, $email, $senha, 1, null, $null);
+                $telefone, $email, $senha, null, null, null);
         
         $clienteDao = ClienteDAO::getInstance();
         $user = $clienteDao->inserirCliente($cliente);
+        
         if ($user != 0) {
             echo 'Cliente Inserido Com Sucesso.';
         } else {
