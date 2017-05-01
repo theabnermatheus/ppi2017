@@ -18,21 +18,8 @@ class Usuario {
     private $dataCadastro;
     private $dataExclusao;
     
-    function __construct($idCliente, $nome, $rg, $cpf, $endereco, $cidade, $uf, $cep, $telefone, $email, $senha, $status, $dataCadastro, $dataExclusao) {
-        $this->idCliente = $idCliente;
-        $this->nome = $nome;
-        $this->rg = $rg;
-        $this->cpf = $cpf;
-        $this->endereco = $endereco;
-        $this->cidade = $cidade;
-        $this->uf = $uf;
-        $this->cep = $cep;
-        $this->telefone = $telefone;
-        $this->email = $email;
-        $this->senha = $senha;
-        $this->status = $status;
-        $this->dataCadastro = $dataCadastro;
-        $this->dataExclusao = $dataExclusao;             
+    function __construct(){
+    
     }
     
     function getIdCliente() {

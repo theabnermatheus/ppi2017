@@ -35,51 +35,59 @@ class ControleUsuario {
         $telefone = $_POST['telefone'];
         $email = $_POST['email'];
         $senha = $_POST['senha'];
-
-        
+        $confirmarSenha = $_POST['confirmarSenha'];
+ 
         if ($nome == '') {
             echo 'Nome é Obrigatorio.';
             return;
         }
+        
         if ($rg == '') {
             echo 'RG é Obrigatorio.';
             return;
         }
+        
         if ($cpf == '') {
             echo 'CPF é Obrigatorio.';
             return;
         }
+        
         if ($telefone == '') {
             echo 'Telefone é Obrigatorio.';
             return;
         }
+        
         if ($email == '') {
             echo 'E-mail é Obrigatorio.';
             return;
         }
+        
         if (strlen($senha) < 5) {
             echo 'Senha deve conter no mínimo 5 caracteres.';
             return;
         }
-               
-        $senha = md5(entrada($_REQUEST['senha']));
-        $confirmarSenha = md5(entrada($_REQUEST['confirmarSenha']));
-        
+                            
         if ($senha <> $confirmarSenha) {
             echo 'Senha e Confirmação de Senha Diferentes.';
             return;
         }
-
-        $cliente = new Usuario(null, $nome, $rg, $cpf, $endereco, $cidade, $uf, $cep, 
-                $telefone, $email, $senha, null, null, null);
+ 
+        $usuario = new Usuario();
+        $usuario->setNome($nome);
+        $usuario->setRg($rg);
+        $usuario->setCpf($cpf);
+        $usuario->setEndereco($endereco);
+        $usuario->setCidade($cidade);
+        $usuario->setUf($uf);
+        $usuario->setCep($cep);
+        $usuario->setTelefone($telefone);
+        $usuario->setEmail($email);
+        $usuario->setSenha($senha);
+       
+        $modelo = new ModeloUsuario();
+        $modelo->inserirCliente($usuario);
         
-        $ModeloUsuario = new ModeloUsuario();
-        $ModeloUsuario->inserirCliente($cliente);
+          
         
-        if ($user != 0) {
-            echo 'Cliente Inserido Com Sucesso.';
-        } else {
-            echo 'CPF já cadastrado.';
-        }
     }   
 }
