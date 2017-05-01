@@ -87,7 +87,7 @@ class ControleUsuario {
         $modelo = new ModeloUsuario();
         $deu = $modelo->inserirUsuario($usuario);
 
-        if ($deu != 0) {
+        if ($deu == 0) {
             echo 'Cliente Inserido Com Sucesso.';
         } else {
             echo 'CPF já cadastrado.';

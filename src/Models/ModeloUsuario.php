@@ -3,6 +3,7 @@
 namespace MeuProjeto\models;
 use MeuProjeto\Entity\Usuario;
 use MeuProjeto\Util\Conexao;
+use PDO;
 
 class ModeloUsuario {
 
@@ -11,7 +12,6 @@ class ModeloUsuario {
     }
 
     public function inserirUsuario(Usuario $usuario) {
-
         try {
             $sql = "INSERT INTO `usuario` (`idUsuario`, `nome`, `rg`, `cpf`, `endereco`, `cidade`, `uf`, `cep`, `telefone`, `email`, `senha`, `status`, `dataCadastro`, `dataExclusao`) "
                     . "VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, NOW, NULL)";             
@@ -25,10 +25,10 @@ class ModeloUsuario {
             $p_sql->bindValue(7, $usuario->getCep());
             $p_sql->bindValue(8, $usuario->getTelefone());
             $p_sql->bindValue(9, $usuario->getEmail());
-            $p_sql->bindValue(10, $usuario->getSenha());
+            $p_sql->bindValue(10,$usuario->getSenha());
                        
             if ($p_sql->execute())
-                return Conexao::getInstance()->lastInsertId();
+                return Conexao::getInstance()->lastInsertId();           
             return 0;
         } catch (Exception $e) {
             echo "Ocorreu um erro ao tentar executar esta ação. <br> $e";
