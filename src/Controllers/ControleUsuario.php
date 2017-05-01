@@ -36,42 +36,42 @@ class ControleUsuario {
         $email = $_POST['email'];
         $senha = $_POST['senha'];
         $confirmarSenha = $_POST['confirmarSenha'];
- 
+
         if ($nome == '') {
             echo 'Nome é Obrigatorio.';
             return;
         }
-        
+
         if ($rg == '') {
             echo 'RG é Obrigatorio.';
             return;
         }
-        
+
         if ($cpf == '') {
             echo 'CPF é Obrigatorio.';
             return;
         }
-        
+
         if ($telefone == '') {
             echo 'Telefone é Obrigatorio.';
             return;
         }
-        
+
         if ($email == '') {
             echo 'E-mail é Obrigatorio.';
             return;
         }
-        
+
         if (strlen($senha) < 5) {
             echo 'Senha deve conter no mínimo 5 caracteres.';
             return;
         }
-                            
+
         if ($senha <> $confirmarSenha) {
             echo 'Senha e Confirmação de Senha Diferentes.';
             return;
         }
- 
+
         $usuario = new Usuario();
         $usuario->setNome($nome);
         $usuario->setRg($rg);
@@ -83,11 +83,14 @@ class ControleUsuario {
         $usuario->setTelefone($telefone);
         $usuario->setEmail($email);
         $usuario->setSenha($senha);
-       
+        
         $modelo = new ModeloUsuario();
-        $modelo->inserirCliente($usuario);
-        
-          
-        
-    }   
+        $deu = $modelo->inserirUsuario($usuario);
+
+        if ($deu != 0) {
+            echo 'Cliente Inserido Com Sucesso.';
+        } else {
+            echo 'CPF já cadastrado.';
+        }
+    }
 }

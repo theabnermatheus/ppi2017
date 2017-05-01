@@ -82,8 +82,8 @@ $(document).ready(function () {
             success: function (data) {
                 $('#retornoValidacao').html(data);
             },
-            error: function () {
-                $('#retornoValidacao').html('Erro em carregar o Ajax');
+            error: function (data) {
+                $('#retornoValidacao').html('Erro em carregar o Ajax' + data);
             }
         })
     })
