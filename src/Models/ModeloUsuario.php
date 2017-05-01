@@ -16,12 +16,13 @@ class ModeloUsuario {
         return self::$instancia;
     }
     public function inserirCliente(Cliente $cliente) {
-        try {
-            
+       echo('teste');
+        /*try {      
             $sql = "INSERT INTO `cliente`(`idUsuario`, `nome`, `rg`, `cpf`, `endereco`, "
                     . "`cidade`, `uf`, `cep`, `telefone`, `email`, `senha`, `status`, "
                     . "`dataCadastro`, `dataExclusao`) VALUES "
                     . "(null,?,?,?,?,?,?,?,?,?,?,0,NOW(),null)";
+            
             $p_sql = Conexao::getInstance()->prepare($sql);
             $p_sql->bindValue(1, $cliente->getNome());
             $p_sql->bindValue(2, $cliente->getRg());
@@ -39,6 +40,6 @@ class ModeloUsuario {
             return 0;
         } catch (Exception $e) {
             print "Ocorreu um erro ao tentar executar esta ação. <br> $e";
-        }
+        }*/
     }
 }

@@ -65,9 +65,8 @@ $(document).ready(function () {
         var form = document.getElementById('formCadastrarCliente');
         $.ajax({
             type: 'POST',
-            url: 'controleCliente.php',
-            data: {
-                acao: 'inserirCliente',
+            url: '/ajaxCadastro',
+            data: {               
                 nome: form.nome.value,
                 rg: form.rg.value,
                 cpf: form.cpf.value,

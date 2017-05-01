@@ -25,16 +25,16 @@ class ControleUsuario {
     }
 
     public function Cadastrar() {
-        $nome = entrada($_REQUEST['nome']);
-        $rg = entrada($_REQUEST['rg']);
-        $cpf = entrada($_REQUEST['cpf']);
-        $endereco = entrada($_REQUEST['endereco']);
-        $cidade = entrada($_REQUEST['cidade']);
-        $uf = entrada($_REQUEST['uf']);
-        $cep = entrada($_REQUEST['cep']);
-        $telefone = entrada($_REQUEST['telefone']);
-        $email = entrada($_REQUEST['email']);
-        $senha = entrada($_REQUEST['senha']);
+        $nome = entrada($_POST['nome']);
+        $rg = entrada($_POST['rg']);
+        $cpf = entrada($_POST['cpf']);
+        $endereco = entrada($_POST['endereco']);
+        $cidade = entrada($_POST['cidade']);
+        $uf = entrada($_POST['uf']);
+        $cep = entrada($_POST['cep']);
+        $telefone = entrada($_POST['telefone']);
+        $email = entrada($_POST['email']);
+        $senha = entrada($_POST['senha']);
 
         if ($nome == '') {
             echo 'Nome é Obrigatorio.';
@@ -64,8 +64,8 @@ class ControleUsuario {
         $cliente = new Usuario(null, $nome, $rg, $cpf, $endereco, $cidade, $uf, $cep, 
                 $telefone, $email, $senha, null, null, null);
         
-        $clienteDao = ClienteDAO::getInstance();
-        $user = $clienteDao->inserirCliente($cliente);
+        $ModeloUsuario = new ModeloUsuario();
+        $ModeloUsuario->inserirCliente($cliente);
         
         if ($user != 0) {
             echo 'Cliente Inserido Com Sucesso.';
