@@ -25,19 +25,19 @@ class ControleUsuario {
     }
 
     public function Cadastrar() {
-        $nome = entrada($_POST['nome']);
-        $rg = entrada($_POST['rg']);
-        $cpf = entrada($_POST['cpf']);
-        $endereco = entrada($_POST['endereco']);
-        $cidade = entrada($_POST['cidade']);
-        $uf = entrada($_POST['uf']);
-        $cep = entrada($_POST['cep']);
-        $telefone = entrada($_POST['telefone']);
-        $email = entrada($_POST['email']);
-        $senha = entrada($_POST['senha']);
+        $nome = $_POST['nome'];
+        $rg = $_POST['rg'];
+        $cpf = $_POST['cpf'];
+        $endereco = $_POST['endereco'];
+        $cidade = $_POST['cidade'];
+        $uf = $_POST['uf'];
+        $cep = $_POST['cep'];
+        $telefone = $_POST['telefone'];
+        $email = $_POST['email'];
+        $senha = $_POST['senha'];
 
-        echo ($nome);
-        /*if ($nome == '') {
+        
+        if ($nome == '') {
             echo 'Nome é Obrigatorio.';
             return;
         }
@@ -61,8 +61,7 @@ class ControleUsuario {
             echo 'Senha deve conter no mínimo 5 caracteres.';
             return;
         }
-         
-         
+               
         $senha = md5(entrada($_REQUEST['senha']));
         $confirmarSenha = md5(entrada($_REQUEST['confirmarSenha']));
         
@@ -81,13 +80,6 @@ class ControleUsuario {
             echo 'Cliente Inserido Com Sucesso.';
         } else {
             echo 'CPF já cadastrado.';
-        }*/
-    }
-
-    function entrada($valor) {
-        $valor = trim($valor);
-        $valor = stripslashes($valor);
-        $valor = htmlspecialchars($valor);
-        return $valor;
-    }
+        }
+    }   
 }
