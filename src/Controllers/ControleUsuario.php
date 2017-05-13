@@ -46,14 +46,29 @@ class ControleUsuario {
             echo 'RG é Obrigatorio.';
             return;
         }
+        
+        if ($rg < 10) {
+            echo 'RG deve conter todos os digitos.';
+            return;
+        }
 
         if ($cpf == '') {
             echo 'CPF é Obrigatorio.';
             return;
         }
+        
+        if ($cpf < 11) {
+            echo 'RG deve conter todos os digitos.';
+            return;
+        }
 
         if ($telefone == '') {
             echo 'Telefone é Obrigatorio.';
+            return;
+        }
+        
+        if ($telefone < 11) {
+            echo 'RG deve conter todos os digitos.';
             return;
         }
 

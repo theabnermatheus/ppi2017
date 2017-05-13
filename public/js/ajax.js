@@ -58,8 +58,8 @@ $(document).ready(function () {
     });
 });
 
-//cadastrar cliente
 
+//cadastrar cliente
 $(document).ready(function () {  
     $("#btnCadastrarCliente").on('click touchstart', function () {
         var form = document.getElementById('formCadastrarCliente');
