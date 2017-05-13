@@ -88,3 +88,11 @@ $(document).ready(function () {
         })
     })
 })
+
+
+//logar cliente
+$(document).ready(function () {
+    $('#entrar').on('click touchstart', function () {
+        alert("teste");
+    });
+});
