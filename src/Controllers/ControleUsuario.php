@@ -118,6 +118,7 @@ class ControleUsuario {
         $id = $oEmailExiste[0];
         $id = $id['idUsuario'];
         
+        $confirmaSenha = $modelo->senhaValida($id);
         
     }
 }

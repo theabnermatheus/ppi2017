@@ -41,12 +41,24 @@ class ModeloUsuario {
             $sql = "SELECT idUsuario FROM `usuario` WHERE usuario.email = ?";            
             $p_sql = Conexao::getInstance()->prepare($sql);
             $p_sql->bindValue(1, $email);           
-            if ($p_sql->execute()) {
+            if ($p_sql->execute()) {             
                 return $p_sql->fetchAll();;
             }            
         } catch (Exception $e) {
             echo "Ocorreu um erro ao tentar executar esta ação. <br> $e";
         }      
     }
+    public function senhaValida($id){
+         try {
+            $sql = "SELECT senha FROM `usuario` WHERE usuario.id = ?";            
+            $p_sql = Conexao::getInstance()->prepare($sql);
+            $p_sql->bindValue(1, $id);           
+            if ($p_sql->execute()) {
+                return $p_sql->fetchAll();;
+            }            
+        } catch (Exception $e) {
+            echo "Ocorreu um erro ao tentar executar esta ação. <br> $e";
+        }      
+    }  
 }
 ?>
