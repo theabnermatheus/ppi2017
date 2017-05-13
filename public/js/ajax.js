@@ -91,8 +91,23 @@ $(document).ready(function () {
 
 
 //logar cliente
-$(document).ready(function () {
-    $('#entrar').on('click touchstart', function () {
-        alert("teste");
-    });
-});
+$(document).ready(function () {  
+    $("#entrar").on('click touchstart', function () {       
+        var form = document.getElementById('formLogin');
+        
+        $.ajax({
+            type: 'POST',
+            url: '/ajaxSessao',
+            data: {                             
+                email: form.logarEmail.value,
+                senha: form.logarSenha.value,              
+            },
+            success: function (data) {
+                alert(data);
+            },
+            error: function (data) {
+                alert('Erro em carregar o Ajax' + data);
+            }
+        })     
+    })
+})

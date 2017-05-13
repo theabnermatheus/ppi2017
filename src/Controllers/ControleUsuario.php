@@ -108,4 +108,11 @@ class ControleUsuario {
             echo 'CPF já cadastrado.';
         }
     }
+    
+    public function setarSessao(){    
+        $email = $_POST['email'];
+        $senha = $_POST['senha'];
+        
+        
+    }
 }
