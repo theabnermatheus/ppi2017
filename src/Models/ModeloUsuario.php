@@ -42,9 +42,8 @@ class ModeloUsuario {
             $p_sql = Conexao::getInstance()->prepare($sql);
             $p_sql->bindValue(1, $email);           
             if ($p_sql->execute()) {
-                return $p_sql->fetchAll(PDO::FETCH);;
-            }
-            return 0;
+                return $p_sql->fetchAll();;
+            }            
         } catch (Exception $e) {
             echo "Ocorreu um erro ao tentar executar esta ação. <br> $e";
         }      

@@ -113,6 +113,10 @@ class ControleUsuario {
         $email = $_POST['email'];
         $senha = $_POST['senha'];
         $modelo = new ModeloUsuario();
+        $oEmailExiste = $modelo->emailCorreto($email);
+        $id = null;
+        $id = $oEmailExiste[0];
+        $id = $id['idUsuario'];
         
         
     }
