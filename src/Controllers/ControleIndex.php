@@ -21,5 +21,5 @@ class ControleIndex {
 
     public function index() {
         return $this->response->setContent($this->twig->render('TemplateIndex.html'));
-    }   
+    } 
 }
