@@ -49,3 +49,7 @@ function volumeMudo() {
     }
 }
 
+function paginaDeCadastro(){
+    alert('teste');   
+}
+
