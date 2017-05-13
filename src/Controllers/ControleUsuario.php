@@ -112,6 +112,7 @@ class ControleUsuario {
     public function setarSessao(){    
         $email = $_POST['email'];
         $senha = $_POST['senha'];
+        $modelo = new ModeloUsuario();
         
         
     }

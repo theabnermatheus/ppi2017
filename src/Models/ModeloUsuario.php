@@ -35,5 +35,19 @@ class ModeloUsuario {
             echo "Ocorreu um erro ao tentar executar esta ação. <br> $e";
         }
     }
+    
+    public function emailCorreto($email){
+         try {
+            $sql = "SELECT idUsuario FROM `usuario` WHERE usuario.email = ?";            
+            $p_sql = Conexao::getInstance()->prepare($sql);
+            $p_sql->bindValue(1, $email);           
+            if ($p_sql->execute()) {
+                return $p_sql->fetchAll(PDO::FETCH);;
+            }
+            return 0;
+        } catch (Exception $e) {
+            echo "Ocorreu um erro ao tentar executar esta ação. <br> $e";
+        }      
+    }
 }
 ?>

@@ -2,6 +2,7 @@
 namespace MeuProjeto\Util;
 
 class Sessao {
+    
     function __construct() {
         
     }
