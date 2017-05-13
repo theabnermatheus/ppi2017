@@ -60,13 +60,13 @@ $(document).ready(function () {
 
 
 //cadastrar cliente
-$(document).ready(function () {  
+$(document).ready(function () {
     $("#btnCadastrarCliente").on('click touchstart', function () {
         var form = document.getElementById('formCadastrarCliente');
         $.ajax({
             type: 'POST',
             url: '/ajaxCadastro',
-            data: {               
+            data: {
                 nome: form.nome.value,
                 rg: form.rg.value,
                 cpf: form.cpf.value,
@@ -91,16 +91,16 @@ $(document).ready(function () {
 
 
 //logar cliente
-$(document).ready(function () {  
-    $("#entrar").on('click touchstart', function () {       
+$(document).ready(function () {
+    $("#entrar").on('click touchstart', function () {
         var form = document.getElementById('formLogin');
-        
+
         $.ajax({
             type: 'POST',
             url: '/ajaxSessao',
-            data: {                             
+            data: {
                 email: form.logarEmail.value,
-                senha: form.logarSenha.value,              
+                senha: form.logarSenha.value
             },
             success: function (data) {
                 alert(data);
@@ -108,6 +108,6 @@ $(document).ready(function () {
             error: function (data) {
                 alert('Erro em carregar o Ajax' + data);
             }
-        })     
+        })
     })
 })

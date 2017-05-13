@@ -25,91 +25,95 @@ class ControleUsuario {
     }
 
     public function Cadastrar() {
-        $nome = $_POST['nome'];
-        $rg = $_POST['rg'];
-        $cpf = $_POST['cpf'];
-        $endereco = $_POST['endereco'];
-        $cidade = $_POST['cidade'];
-        $uf = $_POST['uf'];
-        $cep = $_POST['cep'];
-        $telefone = $_POST['telefone'];
-        $email = $_POST['email'];
-        $senha = $_POST['senha'];
-        $confirmarSenha = $_POST['confirmarSenha'];
+        try {
+            $nome = $_POST['nome'];
+            $rg = $_POST['rg'];
+            $cpf = $_POST['cpf'];
+            $endereco = $_POST['endereco'];
+            $cidade = $_POST['cidade'];
+            $uf = $_POST['uf'];
+            $cep = $_POST['cep'];
+            $telefone = $_POST['telefone'];
+            $email = $_POST['email'];
+            $senha = $_POST['senha'];
+            $confirmarSenha = $_POST['confirmarSenha'];
 
-        if ($nome == '') {
-            echo 'Nome é Obrigatorio.';
-            return;
-        }
+            if ($nome == '') {
+                echo 'Nome é Obrigatorio.';
+                return;
+            }
 
-        if ($rg == '') {
-            echo 'RG é Obrigatorio.';
-            return;
-        }
-        
-        if ($rg < 10) {
-            echo 'RG deve conter todos os digitos.';
-            return;
-        }
+            if ($rg == '') {
+                echo 'RG é Obrigatorio.';
+                return;
+            }
 
-        if ($cpf == '') {
-            echo 'CPF é Obrigatorio.';
-            return;
-        }
-        
-        if ($cpf < 11) {
-            echo 'RG deve conter todos os digitos.';
-            return;
-        }
+            if ($rg < 10) {
+                echo 'RG deve conter todos os digitos.';
+                return;
+            }
 
-        if ($telefone == '') {
-            echo 'Telefone é Obrigatorio.';
-            return;
-        }
-        
-        if ($telefone < 11) {
-            echo 'RG deve conter todos os digitos.';
-            return;
-        }
+            if ($cpf == '') {
+                echo 'CPF é Obrigatorio.';
+                return;
+            }
 
-        if ($email == '') {
-            echo 'E-mail é Obrigatorio.';
-            return;
-        }
+            if ($cpf < 11) {
+                echo 'RG deve conter todos os digitos.';
+                return;
+            }
 
-        if (strlen($senha) < 5) {
-            echo 'Senha deve conter no mínimo 5 caracteres.';
-            return;
-        }
+            if ($telefone == '') {
+                echo 'Telefone é Obrigatorio.';
+                return;
+            }
 
-        if ($senha <> $confirmarSenha) {
-            echo 'Senha e Confirmação de Senha Diferentes.';
-            return;
-        }
+            if ($telefone < 11) {
+                echo 'RG deve conter todos os digitos.';
+                return;
+            }
 
-        $usuario = new Usuario();
-        $usuario->setNome($nome);
-        $usuario->setRg($rg);
-        $usuario->setCpf($cpf);
-        $usuario->setEndereco($endereco);
-        $usuario->setCidade($cidade);
-        $usuario->setUf($uf);
-        $usuario->setCep($cep);
-        $usuario->setTelefone($telefone);
-        $usuario->setEmail($email);
-        $usuario->setSenha($senha);
-        
-        $modelo = new ModeloUsuario();
-        $deu = $modelo->inserirUsuario($usuario);
+            if ($email == '') {
+                echo 'E-mail é Obrigatorio.';
+                return;
+            }
 
-        if ($deu != 0) {
-            echo 'Cliente Inserido Com Sucesso.';
-        } else {
-            echo 'CPF já cadastrado.';
+            if (strlen($senha) < 5) {
+                echo 'Senha deve conter no mínimo 5 caracteres.';
+                return;
+            }
+
+            if ($senha <> $confirmarSenha) {
+                echo 'Senha e Confirmação de Senha Diferentes.';
+                return;
+            }
+
+            $usuario = new Usuario();
+            $usuario->setNome($nome);
+            $usuario->setRg($rg);
+            $usuario->setCpf($cpf);
+            $usuario->setEndereco($endereco);
+            $usuario->setCidade($cidade);
+            $usuario->setUf($uf);
+            $usuario->setCep($cep);
+            $usuario->setTelefone($telefone);
+            $usuario->setEmail($email);
+            $usuario->setSenha($senha);
+
+            $modelo = new ModeloUsuario();
+            $deu = $modelo->inserirUsuario($usuario);
+
+            if ($deu != 0) {
+                echo 'Cliente Inserido Com Sucesso.';
+            } else {
+                echo 'CPF já cadastrado.';
+            }
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
         }
     }
-    
-    public function setarSessao(){    
+
+    public function setarSessao() {
         $email = $_POST['email'];
         $senha = $_POST['senha'];
         $modelo = new ModeloUsuario();
@@ -117,8 +121,8 @@ class ControleUsuario {
         $id = null;
         $id = $oEmailExiste[0];
         $id = $id['idUsuario'];
-        
+
         $confirmaSenha = $modelo->senhaValida($id);
-        
     }
+
 }
