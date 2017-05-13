@@ -37,7 +37,7 @@ class ControleUsuario {
             $email = $_POST['email'];
             $senha = $_POST['senha'];
             $confirmarSenha = $_POST['confirmarSenha'];
-
+            
             if ($nome == '') {
                 echo 'Nome é Obrigatorio.';
                 return;

@@ -83,7 +83,7 @@ $(document).ready(function () {
                 $('#retornoValidacao').html(data);
             },
             error: function (data) {
-                $('#retornoValidacao').html('Erro em carregar o Ajax' + data);
+                $('#retornoValidacao').html(data.toString());
             }
         })
     })
@@ -106,7 +106,7 @@ $(document).ready(function () {
                 alert(data);
             },
             error: function (data) {
-                alert('Erro em carregar o Ajax' + data);
+                console.log(data);
             }
         })
     })
