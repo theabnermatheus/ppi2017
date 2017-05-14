@@ -22,7 +22,7 @@ class ControleUsuario {
 
     public function CadastroDeClientes() {
         return $this->response->setContent($this->twig->render('TemplateCadastroDeClientes.html'));
-    }
+    } 
 
     public function Cadastrar() {
         try {
@@ -113,6 +113,10 @@ class ControleUsuario {
         }
     }
 
+     public function entrar() {
+        return $this->response->setContent($this->twig->render('TemplateLogin.html'));
+    }
+    
     public function setarSessao() {
         $email = $_POST['email'];
         $senha = $_POST['senha'];
@@ -121,8 +125,21 @@ class ControleUsuario {
         $id = null;
         $id = $oEmailExiste[0];
         $id = $id['idUsuario'];
-
-        $confirmaSenha = $modelo->senhaValida($id);
+        
+        $contador = count($id);
+        if($contador == 0){
+            echo 'Email Invalido';
+        }else{
+            echo 'deu';
+        }
+        
+        
+        
+        
+        
+        
+        //$confirmaSenha = $modelo->senhaValida($id);
+        
     }
 
 }

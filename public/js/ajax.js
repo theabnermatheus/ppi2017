@@ -106,7 +106,7 @@ $(document).ready(function () {
                 alert(data);
             },
             error: function (data) {
-                console.log(data);
+                alert('Erro em carregar o Ajax' + data);
             }
         })
     })
