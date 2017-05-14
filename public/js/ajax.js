@@ -92,22 +92,27 @@ $(document).ready(function () {
 
 //logar cliente
 $(document).ready(function () {
-    $("#entrar").on('click touchstart', function () {
-        var form = document.getElementById('formLogin');
-
+    $('#btnLogin').on('click touchstart', function () {
+        var form = document.getElementById('formLogin');      
         $.ajax({
             type: 'POST',
             url: '/ajaxSessao',
-            data: {
-                email: form.logarEmail.value,
-                senha: form.logarSenha.value
+            data: {acao: 'login',
+                login: form.login.value,
+                senha: form.senha.value
             },
             success: function (data) {
-                alert(data);
+                $('#retorno').html(data);
             },
-            error: function (data) {
-                alert('Erro em carregar o Ajax' + data);
+            beforeSend: function () {
+                $('#processando').css({display: 'inline'});
+            },
+            complete: function () {
+                $('#processando').css({display: 'none'});
+            },
+            error: function (evento, request, settings) {
+                alert(settings);
             }
-        })
-    })
-})
+        });
+    });
+});

@@ -118,27 +118,7 @@ class ControleUsuario {
     }
     
     public function setarSessao() {
-        $email = $_POST['email'];
-        $senha = $_POST['senha'];
-        $modelo = new ModeloUsuario();
-        $oEmailExiste = $modelo->emailCorreto($email);
-        $id = null;
-        $id = $oEmailExiste[0];
-        $id = $id['idUsuario'];
-        
-        $contador = count($id);
-        if($contador == 0){
-            echo 'Email Invalido';
-        }else{
-            echo 'deu';
-        }
-        
-        
-        
-        
-        
-        
-        //$confirmaSenha = $modelo->senhaValida($id);
+        echo 'oistsadfd';
         
     }
 
