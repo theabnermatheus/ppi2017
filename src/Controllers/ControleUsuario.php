@@ -4,6 +4,7 @@ namespace MeuProjeto\Controllers;
 
 use MeuProjeto\models\ModeloUsuario;
 use MeuProjeto\Entity\Usuario;
+use MeuProjeto\Util\Sessao;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\RequestContext;
@@ -125,7 +126,10 @@ class ControleUsuario {
         $senha = $_POST['senha'];
         $usuario = $modelo->validaLogin($login, $senha);
         if($usuario){
-            echo "Deu";
+            $this->sessao->add("usuario",$usuario);
+            $teste = $this->sessao->get("usuario");
+            $teste->setSenha("o");
+            print_r($teste);
         }else{
             echo 'Login Falhou';
         }
