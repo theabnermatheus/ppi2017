@@ -1,4 +1,5 @@
 <?php
+
 namespace MeuProjeto\Util;
 
 class Sessao {

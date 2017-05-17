@@ -1,5 +1,7 @@
 <?php
+
 namespace MeuProjeto\models;
+
 use MeuProjeto\Entity\Usuario;
 use MeuProjeto\Util\Conexao;
 use PDO;
@@ -14,8 +16,8 @@ class ModeloUsuario {
         try {
             $sql = "INSERT INTO `usuario` (`idUsuario`, `nome`, `rg`, `cpf`, `endereco`, `cidade`, "
                     . "`uf`, `cep`, `telefone`, `email`, `senha`, `status`, `dataCadastro`, `dataExclusao`) "
-                    . "VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, NOW(), NULL)"; 
-            
+                    . "VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, NOW(), NULL)";
+
             $p_sql = Conexao::getInstance()->prepare($sql);
             $p_sql->bindValue(1, $usuario->getNome());
             $p_sql->bindValue(2, $usuario->getRg());
@@ -26,7 +28,7 @@ class ModeloUsuario {
             $p_sql->bindValue(7, $usuario->getCep());
             $p_sql->bindValue(8, $usuario->getTelefone());
             $p_sql->bindValue(9, $usuario->getEmail());
-            $p_sql->bindValue(10,$usuario->getSenha());
+            $p_sql->bindValue(10, $usuario->getSenha());
             if ($p_sql->execute()) {
                 return Conexao::getInstance()->lastInsertId();
             }
@@ -35,30 +37,22 @@ class ModeloUsuario {
             echo "Ocorreu um erro ao tentar executar esta ação. <br> $e";
         }
     }
-    
-    public function emailCorreto($email){
-         try {
-            $sql = "SELECT idUsuario FROM `usuario` WHERE usuario.email = ?";            
+
+    public function validaLogin($nome, $senha) {
+        try {
+            $sql = "select * from usuario where nome = :nome and senha = binary :senha";
             $p_sql = Conexao::getInstance()->prepare($sql);
-            $p_sql->bindValue(1, $email);           
-            if ($p_sql->execute()) {             
-                return $p_sql->fetchAll();;
-            }            
-        } catch (Exception $e) {
-            echo "Ocorreu um erro ao tentar executar esta ação. <br> $e";
-        }      
+            $p_sql->bindValue(":nome", $nome);
+            $p_sql->bindValue(":senha", $senha);
+            $p_sql->execute();
+            if ($p_sql->rowCount() == 1) {
+                return $p_sql->fetch(PDO::FETCH_OBJ);
+            } else
+                return false;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
     }
-    public function senhaValida($id){
-         try {
-            $sql = "SELECT senha FROM `usuario` WHERE usuario.id = ?";            
-            $p_sql = Conexao::getInstance()->prepare($sql);
-            $p_sql->bindValue(1, $id);           
-            if ($p_sql->execute()) {
-                return $p_sql->fetchAll();;
-            }            
-        } catch (Exception $e) {
-            echo "Ocorreu um erro ao tentar executar esta ação. <br> $e";
-        }      
-    }  
 }
+
 ?>

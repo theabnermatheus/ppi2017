@@ -11,5 +11,6 @@ $rotas->add('cadastro', new Route('/cadastro', array('_controller' =>'MeuProjeto
 $rotas->add('ajaxCadastro', new Route('/ajaxCadastro', array('_controller' =>'MeuProjeto\Controllers\ControleUsuario','_method'=> 'cadastrar')));
 $rotas->add('ajaxSessao', new Route('/ajaxSessao', array('_controller' =>'MeuProjeto\Controllers\ControleUsuario','_method'=> 'setarSessao')));
 $rotas->add('entrar', new Route('/login', array('_controller' =>'MeuProjeto\Controllers\ControleUsuario','_method'=> 'entrar')));
-
+$rotas->add('login', new Route('/login', array('_controller' =>'MeuProjeto\Controllers\ControleUsuario','_method' => 'exibeLogin')));
+$rotas->add('validaLogin', new Route('/validaLogin', array('_controller' =>'MeuProjeto\Controllers\ControleUsuario','_method' => 'validaLogin')));
 return $rotas;
