@@ -97,7 +97,8 @@ $(document).ready(function () {
         $.ajax({
             type: 'POST',
             url: '/ajaxSessao',
-            data: {acao: 'login',
+            data: {
+                acao: 'login',
                 login: form.login.value,
                 senha: form.senha.value
             },

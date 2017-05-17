@@ -22,7 +22,7 @@ class ControleUsuario {
 
     public function CadastroDeClientes() {
         return $this->response->setContent($this->twig->render('TemplateCadastroDeClientes.html'));
-    } 
+    }
 
     public function Cadastrar() {
         try {
@@ -37,7 +37,7 @@ class ControleUsuario {
             $email = $_POST['email'];
             $senha = $_POST['senha'];
             $confirmarSenha = $_POST['confirmarSenha'];
-            
+
             if ($nome == '') {
                 echo 'Nome é Obrigatorio.';
                 return;
@@ -113,13 +113,43 @@ class ControleUsuario {
         }
     }
 
-     public function entrar() {
+    public function entrar() {
         return $this->response->setContent($this->twig->render('TemplateLogin.html'));
     }
-    
-    public function setarSessao() {
-        echo 'oistsadfd';
-        
-    }
 
+    public function setarSessao() {
+        $login = entrada($_REQUEST['login']);
+        $senha = md5(entrada($_REQUEST['senha']));
+
+        if (empty($login)) {
+            echo 'Informe o Login.';
+            return;
+        }
+        if (empty($senha)) {
+            echo 'Informe a Senha.';
+            return;
+        }
+        //parei aqui
+        $clienteDao = ClienteDAO::getInstance();
+        $cliente = $clienteDao->login($login, $senha);
+
+        if ($cliente) {
+            $_SESSION['user'] = ($cliente[0]);
+            echo '<script>window.location.href = "principalCliente"</script>';
+        } else {
+            $funcionarioDao = FuncionarioDAO::getInstance();
+            $funcionario = $funcionarioDao->login($login, $senha);
+            if ($funcionario) {
+                $_SESSION['user'] = ($funcionario[0]);
+
+                if ($funcionario[0]->getPerfil() == 1) {
+                    echo '<script>window.location.href = "principalFuncionario"</script>';
+                } else {
+                    echo '<script>window.location.href = "principalGestor"</script>';
+                }
+            } else {
+                echo 'Erro ao tentar acesso.';
+            }
+        }
+    }
 }
