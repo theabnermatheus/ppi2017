@@ -125,10 +125,16 @@ class ControleUsuario {
         $login = $_POST['login'];
         $senha = $_POST['senha'];
         $usuario = $modelo->validaLogin($login, $senha);
-        if($usuario){      
+        if($usuario){
+            $usuario->senha = "não te inretessa";
             $this->sessao->add("usuario",$usuario);
-            $teste = $this->sessao->get("usuario");
-            print_r($teste);         
+            print_r($this->sessao->get("usuario")->status);
+            
+            if($this->sessao->get("usuario")->status == 0){
+                //redireciona pra index do usuario;
+            }else if($this->sessao->get("usuario")->status == 1){
+                //redireciona para a index do admin;
+            }
         }else{
             echo 'Login Falhou';
         }

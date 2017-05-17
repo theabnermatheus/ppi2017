@@ -13,7 +13,7 @@ class Usuario {
     private $cep;
     private $telefone;
     private $email;
-    private $senha;
+    public $senha;
     private $status;
     private $dataCadastro;
     private $dataExclusao;
