@@ -31,34 +31,6 @@ $(document).ready(function () {
 });
 
 
-//usa essa função para trazer a musica do banco para o player
-$(document).ready(function () {
-    $('#testarMusic').on('click touchstart', function () {
-        var formData = new FormData();
-        formData.append('acao', 'pegarMusica');
-        $.ajax({
-            url: 'controleUpload.php',
-            data: formData,
-            type: 'post',
-            success: function (data) {
-                var tocador = document.getElementById("tocador");
-                tocador.src = data;
-                tocador.play();
-            },
-            beforeSend: function () {
-                $('#procP').css({display: "block"});
-            },
-            complete: function () {
-                $('#procP').css({display: "none"});
-            },
-            processData: false,
-            cache: false,
-            contentType: false
-        });
-    });
-});
-
-
 //cadastrar cliente
 $(document).ready(function () {
     $("#btnCadastrarCliente").on('click touchstart', function () {
@@ -96,7 +68,7 @@ $(document).ready(function () {
         var form = document.getElementById('formLogin');      
         $.ajax({
             type: 'POST',
-            url: '/ajaxSessao',
+            url: '/validaLogin',
             data: {
                 acao: 'login',
                 login: form.login.value,

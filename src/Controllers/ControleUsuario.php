@@ -15,7 +15,7 @@ class ControleUsuario {
     private $twig;
     private $sessao;
 
-    function __construct(Response $response, Request $request, \Twig_Environment $twig , $sessao) {
+    function __construct(Response $response, Request $request, \Twig_Environment $twig, $sessao) {
         $this->response = $response;
         $this->request = $request;
         $this->twig = $twig;
@@ -119,39 +119,16 @@ class ControleUsuario {
         return $this->response->setContent($this->twig->render('TemplateLogin.html'));
     }
 
-    public function setarSessao() {
-        $login = entrada($_REQUEST['login']);
-        $senha = md5(entrada($_REQUEST['senha']));
-
-        if (empty($login)) {
-            echo 'Informe o Login.';
-            return;
-        }
-        if (empty($senha)) {
-            echo 'Informe a Senha.';
-            return;
-        }
-        //parei aqui
-        $clienteDao = ClienteDAO::getInstance();
-        $cliente = $clienteDao->login($login, $senha);
-
-        if ($cliente) {
-            $_SESSION['user'] = ($cliente[0]);
-            echo '<script>window.location.href = "principalCliente"</script>';
-        } else {
-            $funcionarioDao = FuncionarioDAO::getInstance();
-            $funcionario = $funcionarioDao->login($login, $senha);
-            if ($funcionario) {
-                $_SESSION['user'] = ($funcionario[0]);
-
-                if ($funcionario[0]->getPerfil() == 1) {
-                    echo '<script>window.location.href = "principalFuncionario"</script>';
-                } else {
-                    echo '<script>window.location.href = "principalGestor"</script>';
-                }
-            } else {
-                echo 'Erro ao tentar acesso.';
-            }
-        }
+    public function validaLogin() {
+        $modelo = new ModeloUsuario();
+        $login = $_POST['login'];
+        $senha = $_POST['senha'];
+        
     }
+
+    public function redireciona() {
+        $redirect = new RedirectResponse('/formularioCadastro');
+        $redirect->send();
+    }
+
 }
