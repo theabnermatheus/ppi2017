@@ -40,10 +40,10 @@ class ModeloUsuario {
 
     public function validaLogin($nome, $senha) {
         try {
-            $sql = "select * from usuario where nome = :nome and senha = binary :senha";
+            $sql = "SELECT * FROM `usuario` WHERE email = ? and senha = ?";
             $p_sql = Conexao::getInstance()->prepare($sql);
-            $p_sql->bindValue(":nome", $nome);
-            $p_sql->bindValue(":senha", $senha);
+            $p_sql->bindValue(1, $nome);
+            $p_sql->bindValue(2, $senha);
             $p_sql->execute();
             if ($p_sql->rowCount() == 1) {
                 return $p_sql->fetch(PDO::FETCH_OBJ);

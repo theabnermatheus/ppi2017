@@ -123,7 +123,12 @@ class ControleUsuario {
         $modelo = new ModeloUsuario();
         $login = $_POST['login'];
         $senha = $_POST['senha'];
-        
+        $usuario = $modelo->validaLogin($login, $senha);
+        if($usuario){
+            echo "Deu";
+        }else{
+            echo 'Login Falhou';
+        }
     }
 
     public function redireciona() {
