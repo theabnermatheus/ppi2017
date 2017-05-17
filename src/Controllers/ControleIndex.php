@@ -12,11 +12,13 @@ class ControleIndex {
     private $response;
     private $request;
     private $twig;
+    private $sessao;
 
-    function __construct(Response $response, Request $request, \Twig_Environment $twig) {
+    function __construct(Response $response, Request $request, \Twig_Environment $twig ,$sessao) {
         $this->response = $response;
         $this->request = $request;
         $this->twig = $twig;
+        $this->sessao = $sessao;
     }
 
     public function index() {

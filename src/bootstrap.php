@@ -37,7 +37,7 @@ $urlMatcher = new UrlMatcher($rotas, $requestContext);
 $atributos = $urlMatcher->match($requestContext->getPathInfo());
 //print_r($atributos);
 
-$controlador = new $atributos['_controller']($response, Request::createFromGlobals(), $twig);
+$controlador = new $atributos['_controller']($response, Request::createFromGlobals(), $twig , $sessao);
 
 if (isset($atributos['_method'])) {
     $metodo = $atributos['_method'];
