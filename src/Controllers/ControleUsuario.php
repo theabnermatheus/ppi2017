@@ -125,19 +125,17 @@ class ControleUsuario {
         $login = $_POST['login'];
         $senha = $_POST['senha'];
         $usuario = $modelo->validaLogin($login, $senha);
-        if($usuario){
+        if($usuario){      
             $this->sessao->add("usuario",$usuario);
             $teste = $this->sessao->get("usuario");
-            $teste->setSenha("o");
-            print_r($teste);
+            print_r($teste);         
         }else{
             echo 'Login Falhou';
         }
     }
 
-    public function redireciona() {
-        $redirect = new RedirectResponse('/formularioCadastro');
+    public function redireciona($rota) {
+        $redirect = new RedirectResponse($rota);
         $redirect->send();
     }
-
 }
