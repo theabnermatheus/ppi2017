@@ -127,8 +127,7 @@ class ControleUsuario {
         $usuario = $modelo->validaLogin($login, $senha);
         if($usuario){
             $usuario->senha = "não te inretessa";
-            $this->sessao->add("usuario",$usuario);
-            print_r($this->sessao->get("usuario")->status);
+            $this->sessao->add("usuario",$usuario);          
             
             if($this->sessao->get("usuario")->status == 0){
                 //redireciona pra index do usuario;
