@@ -24,4 +24,11 @@ class ControleIndex {
     public function index() {
         return $this->response->setContent($this->twig->render('TemplateIndex.html'));
     } 
+    public function indexUser() {
+        return $this->response->setContent($this->twig->render('TemplateIndexUser.html'));
+    }
+    
+    public function indexAdmin() {
+        return $this->response->setContent($this->twig->render('TemplateIndexAdmin.html'));
+    }
 }

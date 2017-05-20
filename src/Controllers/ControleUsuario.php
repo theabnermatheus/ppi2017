@@ -115,10 +115,11 @@ class ControleUsuario {
         if ($usuario) {
             $usuario->senha = "não te inretessa";
             $this->sessao->add("usuario", $usuario);
-
             if ($this->sessao->get("usuario")->status == 0) {
+                echo '<script>window.location.href = "/indexUser"</script>';
                 //redireciona pra index do usuario;
             } else if ($this->sessao->get("usuario")->status == 1) {
+                echo '<script>window.location.href = "/indexAdmin"</script>';
                 //redireciona para a index do admin;
             }
         } else {
