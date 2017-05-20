@@ -34,11 +34,11 @@ class ModeloUsuario {
         }   
     }
 
-    public function validaLogin($nome, $senha) {
+    public function validaLogin($login, $senha) {
         try {
-            $sql = "SELECT * FROM `usuario` WHERE email = ? and senha = ?";
+            $sql = "SELECT * FROM `usuario` WHERE login = ? and senha = ?";
             $p_sql = Conexao::getInstance()->prepare($sql);
-            $p_sql->bindValue(1, $nome);
+            $p_sql->bindValue(1, $login);
             $p_sql->bindValue(2, $senha);
             $p_sql->execute();
             if ($p_sql->rowCount() == 1) {
