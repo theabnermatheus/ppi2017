@@ -39,15 +39,11 @@ $(document).ready(function () {
             type: 'POST',
             url: '/ajaxCadastro',
             data: {
-                nome: form.nome.value,
-                rg: form.rg.value,
-                cpf: form.cpf.value,
-                endereco: form.endereco.value,
-                cidade: form.cidade.value,
-                uf: form.uf.value,
-                cep: form.cep.value,
+                nome: form.nome.value,               
+                cpf: form.cpf.value,               
                 telefone: form.telefone.value,
                 email: form.email.value,
+                login:form.login.value,
                 senha: form.senha.value,
                 confirmarSenha: form.confirmarSenha.value
             },

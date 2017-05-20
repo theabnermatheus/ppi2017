@@ -30,14 +30,10 @@ class ControleUsuario {
     public function Cadastrar() {
         try {
             $nome = $_POST['nome'];
-            $rg = $_POST['rg'];
             $cpf = $_POST['cpf'];
-            $endereco = $_POST['endereco'];
-            $cidade = $_POST['cidade'];
-            $uf = $_POST['uf'];
-            $cep = $_POST['cep'];
             $telefone = $_POST['telefone'];
             $email = $_POST['email'];
+            $login = $_POST['login'];
             $senha = $_POST['senha'];
             $confirmarSenha = $_POST['confirmarSenha'];
 
@@ -45,17 +41,7 @@ class ControleUsuario {
                 echo 'Nome é Obrigatorio.';
                 return;
             }
-
-            if ($rg == '') {
-                echo 'RG é Obrigatorio.';
-                return;
-            }
-
-            if ($rg < 10) {
-                echo 'RG deve conter todos os digitos.';
-                return;
-            }
-
+           
             if ($cpf == '') {
                 echo 'CPF é Obrigatorio.';
                 return;
@@ -90,20 +76,21 @@ class ControleUsuario {
                 echo 'Senha e Confirmação de Senha Diferentes.';
                 return;
             }
+            
+            if ($login == '') {
+                echo 'Nome é Obrigatorio.';
+                return;
+            }
 
             $usuario = new Usuario();
             $usuario->setNome($nome);
-            $usuario->setRg($rg);
             $usuario->setCpf($cpf);
-            $usuario->setEndereco($endereco);
-            $usuario->setCidade($cidade);
-            $usuario->setUf($uf);
-            $usuario->setCep($cep);
             $usuario->setTelefone($telefone);
             $usuario->setEmail($email);
+            $usuario->setLogin($login);
             $usuario->setSenha($senha);
 
-            $modelo = new ModeloUsuario();
+            $modelo = new ModeloUsuario();          
             $deu = $modelo->inserirUsuario($usuario);
 
             if ($deu != 0) {
@@ -112,7 +99,7 @@ class ControleUsuario {
                 echo 'CPF já cadastrado.';
             }
         } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
+           echo $exc->getTraceAsString();
         }
     }
 
