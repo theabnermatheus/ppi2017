@@ -41,7 +41,7 @@ class ControleUsuario {
                 echo 'Nome é Obrigatorio.';
                 return;
             }
-           
+
             if ($cpf == '') {
                 echo 'CPF é Obrigatorio.';
                 return;
@@ -76,7 +76,7 @@ class ControleUsuario {
                 echo 'Senha e Confirmação de Senha Diferentes.';
                 return;
             }
-            
+
             if ($login == '') {
                 echo 'Nome é Obrigatorio.';
                 return;
@@ -90,7 +90,7 @@ class ControleUsuario {
             $usuario->setLogin($login);
             $usuario->setSenha($senha);
 
-            $modelo = new ModeloUsuario();          
+            $modelo = new ModeloUsuario();
             $deu = $modelo->inserirUsuario($usuario);
 
             if ($deu != 0) {
@@ -99,7 +99,7 @@ class ControleUsuario {
                 echo 'CPF já cadastrado.';
             }
         } catch (Exception $exc) {
-           echo $exc->getTraceAsString();
+            echo $exc->getTraceAsString();
         }
     }
 
@@ -112,16 +112,16 @@ class ControleUsuario {
         $login = $_POST['login'];
         $senha = $_POST['senha'];
         $usuario = $modelo->validaLogin($login, $senha);
-        if($usuario){
+        if ($usuario) {
             $usuario->senha = "não te inretessa";
-            $this->sessao->add("usuario",$usuario);          
-            
-            if($this->sessao->get("usuario")->status == 0){
+            $this->sessao->add("usuario", $usuario);
+
+            if ($this->sessao->get("usuario")->status == 0) {
                 //redireciona pra index do usuario;
-            }else if($this->sessao->get("usuario")->status == 1){
+            } else if ($this->sessao->get("usuario")->status == 1) {
                 //redireciona para a index do admin;
             }
-        }else{
+        } else {
             echo 'Login Falhou';
         }
     }
@@ -130,4 +130,5 @@ class ControleUsuario {
         $redirect = new RedirectResponse($rota);
         $redirect->send();
     }
+
 }

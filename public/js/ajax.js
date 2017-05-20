@@ -48,7 +48,7 @@ $(document).ready(function () {
                 confirmarSenha: form.confirmarSenha.value
             },
             success: function (data) {
-                $('#retornoValidacao').html(data);
+                $('#retornoValidacao').html(data.toString());
             },
             error: function (data) {
                 $('#retornoValidacao').html(data.toString());
@@ -56,7 +56,6 @@ $(document).ready(function () {
         })
     })
 })
-
 
 //logar cliente
 $(document).ready(function () {

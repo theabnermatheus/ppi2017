@@ -15,7 +15,7 @@ class ModeloUsuario {
     public function inserirUsuario(Usuario $usuario) {
         try {
             $sql = "INSERT INTO `usuario` (`idUsuario`, `nome`, `cpf`, `telefone`, `email`, `login`, `senha`, `status`, `dataCadastro`, `dataExclusao`) "
-                    . "VALUES (NULL, ?, ?, ?, ?, ?, ?, 0, NOW(), NULL)";
+                    . "VALUES (null, ?, ?, ?, ?, ?, ?, 0, NOW(), NULL)";
 
             $p_sql = Conexao::getInstance()->prepare($sql);
             $p_sql->bindValue(1, $usuario->getNome());          
@@ -30,7 +30,7 @@ class ModeloUsuario {
             return 0;
         } catch (Exception $e) {
             echo "Ocorreu um erro ao tentar executar esta ação. <br> $e";
-        }
+        }   
     }
 
     public function validaLogin($nome, $senha) {
@@ -49,5 +49,4 @@ class ModeloUsuario {
         }
     }
 }
-
 ?>
