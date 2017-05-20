@@ -12,18 +12,19 @@ class ModeloUsuario {
         
     }
 
-    public function inserirUsuario(Usuario $usuario) {
+    public function inserirUsuario(Usuario $u) {
         try {
             $sql = "INSERT INTO `usuario` (`idUsuario`, `nome`, `cpf`, `telefone`, `email`, `login`, `senha`, `status`, `dataCadastro`, `dataExclusao`) "
                     . "VALUES (null, ?, ?, ?, ?, ?, ?, 0, NOW(), NULL)";
-
+            
             $p_sql = Conexao::getInstance()->prepare($sql);
-            $p_sql->bindValue(1, $usuario->getNome());          
-            $p_sql->bindValue(2, $usuario->getCpf());          
-            $p_sql->bindValue(3, $usuario->getTelefone());
-            $p_sql->bindValue(4, $usuario->getEmail());
-            $p_sql->bindValue(5, $usuario->getLogin());
-            $p_sql->bindValue(6, $usuario->getSenha());
+            $p_sql->bindValue(1, $u->getNome());          
+            $p_sql->bindValue(2, $u->getCpf());          
+            $p_sql->bindValue(3, $u->getTelefone());
+            $p_sql->bindValue(4, $u->getEmail());
+            $p_sql->bindValue(5, $u->getLogin());
+            $p_sql->bindValue(6, $u->getSenha());
+            
             if ($p_sql->execute()) {
                 return Conexao::getInstance()->lastInsertId();
             }
