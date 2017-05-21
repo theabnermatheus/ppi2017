@@ -29,5 +29,5 @@ class Sessao {
     
     public function del() {
         session_destroy();
-    }
+    }      
 }

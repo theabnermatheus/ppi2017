@@ -25,51 +25,56 @@
                         <div class="navbar-header">
                             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                                 <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
-                            </button> <a class="navbar-brand" href="/indexAdmin">Rádio do Abner</a>
-                        </div>                      
-                        <form class="navbar-form navbar-right" id="formLogin">                           
-                            <button type="button" class="btn btn-danger" id="entrar">
-                                <a href="/login">Entrar</a>
-                            </button>                   
-                            <button type="" class="btn btn-default" style="margin-right: 5px;" id="cadastrar">                               
-                                <a href="/cadastro">Cadastrar-se</a>
-                            </button>                         
-                        </form>
+                            </button> 
+                            <a class="navbar-brand" href="/indexAdmin">Bem vindo:  {{ user }}</a> 
+                            <button  style="margin-top: 3%" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Funções de Admin
+                            </button> 
+                        </div>                     
+                        <div class="dropdown" style="margin-left: 82%;" >                                                         
+                            <button  style="margin-top: 3%" class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Alterar/Excluir Dados
+                            </button>
+                                                 
+                            <button  style="margin-top: 3%" class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Sair
+                            </button>                            
+                        </div>
+                    </nav>
                 </div>
-                </nav>
             </div>
         </div>
-    </div>                                           
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                <div id="controles" class="">
-                    <center><img id="logo" src="img/logo.png"></center>
-                    <div id="controles2">
-                        <center><h2>Display</h2></center>
 
-                        <center><button class="btn btn-default btn-lg" disabled="true" id="btnPlay" onclick="play()"> 
-                                <span class="glyphicon glyphicon-play"></span> 
-                            </button>                             
-                            <button class="btn btn-default btn-lg" id="btnPause" onclick="pause()"> 
-                                <span class="glyphicon glyphicon-pause"></span> 
-                            </button>
-                            <button class="btn btn-default btn-lg" onclick="volumeMenos()"> 
-                                <span class="glyphicon glyphicon-volume-down"></span> 
-                            </button>
-                            <button class="btn btn-default btn-lg" onclick="volumeMais()"> 
-                                <span class="glyphicon glyphicon-volume-up"></span> 
-                            </button>
-                            <button class="btn btn-default btn-lg" onclick="volumeMudo()"> 
-                                <span class="glyphicon glyphicon-volume-off"></span> 
-                            </button></center>                   
-                    </div>
-                </div>  
-            </div>              
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <div id="controles" class="">
+                        <center><img id="logo" src="img/logo.png"></center>
+                        <div id="controles2">
+                            <center><h2>Display</h2></center>
+
+                            <center><button class="btn btn-default btn-lg" disabled="true" id="btnPlay" onclick="play()"> 
+                                    <span class="glyphicon glyphicon-play"></span> 
+                                </button>                             
+                                <button class="btn btn-default btn-lg" id="btnPause" onclick="pause()"> 
+                                    <span class="glyphicon glyphicon-pause"></span> 
+                                </button>
+                                <button class="btn btn-default btn-lg" onclick="volumeMenos()"> 
+                                    <span class="glyphicon glyphicon-volume-down"></span> 
+                                </button>
+                                <button class="btn btn-default btn-lg" onclick="volumeMais()"> 
+                                    <span class="glyphicon glyphicon-volume-up"></span> 
+                                </button>
+                                <button class="btn btn-default btn-lg" onclick="volumeMudo()"> 
+                                    <span class="glyphicon glyphicon-volume-off"></span> 
+                                </button></center>                   
+                        </div>
+                    </div>  
+                </div>              
+            </div>
         </div>
-    </div>
-    <audio id="tocador">
-        <source src="http://181fm-edge1.cdnstream.com/181-hairband_128k.mp3?cb=512585.mp3" type="audio/mpeg">
-    </audio> 
-</body>   
+        <audio id="tocador">
+            <source src="http://181fm-edge1.cdnstream.com/181-hairband_128k.mp3?cb=512585.mp3" type="audio/mpeg">
+        </audio> 
+    </body>   
 </html>
