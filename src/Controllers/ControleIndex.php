@@ -25,7 +25,7 @@ class ControleIndex {
         return $this->response->setContent($this->twig->render('TemplateIndex.html'));
     } 
     public function indexUser() {
-        return $this->response->setContent($this->twig->render('TemplateIndexUser.html'));
+        return $this->response->setContent($this->twig->render('TemplateIndexUser.html',array('user' => $this->sessao->get("usuario")->nome)));
     }
     
     public function indexAdmin() {
