@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $('#cadastrar').on('click touchstart', function () {
-        
+    $('#sair').on('click touchstart', function () {
+       window.location.href = "/sair";
     });
 });
