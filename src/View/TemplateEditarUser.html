@@ -28,28 +28,28 @@
                                 <div class="form-group">
                                     <div class="input-group">
                                         <div class="input-group-addon">Nome Completo:</div>
-                                        <input type="text" class="form-control" name="nome" id="nome" disabled="true"/>
+                                        <input type="text" class="form-control" name="nome" id="nome" value="{{user.nome}}" disabled="true"/>
                                     </div>                                   
                                 </div>                              
                                 <div class="form-group">
                                     <div class="input-group">
                                         <div class="input-group-addon">CPF:</div>
 
-                                        <input type="text" class="form-control cpf-mask" placeholder="Ex.: 000.000.000-00" name="cpf"  maxlength="11" id="cpf" disabled="true"/>                                      
+                                        <input type="text" class="form-control cpf-mask" placeholder="Ex.: 000.000.000-00" name="cpf"  maxlength="11" id="cpf" value="{{user.cpf}}" disabled="true"/>                                      
                                     </div>                                  
                                 </div>
                             </div>                                                                                   
                             <div class="form-group">
                                 <div class="input-group">
                                     <div class="input-group-addon">Telefone:</div>
-                                    <input type="tel" class="form-control phone-ddd-mask" placeholder="Ex.: (00) 0000-0000" maxlength="11" name="telefone" id="telefone" disabled="true"/>
+                                    <input type="tel" class="form-control phone-ddd-mask" placeholder="Ex.: (00) 0000-0000" maxlength="11" name="telefone" id="telefone"  value="{{user.telefone}}" disabled="true"/>
                                 </div>
 
                             </div>
                             <div class="form-group">
                                 <div class="input-group">
                                     <div class="input-group-addon">E-mail:</div>
-                                    <input type="email" class="form-control"  name="email" id="email" disabled="true"/>
+                                    <input type="email" class="form-control"  name="email" id="email" value="{{user.email}}" disabled="true"/>
                                 </div>
                             </div>
                             <div class="form-group">
