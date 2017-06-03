@@ -30,7 +30,8 @@ $(document).ready(function () {
 $(document).ready(function () {
     $('#btnExcluirCliente').on('click touchstart', function () {
         var form = document.getElementById('formEditar');
-        $.ajax({
+        if (confirm("Deseja Excluir?")) {
+            $.ajax({
             type: 'POST',
             url: '/ajaxExcluir',
             data: {
@@ -43,6 +44,9 @@ $(document).ready(function () {
                 $('#retornoValidacao').html(data.toString());
             }
         });
+        }else{
+            
+        }       
     });
 });
 
