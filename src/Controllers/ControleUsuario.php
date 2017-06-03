@@ -138,8 +138,5 @@ class ControleUsuario {
     
     public function excluirUser() {
         echo $_POST['id'];
-    }
-    
-    
-    
+    }   
 }

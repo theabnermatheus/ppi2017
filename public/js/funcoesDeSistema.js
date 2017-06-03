@@ -37,7 +37,7 @@ $(document).ready(function () {
                 id: form.btnExcluirCliente.value                             
             },
             success: function (data) {
-                $('#retornoValidacao').html(data);
+                $('#retornoValidacao').html(data.toString());
             },
             error: function (data) {
                 $('#retornoValidacao').html(data.toString());
