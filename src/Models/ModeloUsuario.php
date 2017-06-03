@@ -49,5 +49,20 @@ class ModeloUsuario {
             echo $exc->getTraceAsString();
         }
     }
+      
+    public function buscaCliente($id){
+        try {
+            $sql = "SELECT * FROM `usuario` WHERE id = ?";
+            $p_sql = Conexao::getInstance()->prepare($sql);
+            $p_sql->bindValue(1, $id);
+            $p_sql->execute();
+            if ($p_sql->rowCount() == 1) {
+                return $p_sql->fetch(PDO::FETCH_OBJ);
+            } else
+                return false;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
 }
 ?>

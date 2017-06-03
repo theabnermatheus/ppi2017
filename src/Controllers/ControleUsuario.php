@@ -127,9 +127,13 @@ class ControleUsuario {
         }
     }
 
-    public function redireciona($rota) {
-        $redirect = new RedirectResponse($rota);
-        $redirect->send();
+    public function  buscarUsuarioLogado(){
+        $modelo = new ModeloUsuario();
+        $user = $modelo->buscaCliente($this->sessao->get("usuario")->idUsuario);
+        if($user){
+            echo $user->nome."#".$user->cpf."#".$user->telefone."#".$user->email."".$user->login;
+        }else{
+            echo 'Error';
+        }
     }
-
 }
