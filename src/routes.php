@@ -16,4 +16,5 @@ $rotas->add('login', new Route('/login', array('_controller' =>'MeuProjeto\Contr
 $rotas->add('validaLogin', new Route('/validaLogin', array('_controller' =>'MeuProjeto\Controllers\ControleUsuario','_method' => 'validaLogin')));
 $rotas->add('deslogar', new Route('/sair', array('_controller' =>'MeuProjeto\Controllers\ControleIndex','_method' => 'sair')));
 $rotas->add('editarUser', new Route('/editarUser', array('_controller' =>'MeuProjeto\Controllers\ControleUsuario','_method' => 'editarUser')));
+$rotas->add('excluirUser', new Route('/ajaxExcluir', array('_controller' =>'MeuProjeto\Controllers\ControleUsuario','_method' => 'excluirUser')));
 return $rotas;

@@ -37,7 +37,7 @@ $(document).ready(function () {
         var form = document.getElementById('formCadastrarCliente');
         $.ajax({
             type: 'POST',
-            url: '/ajaxCadastro',
+            url: '/ajaxExcluir',
             data: {
                 nome: form.nome.value,               
                 cpf: form.cpf.value,               

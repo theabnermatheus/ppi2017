@@ -135,4 +135,11 @@ class ControleUsuario {
             return $this->response->setContent($this->twig->render('TemplateEditarUser.html', array('user' => $this->sessao->get("usuario"))));
         }
     }
+    
+    public function excluirUser() {
+        echo $_POST['id'];
+    }
+    
+    
+    
 }
