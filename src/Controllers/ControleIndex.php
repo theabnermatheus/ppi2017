@@ -29,7 +29,7 @@ class ControleIndex {
         if ($this->sessao->get("usuario") == "") {
             $this->response->setContent($this->twig->render('TemplateIndex.html'));
         } else {
-            return $this->response->setContent($this->twig->render('TemplateIndexUser.html', array('user' => $this->sessao->get("usuario")->nome)));
+            return $this->response->setContent($this->twig->render('TemplateIndexUser.html', array('user' => $this->sessao->get("usuario"))));
         }
     }
 
@@ -38,9 +38,9 @@ class ControleIndex {
             $this->response->setContent($this->twig->render('TemplateIndex.html'));
         } else {
             if($this->sessao->get("usuario")->status == 1){
-                return $this->response->setContent($this->twig->render('TemplateIndexAdmin.html', array('user' => $this->sessao->get("usuario")->nome)));
+                return $this->response->setContent($this->twig->render('TemplateIndexAdmin.html', array('user' => $this->sessao->get("usuario"))));
             }else{
-                return $this->response->setContent($this->twig->render('TemplateIndexUser.html', array('user' => $this->sessao->get("usuario")->nome)));
+                return $this->response->setContent($this->twig->render('TemplateIndexUser.html', array('user' => $this->sessao->get("usuario"))));
             }         
         }
     }

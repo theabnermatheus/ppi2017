@@ -117,17 +117,22 @@ class ControleUsuario {
             $this->sessao->add("usuario", $usuario);
             if ($this->sessao->get("usuario")->status == 0) {
                 echo '<script>window.location.href = "/indexUser"</script>';
-                //redireciona pra index do usuario;
+//redireciona pra index do usuario;
             } else if ($this->sessao->get("usuario")->status == 1) {
                 echo '<script>window.location.href = "/indexAdmin"</script>';
-                //redireciona para a index do admin;
+//redireciona para a index do admin;
             }
         } else {
             echo 'Login Falhou';
         }
     }
 
-    public function editarUser(){ 
-        return $this->response->setContent($this->twig->render('TemplateEditarUser.html'));
+    public function editarUser() {
+        if ($this->sessao->get("usuario") == "") {
+             echo '<script>alert("Faça login para continuar");</script>';
+             echo '<script>window.location.href = "/"</script>';
+        } else {
+            return $this->response->setContent($this->twig->render('TemplateEditarUser.html', array('user' => $this->sessao->get("usuario"))));
+        }
     }
 }
