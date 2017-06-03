@@ -127,13 +127,7 @@ class ControleUsuario {
         }
     }
 
-    public function  buscarUsuarioLogado(){
-        $modelo = new ModeloUsuario();
-        $user = $modelo->buscaCliente($this->sessao->get("usuario")->idUsuario);
-        if($user){
-            echo $user->nome."#".$user->cpf."#".$user->telefone."#".$user->email."".$user->login;
-        }else{
-            echo 'Error';
-        }
+    public function editarUser(){ 
+        return $this->response->setContent($this->twig->render('TemplateEditarUser.html'));
     }
 }
