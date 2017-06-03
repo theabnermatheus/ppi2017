@@ -137,6 +137,10 @@ class ControleUsuario {
     }
     
     public function excluirUser() {
-        echo $_POST['id'];
+        $id = $_POST['id'];
+        $modelo = new ModeloUsuario();
+        $modelo->excluirCliente($id);
+        $this->sessao->rem("user");
+        echo '<script>window.location.href = "/"</script>';
     }   
 }

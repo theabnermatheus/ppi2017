@@ -64,5 +64,19 @@ class ModeloUsuario {
             echo $exc->getTraceAsString();
         }
     }
+    
+    public function excluirCliente($id){
+        try {
+            $sql = "update usuario set usuario.status = 2 WHERE usuario.idUsuario = ?";
+            $p_sql = Conexao::getInstance()->prepare($sql);
+            $p_sql->bindValue(1, $id);           
+            if ($p_sql->execute()) {
+                return true;
+            } else
+                return false;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }       
+    }   
 }
 ?>
