@@ -22,7 +22,7 @@
             <div class="row">
                 <div class="col-md-6 col-md-offset-3" style="margin-top:-5% ">
                     <div id="controles" class="">
-                        <form id="formCadastrarCliente">
+                        <form id="formEditar">
                             <br>                         
                             <div id="divFisica">
                                 <div class="form-group">
@@ -52,12 +52,14 @@
                                     <input type="email" class="form-control"  name="email" id="email" value="{{user.email}}" disabled="true"/>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            
+                            <div class="form-group" id="formBtnEditar">
                                 <button type="reset" id="btnAlterarCliente" class="btn btn-default">Alterar</button>                    
-                                <button type="reset" id="btnExcluirCliente" class="btn btn-danger">Excluir</button>
+                                <button type="reset" id="btnExcluirCliente" value="{{user.idUsuario}}" class="btn btn-danger">Excluir</button>
                                 <button type="button" id="btnSalvarCliente" class="btn btn-success" disabled="true">Salvar</button>
                                 <button type="button" id="btnCancelarCliente" class="btn btn-default" disabled="true" >Cancelar</button>
                             </div>
+                            
                             <br>
                             <br>
                             <div class="form-group" id="retornoValidacao">
