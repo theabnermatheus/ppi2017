@@ -4,11 +4,22 @@ $(document).ready(function () {
     });
 });
 $(document).ready(function () {
+    $('#btnCadastrar').on('click touchstart', function () {
+        window.location.href = "/cadastro";
+    });
+});
+
+$(document).ready(function () {
+    $('#btnEntrar').on('click touchstart', function () {
+        window.location.href = "/login";
+    });
+});
+
+$(document).ready(function () {
     $('#alterarEexcluir').on('click touchstart', function () {
         window.location.href = "/editarUser";
     });
 });
-
 $(document).ready(function () {
     $('#btnAlterarCliente').on('click touchstart', function () {
         var form = document.getElementById('formEditar');
