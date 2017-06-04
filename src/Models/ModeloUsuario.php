@@ -78,6 +78,14 @@ class ModeloUsuario {
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }       
-    }   
+    }
+    
+    
+    
+    
+    
+    
+    
+    
 }
 ?>

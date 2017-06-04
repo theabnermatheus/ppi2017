@@ -44,15 +44,29 @@ $(document).ready(function () {
                 $('#retornoValidacao').html(data.toString());
             }
         });
-        }else{
-            
-        }       
+    }
     });
 });
 
 $(document).ready(function () {
     $('#btnSalvarCliente').on('click touchstart', function () {
-        var form = document.getElementById('formEditar');
 
+        var form = document.getElementById('formEditar');
+        $.ajax({
+            type: 'POST',
+            url: '/ajaxAlterar',
+            data: {
+                nome: form.nome.value,               
+                cpf: form.cpf.value,               
+                telefone: form.telefone.value,
+                email: form.email.value
+            },
+            success: function (data) {
+                $('#retornoValidacao').html(data.toString());
+            },
+            error: function (data) {
+                $('#retornoValidacao').html(data.toString());
+            }
+        });
     });
 });

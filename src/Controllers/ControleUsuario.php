@@ -148,4 +148,13 @@ class ControleUsuario {
         echo '<script>window.location.href = "/"</script>';
     }
 
+    public function alterarUser() {
+        $nome = $_POST['nome'];
+        $cpf = $_POST['cpf'];
+        $telefone = $_POST['telefone'];
+        $email = $_POST['email'];
+        $modelo = new ModeloUsuario();
+        $modelo->excluirCliente($id);
+        
+    }
 }
