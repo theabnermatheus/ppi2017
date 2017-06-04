@@ -144,17 +144,25 @@ class ControleUsuario {
         $id = $_POST['id'];
         $modelo = new ModeloUsuario();
         $modelo->excluirCliente($id);
-        $this->sessao->rem("user");
+        $this->sessao->rem("usuario");
         echo '<script>window.location.href = "/"</script>';
     }
 
     public function alterarUser() {
+        $id = $this->sessao->get("usuario")->idUsuario;
         $nome = $_POST['nome'];
         $cpf = $_POST['cpf'];
         $telefone = $_POST['telefone'];
         $email = $_POST['email'];
         $modelo = new ModeloUsuario();
-        $modelo->excluirCliente($id);
-        
+        if($modelo->alterarCliente($id ,$nome ,$cpf , $telefone , $email)){
+            $this->sessao->rem("usuario");
+            // adicionar a sessão de novo;
+            $u = $modelo->buscaCliente($id);
+            $this->sessao->add("usuario", $u);
+            echo '<script>window.location.href = "/editarUser"</script>';
+        }else{
+            echo 'Erro';
+        }      
     }
 }
