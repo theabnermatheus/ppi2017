@@ -113,14 +113,18 @@ class ControleUsuario {
         $senha = $_POST['senha'];
         $usuario = $modelo->validaLogin($login, $senha);
         if ($usuario) {
-            $usuario->senha = "não te inretessa";
-            $this->sessao->add("usuario", $usuario);
-            if ($this->sessao->get("usuario")->status == 0) {
-                echo '<script>window.location.href = "/indexUser"</script>';
-//redireciona pra index do usuario;
-            } else if ($this->sessao->get("usuario")->status == 1) {
-                echo '<script>window.location.href = "/indexAdmin"</script>';
-//redireciona para a index do admin;
+            if ($usuario->status == 2) {
+                echo 'Login Falhou';
+            } else {
+                $usuario->senha = "não te inretessa";
+                $this->sessao->add("usuario", $usuario);
+                if ($this->sessao->get("usuario")->status == 0) {
+                    echo '<script>window.location.href = "/indexUser"</script>';
+                    //redireciona pra index do usuario;
+                } else if ($this->sessao->get("usuario")->status == 1) {
+                    echo '<script>window.location.href = "/indexAdmin"</script>';
+                    //redireciona para a index do admin;
+                }
             }
         } else {
             echo 'Login Falhou';
@@ -129,18 +133,19 @@ class ControleUsuario {
 
     public function editarUser() {
         if ($this->sessao->get("usuario") == "") {
-             echo '<script>alert("Faça login para continuar");</script>';
-             echo '<script>window.location.href = "/"</script>';
+            echo '<script>alert("Faça login para continuar");</script>';
+            echo '<script>window.location.href = "/"</script>';
         } else {
             return $this->response->setContent($this->twig->render('TemplateEditarUser.html', array('user' => $this->sessao->get("usuario"))));
         }
     }
-    
+
     public function excluirUser() {
         $id = $_POST['id'];
         $modelo = new ModeloUsuario();
         $modelo->excluirCliente($id);
         $this->sessao->rem("user");
         echo '<script>window.location.href = "/"</script>';
-    }   
+    }
+
 }
