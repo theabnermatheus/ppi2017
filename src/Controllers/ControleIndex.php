@@ -22,14 +22,24 @@ class ControleIndex {
     }
 
     public function index() {
-        return $this->response->setContent($this->twig->render('TemplateIndex.html'));
+        if($this->sessao->get("usuario") == ""){
+            return $this->response->setContent($this->twig->render('TemplateIndex.html'));
+        }else if($this->sessao->get("usuario")->status == 0){
+            return $this->response->setContent($this->twig->render('TemplateIndexUser.html', array('user' => $this->sessao->get("usuario"))));
+        }else if($this->sessao->get("usuario")->status == 1){
+           return $this->response->setContent($this->twig->render('TemplateIndexAdmin.html', array('user' => $this->sessao->get("usuario"))));
+        } 
     }
 
     public function indexUser() {
         if ($this->sessao->get("usuario") == "") {
             $this->response->setContent($this->twig->render('TemplateIndex.html'));
         } else {
-            return $this->response->setContent($this->twig->render('TemplateIndexUser.html', array('user' => $this->sessao->get("usuario"))));
+            if ($this->sessao->get("usuario")->status == 0) {
+                return $this->response->setContent($this->twig->render('TemplateIndexUser.html', array('user' => $this->sessao->get("usuario"))));
+            } else {
+                return $this->response->setContent($this->twig->render('TemplateIndexAdmin.html', array('user' => $this->sessao->get("usuario"))));
+            }
         }
     }
 
@@ -37,11 +47,11 @@ class ControleIndex {
         if ($this->sessao->get("usuario") == "") {
             $this->response->setContent($this->twig->render('TemplateIndex.html'));
         } else {
-            if($this->sessao->get("usuario")->status == 1){
+            if ($this->sessao->get("usuario")->status == 1) {
                 return $this->response->setContent($this->twig->render('TemplateIndexAdmin.html', array('user' => $this->sessao->get("usuario"))));
-            }else{
+            } else {
                 return $this->response->setContent($this->twig->render('TemplateIndexUser.html', array('user' => $this->sessao->get("usuario"))));
-            }         
+            }
         }
     }
 
@@ -49,4 +59,5 @@ class ControleIndex {
         $this->sessao->del();
         return $this->response->setContent($this->twig->render('TemplateIndex.html'));
     }
+
 }
