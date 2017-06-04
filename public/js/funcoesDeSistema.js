@@ -3,6 +3,11 @@ $(document).ready(function () {
         window.location.href = "/sair";
     });
 });
+$(document).ready(function () {
+    $('#alterarEexcluir').on('click touchstart', function () {
+        window.location.href = "/editarUser";
+    });
+});
 
 $(document).ready(function () {
     $('#btnAlterarCliente').on('click touchstart', function () {
