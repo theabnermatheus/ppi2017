@@ -1,8 +1,26 @@
 $(document).ready(function () {
+    $('#gerarRelatorio').on('click touchstart', function () {
+        for(var i = 0; i < 5; i++){
+        var newRow = $("<tr class='active'>");
+        var cols = "";
+        cols += '<td>1</td>';
+        cols += '<td>Abner Matheus</td>';
+        cols += '<td>11783586664</td>';
+        cols += '<td>38999451386</td>';
+        cols += '<td>theabnermatheus@gmail.com</td>';
+
+        newRow.append(cols);
+        $("#Trelatorio").append(newRow);
+    }
+    });
+});
+
+$(document).ready(function () {
     $('#sair').on('click touchstart', function () {
         window.location.href = "/sair";
     });
 });
+
 $(document).ready(function () {
     $('#btnCadastrar').on('click touchstart', function () {
         window.location.href = "/cadastro";
@@ -55,19 +73,19 @@ $(document).ready(function () {
         var form = document.getElementById('formEditar');
         if (confirm("Deseja Excluir?")) {
             $.ajax({
-            type: 'POST',
-            url: '/ajaxExcluir',
-            data: {
-                id: form.btnExcluirCliente.value
-            },
-            success: function (data) {
-                $('#retornoValidacao').html(data.toString());
-            },
-            error: function (data) {
-                $('#retornoValidacao').html(data.toString());
-            }
-        });
-    }
+                type: 'POST',
+                url: '/ajaxExcluir',
+                data: {
+                    id: form.btnExcluirCliente.value
+                },
+                success: function (data) {
+                    $('#retornoValidacao').html(data.toString());
+                },
+                error: function (data) {
+                    $('#retornoValidacao').html(data.toString());
+                }
+            });
+        }
     });
 });
 
@@ -79,8 +97,8 @@ $(document).ready(function () {
             type: 'POST',
             url: '/ajaxAlterar',
             data: {
-                nome: form.nome.value,               
-                cpf: form.cpf.value,               
+                nome: form.nome.value,
+                cpf: form.cpf.value,
                 telefone: form.telefone.value,
                 email: form.email.value
             },
@@ -111,7 +129,7 @@ $(document).ready(function () {
                 form.email.value = res[3];
                 form.login.value = res[4];
                 form.senha.value = res[5];
-                
+
                 form.btnAlterarClienteAdmin.disabled = false;
                 form.btnExcluirClienteAdmin.disabled = false;
             },
@@ -144,21 +162,21 @@ $(document).ready(function () {
         var form = document.getElementById('formEditarAdmin');
         if (confirm("Deseja Excluir?")) {
             $.ajax({
-            type: 'POST',
-            url: '/ajaxExcluirAdmin',
-            data: {
-                id: form.id.value
-            },
-            success: function (data) {
-                $('#retornoValidacao').html(data.toString());
-                    
-            },
-            error: function (data) {
-                $('#retornoValidacao').html(data.toString());
-                    
-            }
-        });
-    }
+                type: 'POST',
+                url: '/ajaxExcluirAdmin',
+                data: {
+                    id: form.id.value
+                },
+                success: function (data) {
+                    $('#retornoValidacao').html(data.toString());
+
+                },
+                error: function (data) {
+                    $('#retornoValidacao').html(data.toString());
+
+                }
+            });
+        }
     });
 });
 
@@ -171,8 +189,8 @@ $(document).ready(function () {
             url: '/ajaxAlterarAdmin',
             data: {
                 id: form.id.value,
-                nome: form.nome.value,               
-                cpf: form.cpf.value,               
+                nome: form.nome.value,
+                cpf: form.cpf.value,
                 telefone: form.telefone.value,
                 email: form.email.value,
                 login: form.login.value,
