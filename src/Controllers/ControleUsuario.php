@@ -186,17 +186,15 @@ class ControleUsuario {
      }   
 
     public function alterarUserAdmin() {
-        $id = $this->sessao->get("usuario")->idUsuario;
+        $id = $_POST['id'];
         $nome = $_POST['nome'];
         $cpf = $_POST['cpf'];
         $telefone = $_POST['telefone'];
         $email = $_POST['email'];
+        $login = $_POST['login'];
+        $senha = $_POST['senha'];
         $modelo = new ModeloUsuario();
-        if($modelo->alterarCliente($id ,$nome ,$cpf , $telefone , $email)){
-            $this->sessao->rem("usuario");
-            // adicionar a sessão de novo;
-            $u = $modelo->buscaCliente($id);
-            $this->sessao->add("usuario", $u);
+        if($modelo->alterarClienteAdmin($id ,$nome ,$cpf , $telefone , $email, $login ,$senha)){           
             echo '<script>window.location.href = "/editarUser"</script>';
         }else{
             echo 'Erro';

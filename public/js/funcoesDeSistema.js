@@ -161,6 +161,7 @@ $(document).ready(function () {
             type: 'POST',
             url: '/ajaxAlterarAdmin',
             data: {
+                id: form.id.value,
                 nome: form.nome.value,               
                 cpf: form.cpf.value,               
                 telefone: form.telefone.value,
