@@ -104,10 +104,51 @@ $(document).ready(function () {
                 form.email.value = res[3];
                 form.login.value = res[4];
                 form.senha.value = res[5];
+                
+                form.btnAlterarClienteAdmin.disabled = false;
+                form.btnExcluirClienteAdmin.disabled = false;
             },
             error: function (data) {
                 $('#retornoValidacao').html(data.toString());
             }
         })
+    });
+});
+
+$(document).ready(function () {
+    $('#btnAlterarClienteAdmin').on('click touchstart', function () {
+        var form = document.getElementById('formEditarAdmin');
+
+        form.nome.disabled = false;
+        form.cpf.disabled = false;
+        form.telefone.disabled = false;
+        form.email.disabled = false;
+        form.login.disabled = false;
+        form.senha.dislabled = false;
+
+        form.btnExcluirCliente.disabled = true;
+        form.btnSalvarCliente.disabled = false;
+        form.btnCancelarCliente.disabled = false;
+    });
+});
+
+$(document).ready(function () {
+    $('#btnExcluirClienteAdmin').on('click touchstart', function () {
+        var form = document.getElementById('formEditar');
+        if (confirm("Deseja Excluir?")) {
+            $.ajax({
+            type: 'POST',
+            url: '/ajaxExcluir',
+            data: {
+                id: form.id.value
+            },
+            success: function (data) {
+                $('#retornoValidacao').html(data.toString());
+            },
+            error: function (data) {
+                $('#retornoValidacao').html(data.toString());
+            }
+        });
+    }
     });
 });
