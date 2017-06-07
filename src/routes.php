@@ -22,7 +22,7 @@ $rotas->add('editarUserAdmin', new Route('/editarUserAdmin', array('_controller'
 $rotas->add('buscarUserAdmin', new Route('/buscarUserAdmin', array('_controller' =>'MeuProjeto\Controllers\ControleUsuario','_method' => 'buscarUserAdmin')));
 $rotas->add('alterarUserAdmin', new Route('/ajaxAlterarAdmin', array('_controller' =>'MeuProjeto\Controllers\ControleUsuario','_method' => 'alterarUserAdmin')));
 $rotas->add('excluirUserAdmin', new Route('/ajaxExcluirAdmin', array('_controller' =>'MeuProjeto\Controllers\ControleUsuario','_method' => 'excluirUserAdmin')));
-
+$rotas->add('relatorio', new Route('/relatorio', array('_controller' =>'MeuProjeto\Controllers\ControleUsuario','_method' => 'relatorioDeClientes')));
 
 
 return $rotas;
