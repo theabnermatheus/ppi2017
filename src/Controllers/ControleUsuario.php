@@ -183,15 +183,7 @@ class ControleUsuario {
          }else{
              echo 'Error';
          }
-     }
-
-     public function excluirUserAdmin() {
-        $id = $_POST['id'];
-        $modelo = new ModeloUsuario();
-        $modelo->excluirCliente($id);
-        $this->sessao->rem("usuario");
-        echo '<script>window.location.href = "/"</script>';
-    }
+     }   
 
     public function alterarUserAdmin() {
         $id = $this->sessao->get("usuario")->idUsuario;
