@@ -164,7 +164,9 @@ $(document).ready(function () {
                 nome: form.nome.value,               
                 cpf: form.cpf.value,               
                 telefone: form.telefone.value,
-                email: form.email.value
+                email: form.email.value,
+                login: form.login.value,
+                senha: form.senha.value
             },
             success: function (data) {
                 $('#retornoValidacao').html(data.toString());
