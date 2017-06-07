@@ -86,3 +86,28 @@ $(document).ready(function () {
         });
     });
 });
+
+$(document).ready(function () {
+    $('#btnBuscarCliente').on('click touchstart', function () {
+        var form = document.getElementById('formEditarAdmin');
+        $.ajax({
+            type: 'POST',
+            url: '/buscarUserAdmin',
+            data: {
+                id: form.id.value
+            },
+            success: function (data) {
+                var res = data.split("#")
+                form.nome.value = res[0];
+                form.cpf.value = res[1];
+                form.telefone.value = res[2];
+                form.email.value = res[3];
+                form.login.value = res[4];
+                form.senha.value = res[5];
+            },
+            error: function (data) {
+                $('#retornoValidacao').html(data.toString());
+            }
+        })
+    });
+});

@@ -165,4 +165,49 @@ class ControleUsuario {
             echo 'Erro';
         }      
     }
+    public function editarUserAdmin() {
+        if ($this->sessao->get("usuario") == "") {
+            echo '<script>alert("Faça login para continuar");</script>';
+            echo '<script>window.location.href = "/"</script>';
+        } else {
+            return $this->response->setContent($this->twig->render('TemplateEditarUserAdmin.html', array('user' => $this->sessao->get("usuario"))));
+        }
+    }
+
+     public function buscarUserAdmin(){
+         $id = $_POST['id'];
+         $modelo = new ModeloUsuario();
+         $u = $modelo->buscaCliente($id);
+         if($u){
+             echo $u->nome."#".$u->cpf."#".$u->telefone."#".$u->email."#".$u->login."#".$u->senha;
+         }else{
+             echo 'Error';
+         }
+     }
+
+     public function excluirUserAdmin() {
+        $id = $_POST['id'];
+        $modelo = new ModeloUsuario();
+        $modelo->excluirCliente($id);
+        $this->sessao->rem("usuario");
+        echo '<script>window.location.href = "/"</script>';
+    }
+
+    public function alterarUserAdmin() {
+        $id = $this->sessao->get("usuario")->idUsuario;
+        $nome = $_POST['nome'];
+        $cpf = $_POST['cpf'];
+        $telefone = $_POST['telefone'];
+        $email = $_POST['email'];
+        $modelo = new ModeloUsuario();
+        if($modelo->alterarCliente($id ,$nome ,$cpf , $telefone , $email)){
+            $this->sessao->rem("usuario");
+            // adicionar a sessão de novo;
+            $u = $modelo->buscaCliente($id);
+            $this->sessao->add("usuario", $u);
+            echo '<script>window.location.href = "/editarUser"</script>';
+        }else{
+            echo 'Erro';
+        }      
+    }
 }
