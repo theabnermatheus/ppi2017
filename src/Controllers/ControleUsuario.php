@@ -170,11 +170,13 @@ class ControleUsuario {
         if ($this->sessao->get("usuario") == "") {
             echo '<script>alert("Faça login para continuar");</script>';
             echo '<script>window.location.href = "/"</script>';
-        } else {
-            return $this->response->setContent($this->twig->render('TemplateEditarUserAdmin.html', array('user' => $this->sessao->get("usuario"))));
-        }
+        } else if($this->sessao->get("usuario")->status == 0){
+            echo '<script>window.location.href = "/"</script>';        
+        } else if ($this->sessao->get("usuario")->status == 1){
+             return $this->response->setContent($this->twig->render('TemplateEditarUserAdmin.html', array('user' => $this->sessao->get("usuario")))); 
+        }    
     }
-
+   
     public function buscarUserAdmin() {
         $id = $_POST['id'];
         $modelo = new ModeloUsuario();
@@ -184,6 +186,7 @@ class ControleUsuario {
         } else {
             echo 'Error';
         }
+        echo 'erro';
     }
 
     public function alterarUserAdmin() {
