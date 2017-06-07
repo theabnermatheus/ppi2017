@@ -23,7 +23,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     $('#funcoesAdmin').on('click touchstart', function () {
-        window.location.href = "/editarUser";
+        window.location.href = "/editarUserAdmin";
     });
 });
 
