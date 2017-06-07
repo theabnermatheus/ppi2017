@@ -20,6 +20,13 @@ $(document).ready(function () {
         window.location.href = "/editarUser";
     });
 });
+
+$(document).ready(function () {
+    $('#funcoesAdmin').on('click touchstart', function () {
+        window.location.href = "/editarUser";
+    });
+});
+
 $(document).ready(function () {
     $('#btnAlterarCliente').on('click touchstart', function () {
         var form = document.getElementById('formEditar');
@@ -126,27 +133,29 @@ $(document).ready(function () {
         form.login.disabled = false;
         form.senha.dislabled = false;
 
-        form.btnExcluirCliente.disabled = true;
-        form.btnSalvarCliente.disabled = false;
-        form.btnCancelarCliente.disabled = false;
+        form.btnExcluirClienteAdmin.disabled = true;
+        form.btnSalvarClienteAdmin.disabled = false;
+        form.btnCancelarClienteAdmin.disabled = false;
     });
 });
 
 $(document).ready(function () {
     $('#btnExcluirClienteAdmin').on('click touchstart', function () {
-        var form = document.getElementById('formEditar');
+        var form = document.getElementById('formEditarAdmin');
         if (confirm("Deseja Excluir?")) {
             $.ajax({
             type: 'POST',
-            url: '/ajaxExcluir',
+            url: '/ajaxExcluirAdmin',
             data: {
                 id: form.id.value
             },
             success: function (data) {
                 $('#retornoValidacao').html(data.toString());
+                    
             },
             error: function (data) {
                 $('#retornoValidacao').html(data.toString());
+                    
             }
         });
     }
@@ -154,9 +163,9 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
-    $('#btnSalvarCliente').on('click touchstart', function () {
+    $('#btnSalvarClienteAdmin').on('click touchstart', function () {
 
-        var form = document.getElementById('formEditar');
+        var form = document.getElementById('formEditarAdmin');
         $.ajax({
             type: 'POST',
             url: '/ajaxAlterarAdmin',
