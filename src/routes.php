@@ -25,4 +25,5 @@ $rotas->add('alterarUserAdmin', new Route('/ajaxAlterarAdmin', array('_controlle
 $rotas->add('excluirUserAdmin', new Route('/ajaxExcluirAdmin', array('_controller' =>'MeuProjeto\Controllers\ControleUsuario','_method' => 'excluirUserAdmin')));
 $rotas->add('relatorio', new Route('/relatorio', array('_controller' =>'MeuProjeto\Controllers\ControleUsuario','_method' => 'relatorioDeClientesAjax')));
 $rotas->add('subirMusica', new Route('/subirMusica', array('_controller' =>'MeuProjeto\Controllers\ControleMusica','_method' => 'paginaDeUpload')));
+$rotas->add('salvarMusica', new Route('/setMusica', array('_controller' =>'MeuProjeto\Controllers\ControleMusica','_method' => 'setMusica')));
 return $rotas;

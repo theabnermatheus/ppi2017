@@ -2,6 +2,7 @@
 namespace MeuProjeto\models;
 use MeuProjeto\Entity\Usuario;
 use MeuProjeto\Util\Conexao;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use PDO;
 
 class ModeloMusica {
@@ -10,14 +11,13 @@ class ModeloMusica {
         
     }
     
-    public function setMusica(\Symfony\Component\HttpFoundation\File\UploadedFile $imagem) {
+    public function setMusica(UploadedFile $imagem) {
         try {
-            $sql = "insert into t1 (nome, type, data) values (:nome, :type, :data)";
+            $sql = "INSERT INTO `musica` (`data`) VALUES (?)";
             $p_sql = Conexao::getInstance()->prepare($sql);
-            $p_sql->bindValue(':nome', $imagem->getClientOriginalName());
-            $p_sql->bindValue(':type', $imagem->getMimeType());
-            $p_sql->bindValue(':data', file_get_contents($imagem->getPathname()));
-            return $p_sql->execute();
+            $p_sql->bindValue(1, file_get_contents($imagem->getPathname()));
+            print_r($imagem);
+//return $p_sql->execute();
 //            return $p_sql->fetchAll(PDO::FETCH_ASSOC);
         } catch (Exception $ex) {
             

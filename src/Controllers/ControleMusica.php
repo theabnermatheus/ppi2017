@@ -25,7 +25,8 @@ class ControleMusica {
         $modelo = new ModeloMusica();
         $file = $this->request->files->get('arquivo');
         $modelo->setMusica($file);
-        return $this->response->setContent("Imagem salva com sucesso ...");
+        /*echo '<script>alert("Imagem salva com sucesso ...");'
+        . 'window.location.href = "/subirMusica";</script>';*/      
     }
     public function getMusica($id) {
         $modelo = new ModeloMusica();
