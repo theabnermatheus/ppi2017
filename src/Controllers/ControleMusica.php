@@ -1,8 +1,7 @@
 <?php
 
-use MeuProjeto\models\ModeloUsuario;
+namespace MeuProjeto\Controllers;
 use MeuProjeto\models\ModeloMusica;
-use MeuProjeto\Entity\Usuario;
 use MeuProjeto\Util\Sessao;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;

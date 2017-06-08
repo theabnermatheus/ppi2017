@@ -43,9 +43,3 @@ if (isset($atributos['_method'])) {
 }
     
 $response->send();
-
-
-
-
-
-

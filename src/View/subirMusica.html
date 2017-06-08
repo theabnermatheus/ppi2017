@@ -19,7 +19,17 @@
     </head>
     <body>
         {{include ('MenuLogadoAdmin.html')}}
-        
-        
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div id="controles" class="">
+                    <br>
+                    <form method="post" enctype="multipart/form-data" action="/setImagem" class="form-group">
+                        <input type="file" name="arquivo" />                     
+                        <br>
+                        <input type="submit" class="btn">
+                    </form>
+                </div>  
+            </div>              
+        </div>                  
     </body>
 </html>
