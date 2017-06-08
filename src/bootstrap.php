@@ -22,8 +22,6 @@ $whoops->register();
 
 include 'routes.php';
 
-
-
 $loader = new \Twig_Loader_Filesystem(__DIR__ . '/View');
 $twig = new \Twig_Environment($loader);
 
@@ -31,11 +29,8 @@ $requestContext = new RequestContext();
 $requestContext->fromRequest(Request::createFromGlobals());
 $response = new Response();
 
-
-// tratar !!!!!
 $urlMatcher = new UrlMatcher($rotas, $requestContext);
 $atributos = $urlMatcher->match($requestContext->getPathInfo());
-//print_r($atributos);
 
 $controlador = new $atributos['_controller']($response, Request::createFromGlobals(), $twig , $sessao);
 
@@ -47,7 +42,6 @@ if (isset($atributos['_method'])) {
         $controlador->$metodo();
 }
     
-
 $response->send();
 
 
