@@ -1,4 +1,10 @@
 $(document).ready(function () {
+    $('#relUsers').on('click touchstart', function () {
+        window.location.href = "/relatorio";
+    });
+});
+
+$(document).ready(function () {
     $('#sair').on('click touchstart', function () {
         window.location.href = "/sair";
     });
