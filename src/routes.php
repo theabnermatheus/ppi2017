@@ -1,4 +1,5 @@
 <?php
+
 namespace MeuProjeto\Routes;
 
 use Symfony\Component\Routing\RouteCollection;
@@ -23,4 +24,5 @@ $rotas->add('buscarUserAdmin', new Route('/buscarUserAdmin', array('_controller'
 $rotas->add('alterarUserAdmin', new Route('/ajaxAlterarAdmin', array('_controller' =>'MeuProjeto\Controllers\ControleUsuario','_method' => 'alterarUserAdmin')));
 $rotas->add('excluirUserAdmin', new Route('/ajaxExcluirAdmin', array('_controller' =>'MeuProjeto\Controllers\ControleUsuario','_method' => 'excluirUserAdmin')));
 $rotas->add('relatorio', new Route('/relatorio', array('_controller' =>'MeuProjeto\Controllers\ControleUsuario','_method' => 'relatorioDeClientesAjax')));
+$rotas->add('subirMusica', new Route('/subirMusica', array('_controller' =>'MeuProjeto\Controllers\ControleMusica','_method' => 'paginaDeUpload')));
 return $rotas;
