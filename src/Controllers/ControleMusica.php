@@ -22,11 +22,40 @@ class ControleMusica {
     }
     
     public function setMusica() {
-        $modelo = new ModeloMusica();
-        $file = $this->request->files->get('arquivo');
-        $modelo->setMusica($file);
-        /*echo '<script>alert("Imagem salva com sucesso ...");'
-        . 'window.location.href = "/subirMusica";</script>';*/      
+       $titulo = null;
+        $artista = null;
+        $genero = null;
+
+        $titulo = $_REQUEST['titulo'];
+        $artista = $_REQUEST['artista'];
+        $genero = $_REQUEST['genero'];
+
+        if ($titulo == null) {
+            echo 'Digite o titulo';
+            return;
+        }
+
+        if ($artista == null) {
+            echo 'Digite o nome do artista';
+             return;
+        }
+
+        if ($genero == "null") {
+            echo 'Selecione o genero ';
+             return;
+        }
+
+        $extensao = strtolower(substr($_FILES['arquivo']['name'], -4)); // pegar a extensão
+        $novo_nome = $titulo . "- " . $artista; // define o nome do arquivo
+        $diretorio = "./musicas/";
+
+        if (move_uploaded_file($_FILES['arquivo']['tmp_name'], $diretorio . $novo_nome . $extensao)) {
+            $caminho = $diretorio . $novo_nome . $extensao;
+            $modelo = new ModeloMusica();
+            $modelo->setMusica($titulo,$artista,$genero,$caminho);      
+        } else {
+            echo 'Erro ao fazer upload';
+        }     
     }
     public function getMusica($id) {
         $modelo = new ModeloMusica();

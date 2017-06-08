@@ -11,17 +11,19 @@ class ModeloMusica {
         
     }
     
-    public function setMusica(UploadedFile $imagem) {
+    public function setMusica($titulo , $artista , $genero , $caminho) {
         try {
-            $sql = "INSERT INTO `musica` (`data`) VALUES (?)";
-            $p_sql = Conexao::getInstance()->prepare($sql);
-            $p_sql->bindValue(1, file_get_contents($imagem->getPathname()));
-            print_r($imagem);
-//return $p_sql->execute();
-//            return $p_sql->fetchAll(PDO::FETCH_ASSOC);
-        } catch (Exception $ex) {
-            
-        }
+                $sql = "INSERT INTO `musicas` (`codigo`, `titulo`, `artista`, `genero`, `caminho`) VALUES (NULL, ?, ?, ?, ?)";
+                $p_sql = Conexao::getInstance()->prepare($sql);
+                $p_sql->bindValue(1, $titulo);
+                $p_sql->bindValue(2, $artista);
+                $p_sql->bindValue(3, $genero);
+                $p_sql->bindValue(4, $caminho);
+                if ($p_sql->execute())
+                    $msg = "arquivo enviado com sucesso";
+            } catch (Exception $e) {
+                $msg = "Ocorreu um erro ao tentar executar esta ação. <br> $e";
+            }            
     }
     
     public function getMusica($id) {
