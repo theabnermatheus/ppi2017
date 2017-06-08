@@ -1,21 +1,4 @@
 $(document).ready(function () {
-    $('#gerarRelatorio').on('click touchstart', function () {
-        for(var i = 0; i < 5; i++){
-        var newRow = $("<tr class='active'>");
-        var cols = "";
-        cols += '<td>1</td>';
-        cols += '<td>Abner Matheus</td>';
-        cols += '<td>11783586664</td>';
-        cols += '<td>38999451386</td>';
-        cols += '<td>theabnermatheus@gmail.com</td>';
-
-        newRow.append(cols);
-        $("#Trelatorio").append(newRow);
-    }
-    });
-});
-
-$(document).ready(function () {
     $('#sair').on('click touchstart', function () {
         window.location.href = "/sair";
     });

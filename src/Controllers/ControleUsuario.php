@@ -215,5 +215,10 @@ class ControleUsuario {
         $modelo->excluirCliente($id);
         echo '<script>window.location.href = "/"</script>';
     }
-
+    
+    public function relatorioDeClientesAjax() {
+        $modelo = new ModeloUsuario();
+        $u = $modelo->relatorioCliente();
+        return $this->response->setContent($this->twig->render('TemplateRel.html', array('dados' => $u))); 
+    }
 }

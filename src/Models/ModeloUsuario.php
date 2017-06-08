@@ -116,5 +116,16 @@ class ModeloUsuario {
             echo $exc->getTraceAsString();
         }
     }
+    
+    public function relatorioCliente() {
+        try {
+            $sql = "SELECT * FROM usuario";
+            $p_sql = Conexao::getInstance()->prepare($sql);
+            $p_sql->execute();         
+                return $p_sql->fetchAll(PDO::FETCH_OBJ);          
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
 }
 ?>
