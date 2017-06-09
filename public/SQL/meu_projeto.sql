@@ -10,3 +10,11 @@ CREATE TABLE `usuario` (
   `dataCadastro` datetime NOT NULL,
   `dataExclusao` datetime
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin
+
+create table musicas(
+codigo int not null auto_increment PRIMARY KEY,
+titulo text not null,
+artista text not null,
+genero text not null,
+caminho text not null 
+);

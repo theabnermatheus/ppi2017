@@ -13,20 +13,22 @@ class ModeloMusica {
     }
     
     public function setMusica($titulo , $artista , $genero , $caminho) {
+        echo 'cheguei aqui';
         try {
-            $sql = "INSERT INTO `musicas` (`codigo`, `titulo`, `artista`, `genero`, `caminho`) VALUES (NULL, 'sada', 'sadsad', 'asdasd', 'sadsa')";
+            $sql = "INSERT INTO `musicas` (`codigo`, `titulo`, `artista`, `genero`, `caminho`) "
+                    . "VALUES (NULL, ?, ?, ?, ?)";                      
             $p_sql = Conexao::getInstance()->prepare($sql);
             $p_sql->bindValue(1, $titulo);
             $p_sql->bindValue(2, $artista);
             $p_sql->bindValue(3, $genero);
-            $p_sql->bindValue(4, $caminho);
+            $p_sql->bindValue(4, $caminho);            
             if ($p_sql->execute()) {
                 return Conexao::getInstance()->lastInsertId();
             }
             return 0;
         } catch (Exception $e) {
             echo "Ocorreu um erro ao tentar executar esta ação. <br> $e";
-        } 
+        }
     }
     
     public function getMusica($id) {
