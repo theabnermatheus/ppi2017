@@ -9,8 +9,7 @@ body {
     min-height: 90%;
     font-family: "Microsoft Yahei",'Lato', sans-serif;
     font-weight: 400;
-    background: url("../img/bg-pattern.png"), #7b4397;
-    background: url("../img/bg-pattern.png"), linear-gradient(to left, #0099cc, #7b4397);
+    background: url("../img/bg-pattern.png"), linear-gradient(to left, #087546, #5fc599);
 }
 
 #painel{
