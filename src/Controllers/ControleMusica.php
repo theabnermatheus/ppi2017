@@ -47,7 +47,7 @@ class ControleMusica {
 
         $extensao = strtolower(substr($_FILES['arquivo']['name'], -4)); // pegar a extensão
         $novo_nome = $titulo . "- " . $artista; // define o nome do arquivo
-        $diretorio = "./musicas/";
+        $diretorio = "Musicas/";
 
         if (move_uploaded_file($_FILES['arquivo']['tmp_name'], $diretorio . $novo_nome . $extensao)) {
             $caminho = $diretorio . $novo_nome . $extensao;
