@@ -14,7 +14,7 @@ class ModeloMusica {
     
     public function setMusica($titulo , $artista , $genero , $caminho) {
         try {
-            $sql = "INSERT INTO `musicas` (`codigo`, `titulo`, `artista`, `genero`, `caminho`) VALUES (NULL, ?, ?, ?, ?)";
+            $sql = "INSERT INTO `musicas` (`codigo`, `titulo`, `artista`, `genero`, `caminho`) VALUES (NULL, 'sada', 'sadsad', 'asdasd', 'sadsa')";
             $p_sql = Conexao::getInstance()->prepare($sql);
             $p_sql->bindValue(1, $titulo);
             $p_sql->bindValue(2, $artista);
@@ -26,7 +26,7 @@ class ModeloMusica {
             return 0;
         } catch (Exception $e) {
             echo "Ocorreu um erro ao tentar executar esta ação. <br> $e";
-        }            
+        } 
     }
     
     public function getMusica($id) {

@@ -52,7 +52,7 @@ class ControleMusica {
         if (move_uploaded_file($_FILES['arquivo']['tmp_name'], $diretorio . $novo_nome . $extensao)) {
             $caminho = $diretorio . $novo_nome . $extensao;
             $modelo = new ModeloMusica();
-            $modelo->setMusica($titulo,$artista,$genero,$caminho);        
+            $modelo->setMusica($titulo, $artista, $genero, $caminho);        
         } else {
             echo 'Erro ao fazer upload';
         }     
