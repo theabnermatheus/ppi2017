@@ -4,7 +4,7 @@ namespace MeuProjeto\Controllers;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
-use MeuProjeto\Models\ModeloProduto;
+use MeuProjeto\models\ModeloMusica;
 use Symfony\Component\Routing\RequestContext;
 
 class ControleIndex {
@@ -59,5 +59,10 @@ class ControleIndex {
         $this->sessao->del();
         return $this->response->setContent($this->twig->render('TemplateIndex.html'));
     }
-
+    
+    public function teste() {
+        $modelo = new ModeloMusica();
+        $tudo = $modelo->seleconaPlayListDaRadio("Eletronica");       
+        return $this->response->setContent($this->twig->render('Teste.html',array('lista' => $tudo)));
+    }
 }

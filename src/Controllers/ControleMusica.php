@@ -57,10 +57,11 @@ class ControleMusica {
             echo 'Erro ao fazer upload';
         }     
     }
-    public function getMusica($id) {
+    public function getMusica() {
+        $id = $_POST['codigo'];
         $modelo = new ModeloMusica();
-        $img = $modelo->getMusica($id);
-        return $this->response->setContent($this->twig->render('produto.html', array('nome'=> $img['nome'], 'imagem' => base64_encode(($img['data'])), 'tipo' => $img['type'])));
+        $musica = $modelo->getMusica($id);
+        echo ($musica['caminho']);    
     }
     
     public function paginaDeUpload(){

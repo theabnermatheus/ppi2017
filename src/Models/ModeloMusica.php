@@ -33,14 +33,27 @@ class ModeloMusica {
     
     public function getMusica($id) {
         try {
-            $sql = "select * from t1 where id = :id";
+            $sql = "select caminho from musicas where codigo = ?";
             $p_sql = Conexao::getInstance()->prepare($sql);
-            $p_sql->bindValue(':id', $id);
+            $p_sql->bindValue(1, $id);
             $p_sql->execute();
-            return $p_sql->fetch(PDO::FETCH_ASSOC);
+            return $p_sql->fetch(PDO::FETCH_ASSOC );
         } catch (Exception $ex) {
             
         }
     }
     
+    
+    public function seleconaPlayListDaRadio($genero){
+        try {
+            $genero = "Eletronica";
+            $sql = "select codigo,titulo from musicas where genero = ?";
+            $p_sql = Conexao::getInstance()->prepare($sql);
+            $p_sql->bindValue(1, $genero);
+            $p_sql->execute();
+            return $p_sql->fetchAll(PDO::FETCH_OBJ);
+        } catch (Exception $ex) {
+            
+        }
+    }   
 }
