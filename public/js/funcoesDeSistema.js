@@ -1,4 +1,23 @@
 $(document).ready(function () {
+    $('a').on('click touchstart', function () {
+        var genero = this.id;
+
+        if(genero == "Eletronica"){
+            window.location.href = "/Eletronica";
+        }
+        
+        if(genero == "Pop"){
+            window.location.href = "Pop";
+        }
+        
+        if(genero == "Rock"){
+            window.location.href = "/Rock";
+        }
+    });
+});
+
+
+$(document).ready(function () {
     $('#enviarMusica').on('click touchstart', function () {
         var formData = new FormData();
         var f = document.getElementById('formEnviarArquivo');

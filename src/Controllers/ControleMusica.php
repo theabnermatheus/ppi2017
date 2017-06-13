@@ -79,6 +79,16 @@ class ControleMusica {
         return $this->response->setContent($this->twig->render('Teste.html',array('lista' => $tudo , 'caminhos'=>$caminhos)));
     }
     
+    public function eletronica(){
+        return $this->response->setContent($this->twig->render('subirMusica.html'));
+    }
+    public function pop(){
+        return $this->response->setContent($this->twig->render('subirMusica.html'));
+    }
+    
+    public function rock(){
+        return $this->response->setContent($this->twig->render('subirMusica.html'));
+    }
     
     
 }
