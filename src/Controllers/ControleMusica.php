@@ -94,10 +94,26 @@ class ControleMusica {
     }
 
     public function pop() {
-        return $this->response->setContent($this->twig->render('pop.html'));
+         $modelo = new ModeloMusica();
+        $musicas = $modelo->seleconaPlayListDaRadio("Pop");
+        $tamanho =  sizeof($musicas);
+        if($tamanho == 0){
+            $string = "Sem Musicas Cadastradas";
+            return $this->response->setContent($this->twig->render('pop.html',array('semMusicas' => $string)));
+        } else {
+            return $this->response->setContent($this->twig->render('pop.html',array('musicas' => $musicas)));
+        }      
     }
 
     public function rock() {
-        return $this->response->setContent($this->twig->render('rock.html'));
+         $modelo = new ModeloMusica();
+        $musicas = $modelo->seleconaPlayListDaRadio("Rock");
+        $tamanho =  sizeof($musicas);
+        if($tamanho == 0){
+            $string = "Sem Musicas Cadastradas";
+            return $this->response->setContent($this->twig->render('rock.html',array('semMusicas' => $string)));
+        } else {
+            return $this->response->setContent($this->twig->render('rock.html',array('musicas' => $musicas)));
+        }      
     }
 }
