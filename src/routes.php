@@ -27,6 +27,5 @@ $rotas->add('relatorio', new Route('/relatorio', array('_controller' =>'MeuProje
 $rotas->add('subirMusica', new Route('/subirMusica', array('_controller' =>'MeuProjeto\Controllers\ControleMusica','_method' => 'paginaDeUpload')));
 $rotas->add('salvarMusica', new Route('/setMusica', array('_controller' =>'MeuProjeto\Controllers\ControleMusica','_method' => 'setMusica')));
 $rotas->add('teste', new Route('/teste', array('_controller' =>'MeuProjeto\Controllers\ControleIndex','_method' => 'teste')));
-$rotas->add('tazerMusica', new Route('/trazerMusica', array('_controller' =>'MeuProjeto\Controllers\ControleMusica','_method' => 'getMusica')));
 
 return $rotas;

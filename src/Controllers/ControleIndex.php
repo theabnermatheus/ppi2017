@@ -62,7 +62,12 @@ class ControleIndex {
     
     public function teste() {
         $modelo = new ModeloMusica();
-        $tudo = $modelo->seleconaPlayListDaRadio("Eletronica");       
-        return $this->response->setContent($this->twig->render('Teste.html',array('lista' => $tudo)));
+        $tudo = $modelo->seleconaPlayListDaRadio("Eletronica");
+        $caminhos = null;
+        
+        for($i = 0; $i < count($tudo); $i++){            
+            $caminhos = $caminhos.$tudo[$i]->caminho."*";
+        }      
+        return $this->response->setContent($this->twig->render('Teste.html',array('lista' => $tudo , 'caminhos'=>$caminhos)));
     }
 }

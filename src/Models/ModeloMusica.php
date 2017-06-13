@@ -47,7 +47,7 @@ class ModeloMusica {
     public function seleconaPlayListDaRadio($genero){
         try {
             $genero = "Eletronica";
-            $sql = "select codigo,titulo from musicas where genero = ?";
+            $sql = "select caminho,titulo,artista from musicas where genero = ?";
             $p_sql = Conexao::getInstance()->prepare($sql);
             $p_sql->bindValue(1, $genero);
             $p_sql->execute();
