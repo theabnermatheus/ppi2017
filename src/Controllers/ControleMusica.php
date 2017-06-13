@@ -82,7 +82,15 @@ class ControleMusica {
     }
 
     public function eletronica() {
-        return $this->response->setContent($this->twig->render('eletronica.html'));
+        $modelo = new ModeloMusica();
+        $musicas = $modelo->seleconaPlayListDaRadio("Eletronica");
+        $tamanho =  sizeof($musicas);
+        if($tamanho == 0){
+            $string = "Sem Musicas Cadastradas";
+            return $this->response->setContent($this->twig->render('eletronica.html',array('semMusicas' => $string)));
+        } else {
+            return $this->response->setContent($this->twig->render('eletronica.html',array('musicas' => $musicas)));
+        }      
     }
 
     public function pop() {
