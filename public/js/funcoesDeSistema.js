@@ -50,6 +50,18 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
+    $('#btnListSite').on('click touchstart', function () {
+        window.location.href = "/playlistpadrao";
+    });
+});
+
+$(document).ready(function () {
+    $('#btnMinhaList').on('click touchstart', function () {
+        window.location.href = "/relatorio";
+    });
+});
+
+$(document).ready(function () {
     $('#relUsers').on('click touchstart', function () {
         window.location.href = "/relatorio";
     });

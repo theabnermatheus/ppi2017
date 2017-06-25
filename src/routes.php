@@ -29,6 +29,6 @@ $rotas->add('salvarMusica', new Route('/setMusica', array('_controller' =>'MeuPr
 $rotas->add('eletro', new Route('/Eletronica', array('_controller' =>'MeuProjeto\Controllers\ControleMusica','_method' => 'eletronica')));
 $rotas->add('pop', new Route('/Pop', array('_controller' =>'MeuProjeto\Controllers\ControleMusica','_method' => 'pop')));
 $rotas->add('Rock', new Route('/Rock', array('_controller' =>'MeuProjeto\Controllers\ControleMusica','_method' => 'rock')));
-$rotas->add('teste', new Route('/teste', array('_controller' =>'MeuProjeto\Controllers\ControleIndex','_method' => 'teste')));
+$rotas->add('listsDoSite', new Route('/playlistpadrao', array('_controller' =>'MeuProjeto\Controllers\ControleMusica','_method' => 'listPadrao')));
 
 return $rotas;

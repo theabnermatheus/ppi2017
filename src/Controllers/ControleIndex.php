@@ -58,16 +58,5 @@ class ControleIndex {
     public function sair() {
         $this->sessao->del();
         return $this->response->setContent($this->twig->render('TemplateIndex.html'));
-    }
-    
-    public function teste() {
-        $modelo = new ModeloMusica();
-        $tudo = $modelo->seleconaPlayListDaRadio("Eletronica");
-        $caminhos = null;
-        
-        for($i = 0; $i < count($tudo); $i++){            
-            $caminhos = $caminhos.$tudo[$i]->caminho."*";
-        }      
-        return $this->response->setContent($this->twig->render('Teste.html',array('lista' => $tudo , 'caminhos'=>$caminhos)));
-    }
+    }      
 }

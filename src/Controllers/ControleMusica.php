@@ -87,9 +87,9 @@ class ControleMusica {
         $tamanho =  sizeof($musicas);
         if($tamanho == 0){
             $string = "Sem Musicas Cadastradas";
-            return $this->response->setContent($this->twig->render('eletronica.html',array('semMusicas' => $string)));
+            return $this->response->setContent($this->twig->render('eletronica.html',array('semMusicas' => $string,'user' => $this->sessao->get("usuario"))));
         } else {
-            return $this->response->setContent($this->twig->render('eletronica.html',array('musicas' => $musicas)));
+            return $this->response->setContent($this->twig->render('eletronica.html',array('musicas' => $musicas,'user' => $this->sessao->get("usuario"))));
         }      
     }
 
@@ -99,9 +99,9 @@ class ControleMusica {
         $tamanho =  sizeof($musicas);
         if($tamanho == 0){
             $string = "Sem Musicas Cadastradas";
-            return $this->response->setContent($this->twig->render('pop.html',array('semMusicas' => $string)));
+            return $this->response->setContent($this->twig->render('pop.html',array('semMusicas' => $string,'user' => $this->sessao->get("usuario"))));
         } else {
-            return $this->response->setContent($this->twig->render('pop.html',array('musicas' => $musicas)));
+            return $this->response->setContent($this->twig->render('pop.html',array('musicas' => $musicas,'user' => $this->sessao->get("usuario"))));
         }      
     }
 
@@ -111,9 +111,20 @@ class ControleMusica {
         $tamanho =  sizeof($musicas);
         if($tamanho == 0){
             $string = "Sem Musicas Cadastradas";
-            return $this->response->setContent($this->twig->render('rock.html',array('semMusicas' => $string)));
+            return $this->response->setContent($this->twig->render('rock.html',array('semMusicas' => $string,'user' => $this->sessao->get("usuario"))));
         } else {
-            return $this->response->setContent($this->twig->render('rock.html',array('musicas' => $musicas)));
+            return $this->response->setContent($this->twig->render('rock.html',array('musicas' => $musicas,'user' => $this->sessao->get("usuario"))));
         }      
+    }
+    
+    public function listPadrao() {
+        $modelo = new ModeloMusica();
+        $tudo = $modelo->seleconaPlayListDaRadio("Eletronica");
+        $caminhos = null;
+        
+        for($i = 0; $i < count($tudo); $i++){            
+            $caminhos = $caminhos.$tudo[$i]->caminho."*";
+        }      
+        return $this->response->setContent($this->twig->render('ListPadrao.html',array('lista' => $tudo , 'caminhos'=>$caminhos , 'user' => $this->sessao->get("usuario"))));
     }
 }
