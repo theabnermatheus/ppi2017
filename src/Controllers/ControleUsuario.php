@@ -28,7 +28,7 @@ class ControleUsuario {
     }
     
     public function relatorioDeClientes() {   
-        return $this->response->setContent($this->twig->render('TemplateRelatorio.html'));
+        return $this->response->setContent($this->twig->render('TemplateRelatorio.html', array('user' => $this->sessao->get("usuario"))));
     }
 
     public function Cadastrar() {
