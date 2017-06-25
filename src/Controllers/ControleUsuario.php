@@ -25,11 +25,7 @@ class ControleUsuario {
 
     public function CadastroDeClientes() {
         return $this->response->setContent($this->twig->render('TemplateCadastroDeClientes.html'));
-    }
-    
-    public function relatorioDeClientes() {   
-        return $this->response->setContent($this->twig->render('TemplateRelatorio.html', array('user' => $this->sessao->get("usuario"))));
-    }
+    }    
 
     public function Cadastrar() {
         try {
@@ -219,6 +215,13 @@ class ControleUsuario {
     public function relatorioDeClientesAjax() {
         $modelo = new ModeloUsuario();
         $u = $modelo->relatorioCliente();
-        return $this->response->setContent($this->twig->render('TemplateRel.html', array('dados' => $u))); 
+         if ($this->sessao->get("usuario") == "") {
+            echo '<script>alert("Faça login para continuar");</script>';
+            echo '<script>window.location.href = "/"</script>';
+        } else if($this->sessao->get("usuario")->status == 0){
+            echo '<script>window.location.href = "/"</script>';        
+        } else if ($this->sessao->get("usuario")->status == 1){
+            return $this->response->setContent($this->twig->render('TemplateRel.html', array('dados' => $u))); 
+        }      
     }
 }

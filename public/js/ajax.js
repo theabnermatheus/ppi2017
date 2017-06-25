@@ -1,36 +1,3 @@
-$(document).ready(function () {
-    $('#enviarMusica').on('click touchstart', function () {
-        var formData = new FormData();
-        var f = document.getElementById('formEnviarArquivo');
-        var sel1 = $('#sel1').val();
-
-        formData.append('acao', 'subirMusica');
-        formData.append('titulo', f.titulo.value);
-        formData.append('artista', f.artista.value);
-        formData.append('genero', sel1);
-        formData.append('arquivo', $('#arquivo').prop('files')[0]);
-
-        $.ajax({
-            url: 'controleUpload.php',
-            data: formData,
-            type: 'post',
-            success: function (data) {
-                alert(data);
-            },
-            beforeSend: function () {
-                $('#procP').css({display: "block"});
-            },
-            complete: function () {
-                $('#procP').css({display: "none"});
-            },
-            processData: false,
-            cache: false,
-            contentType: false
-        });
-    });
-});
-
-
 //cadastrar cliente
 $(document).ready(function () {
     $("#btnCadastrarCliente").on('click touchstart', function () {
