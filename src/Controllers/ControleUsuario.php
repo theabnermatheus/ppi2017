@@ -221,7 +221,7 @@ class ControleUsuario {
         } else if($this->sessao->get("usuario")->status == 0){
             echo '<script>window.location.href = "/"</script>';        
         } else if ($this->sessao->get("usuario")->status == 1){
-            return $this->response->setContent($this->twig->render('TemplateRel.html', array('dados' => $u))); 
+            return $this->response->setContent($this->twig->render('TemplateRel.html', array('dados' => $u,'user' => $this->sessao->get("usuario")))); 
         }      
     }
 }
