@@ -57,7 +57,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     $('#btnMinhaList').on('click touchstart', function () {
-        window.location.href = "/relatorio";
+        window.location.href = "/#";
     });
 });
 
