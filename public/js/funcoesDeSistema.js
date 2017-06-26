@@ -62,6 +62,12 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
+    $('#addmusic').on('click touchstart', function () {
+        window.location.href = "/subirMusica";
+    });
+});
+
+$(document).ready(function () {
     $('#relUsers').on('click touchstart', function () {
         window.location.href = "/relatorio";
     });
