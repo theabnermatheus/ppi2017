@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $('a').on('click touchstart', function () {
+   $('a').on('click touchstart', function () {
         var genero = this.id;
 
         if(genero == "Eletronica"){
