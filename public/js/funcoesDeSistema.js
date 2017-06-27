@@ -90,7 +90,24 @@ $(document).ready(function () {
         window.location.href = "/login";
     });
 });
-
+$(document).ready(function () {
+    $('#btnCadastrarClienteList').on('click touchstart', function () {
+        var f = document.getElementById('formCadastrarClienteList');
+        $.ajax({
+            type: 'POST',
+            url: '/addlistajax',
+            data: {
+                nome: f.nome.value,               
+            },
+            success: function (data) {
+                $('#retornoValidacao').html(data);
+            },
+            error: function (data) {
+                $('#retornoValidacao').html(data);
+            }
+        });     
+    });
+});
 $(document).ready(function () {
     $('#alterarEexcluir').on('click touchstart', function () {
         window.location.href = "/editarUser";
