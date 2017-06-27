@@ -169,21 +169,22 @@ class ControleMusica {
         $modelo = new ModeloMusica();
         $resp = $modelo->verificaDono($user, $param);
         if($resp){
+             $lista = $modelo->trazLista($param);
+             $lista = $lista[0]->musicas;
+             $musicas = explode("/",$lista);
+             $listaDeMusicas = null;
              
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
+             for($i = 0; $i < sizeof($musicas); $i++){
+                 $listaDeMusicas[] = $modelo->getMusicaOfList($musicas[$i]);
+             }
+             
+             if(sizeof($listaDeMusicas)== 0){
+                 echo '<script>alert("Você não tem Músicas");</script>';
+                 echo '<script>window.location.href = "/myList"</script>';
+             }else{
+                 return $this->response->setContent($this->twig->render('MusicasDoUser.html', array('list' => $listaDeMusicas, 'user' => $this->sessao->get("usuario"))));                             
+             }
+             
         }else{
              echo '<script>alert("voce não tem permissão para acessar aqui");</script>';
              echo '<script>window.location.href = "/"</script>';

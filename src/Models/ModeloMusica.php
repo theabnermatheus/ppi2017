@@ -37,7 +37,7 @@ class ModeloMusica {
             $p_sql = Conexao::getInstance()->prepare($sql);
             $p_sql->bindValue(1, $id);
             $p_sql->execute();
-            return $p_sql->fetch(PDO::FETCH_ASSOC );
+            return $p_sql->fetch(PDO::FETCH_ASSOC);
         } catch (Exception $ex) {
             
         }
@@ -93,7 +93,31 @@ class ModeloMusica {
             $p_sql->execute();
             return $p_sql->fetchAll(PDO::FETCH_OBJ);
         } catch (Exception $ex) {
+            echo "Ocorreu um erro ao tentar executar esta ação. <br> $e";
+        }              
+    }  
+    
+    public function trazLista($id){
+        try {
+            $sql = "select playlist.musicas from playlist WHERE playlist.idlist = ?";
+            $p_sql = Conexao::getInstance()->prepare($sql);
+            $p_sql->bindValue(1, $id);
+            $p_sql->execute();
+            return $p_sql->fetchAll(PDO::FETCH_OBJ);
+        } catch (Exception $ex) {
+            echo "Ocorreu um erro ao tentar executar esta ação. <br> $e";
+        }              
+    }
+    
+     public function getMusicaOfList($id) {
+        try {
+            $sql = "select caminho,titulo from musicas where codigo = ?";
+            $p_sql = Conexao::getInstance()->prepare($sql);
+            $p_sql->bindValue(1, $id);
+            $p_sql->execute();
+            return $p_sql->fetch(PDO::FETCH_OBJ);
+        } catch (Exception $ex) {
             
         }
-    }     
+    }
 }
