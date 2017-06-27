@@ -57,9 +57,17 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     $('#btnMinhaList').on('click touchstart', function () {
-        window.location.href = "/#";
+        window.location.href = "/myList";
     });
 });
+
+add$(document).ready(function () {
+    $('#addNewList').on('click touchstart', function () {
+        alert("oi");
+        //window.location.href = "/addlist";
+    });
+});
+
 
 $(document).ready(function () {
     $('#addmusic').on('click touchstart', function () {
