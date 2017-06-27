@@ -55,4 +55,20 @@ class ModeloMusica {
             
         }
     }   
+    public function addlist($nome){
+        try {
+            $sql = "INSERT INTO `playlist` (`idlist`, `idUsuario`, `nome`, `musicas`) VALUES (null, ?, ?, ?)";
+            $p_sql = Conexao::getInstance()->prepare($sql);
+            $p_sql->bindValue(1, 1);
+            $p_sql->bindValue(2, $nome);
+            $p_sql->bindValue(3, "");
+            if ($p_sql->execute()) {
+                return Conexao::getInstance()->lastInsertId();
+            }else{
+                return 0;
+            }
+        } catch (Exception $ex) {
+            echo "Ocorreu um erro ao tentar executar esta ação. <br> $e";
+        }
+    }
 }

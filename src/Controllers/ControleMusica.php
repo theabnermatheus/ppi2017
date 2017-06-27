@@ -127,4 +127,14 @@ class ControleMusica {
         }      
         return $this->response->setContent($this->twig->render('ListPadrao.html',array('lista' => $tudo , 'caminhos'=>$caminhos , 'user' => $this->sessao->get("usuario"))));
     }
+    
+    public function criarPlayList() {       
+        return $this->response->setContent($this->twig->render('criarPlayList.html',array( 'user' => $this->sessao->get("usuario"))));
+    }
+   
+    public function criarPlayListAjax() {       
+        $nome = $_POST['nome'];
+        $modelo = new ModeloMusica();
+        $modelo->addlist($nome);
+    }
 }
