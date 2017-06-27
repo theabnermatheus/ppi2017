@@ -144,7 +144,8 @@ class ControleMusica {
         $user = $this->sessao->get("usuario")->idUsuario;
         $modelo = new ModeloMusica();
         if ($modelo->addlist($nome, $user)) {
-            echo 'sucesso';
+            echo '<script>alert("Sucesso");</script>';
+            echo '<script>window.location.href = "/myList"</script>';
         } else {
             echo 'erro';
         }
