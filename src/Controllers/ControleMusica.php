@@ -133,20 +133,33 @@ class ControleMusica {
             echo '<script>alert("Faça login para continuar");</script>';
             echo '<script>window.location.href = "/"</script>';
         } else if ($this->sessao->get("usuario")->status == 0) {
-           return $this->response->setContent($this->twig->render('criarPlayList.html', array('user' => $this->sessao->get("usuario"))));
+            return $this->response->setContent($this->twig->render('criarPlayList.html', array('user' => $this->sessao->get("usuario"))));
         } else if ($this->sessao->get("usuario")->status == 1) {
-          return $this->response->setContent($this->twig->render('criarPlayList.html', array('user' => $this->sessao->get("usuario"))));  
-        } 
+            return $this->response->setContent($this->twig->render('criarPlayList.html', array('user' => $this->sessao->get("usuario"))));
+        }
     }
 
     public function criarPlayListAjax() {
         $nome = $_POST['nome'];
         $user = $this->sessao->get("usuario")->idUsuario;
         $modelo = new ModeloMusica();
-        if($modelo->addlist($nome,$user)){
+        if ($modelo->addlist($nome, $user)) {
             echo 'sucesso';
-        }else{
+        } else {
             echo 'erro';
+        }
+    }
+
+    public function listarMinhasPlay() {
+        $user = $this->sessao->get("usuario")->idUsuario;
+        $modelo = new ModeloMusica();
+        $lista = $modelo->seleconaPlayList($user);
+        $tamanho = sizeof($lista);
+        if ($tamanho == 0) {
+            $string = "Sem PlayList";
+            return $this->response->setContent($this->twig->render('rock.html', array('semMusicas' => $string, 'user' => $this->sessao->get("usuario"))));
+        } else {
+            return $this->response->setContent($this->twig->render('rock.html', array('musicas' => $lista, 'user' => $this->sessao->get("usuario"))));
         }
     }
 

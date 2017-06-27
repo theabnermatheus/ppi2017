@@ -71,4 +71,17 @@ class ModeloMusica {
             echo "Ocorreu um erro ao tentar executar esta ação. <br> $e";
         }
     }
+    
+    public function seleconaPlayList($user){
+        try {
+            $sql = "SELECT playlist.idlist , playlist.nome FROM `playlist` WHERE playlist.idUsuario = ?";
+            $p_sql = Conexao::getInstance()->prepare($sql);
+            $p_sql->bindValue(1, $genero);
+            $p_sql->execute();
+            return $p_sql->fetchAll(PDO::FETCH_OBJ);
+        } catch (Exception $ex) {
+            
+        }
+    }   
+    
 }
