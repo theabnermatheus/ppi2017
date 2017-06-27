@@ -157,9 +157,9 @@ class ControleMusica {
         $tamanho = sizeof($lista);
         if ($tamanho == 0) {
             $string = "Sem PlayList";
-            return $this->response->setContent($this->twig->render('rock.html', array('semMusicas' => $string, 'user' => $this->sessao->get("usuario"))));
+            return $this->response->setContent($this->twig->render('listaDoUser.html', array('semMusicas' => $string, 'user' => $this->sessao->get("usuario"))));
         } else {
-            return $this->response->setContent($this->twig->render('rock.html', array('musicas' => $lista, 'user' => $this->sessao->get("usuario"))));
+            return $this->response->setContent($this->twig->render('listaDoUser.html', array('list' => $lista, 'user' => $this->sessao->get("usuario"))));
         }
     }
 
