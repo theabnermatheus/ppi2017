@@ -33,4 +33,6 @@ $rotas->add('listsDoSite', new Route('/playlistpadrao', array('_controller' =>'M
 $rotas->add('criarplaylist', new Route('/addlist', array('_controller' =>'MeuProjeto\Controllers\ControleMusica','_method' => 'criarPlayList')));
 $rotas->add('criarplaylistajax', new Route('/addlistajax', array('_controller' =>'MeuProjeto\Controllers\ControleMusica','_method' => 'criarPlayListAjax')));
 $rotas->add('myList', new Route('/myList', array('_controller' =>'MeuProjeto\Controllers\ControleMusica','_method' => 'listarMinhasPlay')));
+$rotas->add('trazerLista', new Route('/trazLista/{_param}', array('_controller' =>'MeuProjeto\Controllers\ControleMusica','_method' => 'trazList')));
+
 return $rotas;

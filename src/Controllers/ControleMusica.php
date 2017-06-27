@@ -163,4 +163,8 @@ class ControleMusica {
             return $this->response->setContent($this->twig->render('listaDoUser.html', array('list' => $lista, 'user' => $this->sessao->get("usuario"))));
         }
     }
+
+     public function trazList($param) {
+         echo $param;
+    }   
 }
