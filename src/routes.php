@@ -32,4 +32,5 @@ $rotas->add('Rock', new Route('/Rock', array('_controller' =>'MeuProjeto\Control
 $rotas->add('listsDoSite', new Route('/playlistpadrao', array('_controller' =>'MeuProjeto\Controllers\ControleMusica','_method' => 'listPadrao')));
 $rotas->add('criarplaylist', new Route('/addlist', array('_controller' =>'MeuProjeto\Controllers\ControleMusica','_method' => 'criarPlayList')));
 $rotas->add('criarplaylistajax', new Route('/addlistajax', array('_controller' =>'MeuProjeto\Controllers\ControleMusica','_method' => 'criarPlayListAjax')));
+
 return $rotas;

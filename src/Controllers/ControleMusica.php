@@ -84,57 +84,65 @@ class ControleMusica {
     public function eletronica() {
         $modelo = new ModeloMusica();
         $musicas = $modelo->seleconaPlayListDaRadio("Eletronica");
-        $tamanho =  sizeof($musicas);
-        if($tamanho == 0){
+        $tamanho = sizeof($musicas);
+        if ($tamanho == 0) {
             $string = "Sem Musicas Cadastradas";
-            return $this->response->setContent($this->twig->render('eletronica.html',array('semMusicas' => $string,'user' => $this->sessao->get("usuario"))));
+            return $this->response->setContent($this->twig->render('eletronica.html', array('semMusicas' => $string, 'user' => $this->sessao->get("usuario"))));
         } else {
-            return $this->response->setContent($this->twig->render('eletronica.html',array('musicas' => $musicas,'user' => $this->sessao->get("usuario"))));
-        }      
+            return $this->response->setContent($this->twig->render('eletronica.html', array('musicas' => $musicas, 'user' => $this->sessao->get("usuario"))));
+        }
     }
 
     public function pop() {
-         $modelo = new ModeloMusica();
+        $modelo = new ModeloMusica();
         $musicas = $modelo->seleconaPlayListDaRadio("Pop");
-        $tamanho =  sizeof($musicas);
-        if($tamanho == 0){
+        $tamanho = sizeof($musicas);
+        if ($tamanho == 0) {
             $string = "Sem Musicas Cadastradas";
-            return $this->response->setContent($this->twig->render('pop.html',array('semMusicas' => $string,'user' => $this->sessao->get("usuario"))));
+            return $this->response->setContent($this->twig->render('pop.html', array('semMusicas' => $string, 'user' => $this->sessao->get("usuario"))));
         } else {
-            return $this->response->setContent($this->twig->render('pop.html',array('musicas' => $musicas,'user' => $this->sessao->get("usuario"))));
-        }      
+            return $this->response->setContent($this->twig->render('pop.html', array('musicas' => $musicas, 'user' => $this->sessao->get("usuario"))));
+        }
     }
 
     public function rock() {
-         $modelo = new ModeloMusica();
+        $modelo = new ModeloMusica();
         $musicas = $modelo->seleconaPlayListDaRadio("Rock");
-        $tamanho =  sizeof($musicas);
-        if($tamanho == 0){
+        $tamanho = sizeof($musicas);
+        if ($tamanho == 0) {
             $string = "Sem Musicas Cadastradas";
-            return $this->response->setContent($this->twig->render('rock.html',array('semMusicas' => $string,'user' => $this->sessao->get("usuario"))));
+            return $this->response->setContent($this->twig->render('rock.html', array('semMusicas' => $string, 'user' => $this->sessao->get("usuario"))));
         } else {
-            return $this->response->setContent($this->twig->render('rock.html',array('musicas' => $musicas,'user' => $this->sessao->get("usuario"))));
-        }      
+            return $this->response->setContent($this->twig->render('rock.html', array('musicas' => $musicas, 'user' => $this->sessao->get("usuario"))));
+        }
     }
-    
+
     public function listPadrao() {
         $modelo = new ModeloMusica();
         $tudo = $modelo->seleconaPlayListDaRadio("Eletronica");
         $caminhos = null;
-        
-        for($i = 0; $i < count($tudo); $i++){            
-            $caminhos = $caminhos.$tudo[$i]->caminho."*";
-        }      
-        return $this->response->setContent($this->twig->render('ListPadrao.html',array('lista' => $tudo , 'caminhos'=>$caminhos , 'user' => $this->sessao->get("usuario"))));
+
+        for ($i = 0; $i < count($tudo); $i++) {
+            $caminhos = $caminhos . $tudo[$i]->caminho . "*";
+        }
+        return $this->response->setContent($this->twig->render('ListPadrao.html', array('lista' => $tudo, 'caminhos' => $caminhos, 'user' => $this->sessao->get("usuario"))));
     }
-    
-    public function criarPlayList() {       
-        return $this->response->setContent($this->twig->render('criarPlayList.html',array( 'user' => $this->sessao->get("usuario"))));
+
+    public function criarPlayList() {
+        if ($this->sessao->get("usuario") == "") {
+            echo '<script>alert("Faça login para continuar");</script>';
+            echo '<script>window.location.href = "/"</script>';
+        } else if ($this->sessao->get("usuario")->status == 0) {
+            echo '<script>window.location.href = "/"</script>';
+        } else if ($this->sessao->get("usuario")->status == 1) {
+            
+        } return $this->response->setContent($this->twig->render('criarPlayList.html', array('user' => $this->sessao->get("usuario"))));
     }
-   
-    public function criarPlayListAjax() {       
+
+    public function criarPlayListAjax() {
         $nome = $_POST['nome'];
         $modelo = new ModeloMusica();
         $modelo->addlist($nome);
     }
+
 }

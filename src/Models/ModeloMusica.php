@@ -55,11 +55,11 @@ class ModeloMusica {
             
         }
     }   
-    public function addlist($nome){
+    public function addlist($nome,$user){
         try {
             $sql = "INSERT INTO `playlist` (`idlist`, `idUsuario`, `nome`, `musicas`) VALUES (null, ?, ?, ?)";
             $p_sql = Conexao::getInstance()->prepare($sql);
-            $p_sql->bindValue(1, 1);
+            $p_sql->bindValue(1, $user);
             $p_sql->bindValue(2, $nome);
             $p_sql->bindValue(3, "");
             if ($p_sql->execute()) {
