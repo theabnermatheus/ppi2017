@@ -61,10 +61,9 @@ $(document).ready(function () {
     });
 });
 
-add$(document).ready(function () {
+$(document).ready(function () {
     $('#addNewList').on('click touchstart', function () {
-        alert("oi");
-        //window.location.href = "/addlist";
+        window.location.href = "/addlist";
     });
 });
 
