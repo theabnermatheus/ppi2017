@@ -133,16 +133,21 @@ class ControleMusica {
             echo '<script>alert("Faça login para continuar");</script>';
             echo '<script>window.location.href = "/"</script>';
         } else if ($this->sessao->get("usuario")->status == 0) {
-            echo '<script>window.location.href = "/"</script>';
+           return $this->response->setContent($this->twig->render('criarPlayList.html', array('user' => $this->sessao->get("usuario"))));
         } else if ($this->sessao->get("usuario")->status == 1) {
-            
-        } return $this->response->setContent($this->twig->render('criarPlayList.html', array('user' => $this->sessao->get("usuario"))));
+          return $this->response->setContent($this->twig->render('criarPlayList.html', array('user' => $this->sessao->get("usuario"))));  
+        } 
     }
 
     public function criarPlayListAjax() {
         $nome = $_POST['nome'];
+        $user = $this->sessao->get("usuario")->idUsuario;
         $modelo = new ModeloMusica();
-        $modelo->addlist($nome);
+        if($modelo->addlist($nome,$user)){
+            echo 'sucesso';
+        }else{
+            echo 'erro';
+        }
     }
 
 }
