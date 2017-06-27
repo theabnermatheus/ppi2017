@@ -82,6 +82,18 @@ class ModeloMusica {
         } catch (Exception $ex) {
             
         }
-    }   
+    }
     
+    public function verificaDono($user , $id){
+        try {
+            $sql = "SELECT playlist.idlist from playlist WHERE playlist.idUsuario = ? and playlist.idlist = ?";
+            $p_sql = Conexao::getInstance()->prepare($sql);
+            $p_sql->bindValue(1, $user);
+            $p_sql->bindValue(2, $id);
+            $p_sql->execute();
+            return $p_sql->fetchAll(PDO::FETCH_OBJ);
+        } catch (Exception $ex) {
+            
+        }
+    }     
 }

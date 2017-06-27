@@ -165,6 +165,29 @@ class ControleMusica {
     }
 
      public function trazList($param) {
-         echo $param;
+        $user = $this->sessao->get("usuario")->idUsuario;
+        $modelo = new ModeloMusica();
+        $resp = $modelo->verificaDono($user, $param);
+        if($resp){
+             
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        }else{
+             echo '<script>alert("voce não tem permissão para acessar aqui");</script>';
+             echo '<script>window.location.href = "/"</script>';
+        }
+        
     }   
 }
