@@ -12,9 +12,8 @@
         <script src="/js/bootstrap.js" type="text/javascript"></script>
         <script src="/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="/js/npm.js" type="text/javascript"></script>
-        <script src="/js/radio.js" type="text/javascript"></script>
-        
-        
+        <script src="/js/funcoesDaListUser.js" type="text/javascript"></script>
+
     </head>
 
     <body>     
@@ -46,9 +45,9 @@
                             <div>
                                 <ul class="list-group" style="background-color: rgba(123, 123, 123, 0.5);">
                                     {% for list in list %}
-                                    <a  href="#" id="{{list.caminho}}" class="list-group-item">{{list.titulo}} - {{list.artista}} ♫♪</a>
+                                    <a   id="{{list.caminho}}" class="list-group-item">{{list.titulo}} - {{list.artista}} ♫♪</a>
                                     {% endfor %}
-                           
+
                                 </ul>
                             </div>
                         </div>
