@@ -111,7 +111,7 @@ class ModeloMusica {
     
      public function getMusicaOfList($id) {
         try {
-            $sql = "select caminho,titulo from musicas where codigo = ?";
+            $sql = "select caminho,titulo,artista from musicas where codigo = ?";
             $p_sql = Conexao::getInstance()->prepare($sql);
             $p_sql->bindValue(1, $id);
             $p_sql->execute();

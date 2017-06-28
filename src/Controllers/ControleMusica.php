@@ -178,17 +178,16 @@ class ControleMusica {
                  $listaDeMusicas[] = $modelo->getMusicaOfList($musicas[$i]);
              }
              
-             if(sizeof($listaDeMusicas)== 0){
-                 echo '<script>alert("Você não tem Músicas");</script>';
-                 echo '<script>window.location.href = "/myList"</script>';
+             $tamanho = sizeof($listaDeMusicas);
+             if($tamanho != 1){
+                 return $this->response->setContent($this->twig->render('MusicasDoUser.html',array('list' => $listaDeMusicas, 'user' => $this->sessao->get("usuario"))));                   
              }else{
-                 return $this->response->setContent($this->twig->render('MusicasDoUser.html', array('list' => $listaDeMusicas, 'user' => $this->sessao->get("usuario"))));                             
+                 echo '<script>alert("Você não tem Músicas");</script>';                         
              }
              
         }else{
              echo '<script>alert("voce não tem permissão para acessar aqui");</script>';
              echo '<script>window.location.href = "/"</script>';
-        }
-        
+        }      
     }   
 }
