@@ -117,7 +117,22 @@ class ModeloMusica {
             $p_sql->execute();
             return $p_sql->fetch(PDO::FETCH_OBJ);
         } catch (Exception $ex) {
-            
+             echo "Ocorreu um erro ao tentar executar esta ação. <br> $e";
         }
     }
+    
+     public function deletarList($id) {
+          try {
+            $sql = "DELETE FROM `playlist` WHERE playlist.idlist = ?";
+            $p_sql = Conexao::getInstance()->prepare($sql);
+            $p_sql->bindValue(1, $id);
+            if($p_sql->execute()){
+                return true;
+            }else{
+                return false;
+            }        
+        } catch (Exception $ex) {
+             echo "Ocorreu um erro ao tentar executar esta ação. <br> $e";
+        }
+    }   
 }

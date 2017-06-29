@@ -186,8 +186,18 @@ class ControleMusica {
              }
              
         }else{
-             echo '<script>alert("voce não tem permissão para acessar aqui");</script>';
+             echo '<script>alert("voce não tem permissão para acessar aqui");</script>';           
              echo '<script>window.location.href = "/"</script>';
         }      
-    }   
+    }
+    
+    public function deletarList() {
+        $id = $_POST['id'];
+        $modelo = new ModeloMusica();
+        if($modelo->deletarList($id)){
+            echo 'PlayList Deletada';    
+        }else{
+            echo 'Falha ao deletar';
+        }
+    }      
 }
