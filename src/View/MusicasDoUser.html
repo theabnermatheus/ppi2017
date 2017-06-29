@@ -23,21 +23,23 @@
                 <div class="col-md-6 col-md-offset-3">
                     <div id="controles" class="">
                         <center><img id="logo" src="/img/logo.png"></center>
-                        <div id="controles2">
-                            <center><h2>Rock</h2></center>
-                            <center><button class="btn btn-default btn-lg" id="btnPlay" onclick="play()"> 
+                        <div id="controles2"> 
+                                {% if list == null%}
+                                <center><h2>Sem Musicas</h2></center>
+                                {% endif %}                    
+                                <center><button class="btn btn-default btn-lg"  id="btnPlay" value="btnPlay"> 
                                     <span class="glyphicon glyphicon-play"></span> 
                                 </button>                             
-                                <button class="btn btn-default btn-lg" id="btnPause"  disabled onclick="pause()"> 
+                                    <button class="btn btn-default btn-lg" value="btnPause" id="btnPause"disabled> 
                                     <span class="glyphicon glyphicon-pause"></span> 
                                 </button>
-                                <button class="btn btn-default btn-lg" onclick="volumeMenos()"> 
+                                    <button class="btn btn-default btn-lg"  value="BtnDiminuirVol"> 
                                     <span class="glyphicon glyphicon-volume-down"></span> 
                                 </button>
-                                <button class="btn btn-default btn-lg" onclick="volumeMais()"> 
+                                <button class="btn btn-default btn-lg" value="BtnAumentarVol"> 
                                     <span class="glyphicon glyphicon-volume-up"></span> 
                                 </button>
-                                <button class="btn btn-default btn-lg" onclick="volumeMudo()"> 
+                                <button class="btn btn-default btn-lg"  value="BtnmutarVol"> 
                                     <span class="glyphicon glyphicon-volume-off"></span> 
                                 </button></center>                   
                         </div>
@@ -45,12 +47,16 @@
                             <div>
                                 <ul class="list-group" style="background-color: rgba(123, 123, 123, 0.5);">
                                     {% for list in list %}
-                                    <a   id="{{list.caminho}}" class="list-group-item">{{list.titulo}} - {{list.artista}} ♫♪</a>
+                                    <li   id="{{list.caminho}}" class="list-group-item">{{list.titulo}} - {{list.artista}} ♫♪&nbsp&nbsp<button class="btn-success" value="tocar" id="{{list.caminho}}">Tocar</button>&nbsp&nbsp<button class="btn-danger" value="Excluir" id="{{list.codigo}}">Excluir</button></li>
                                     {% endfor %}
-
                                 </ul>
                             </div>
                         </div>
+                        <form id="formOculto"><input type="hidden" id="inputOculto" value="{{codigoDaList}}" /></form>   
+                        <div class="btn-group">                                                
+                            <button type="button" class="btn btn-success" id="addMusicList" name="AddMusicList">Adicionar Musica</button><span></span>                          
+                         </div>
+                        <button type="button" class="btn btn-danger" id="voltarList" name="voltarList" value="voltarList">Voltar</button>
                     </div>  
                 </div>                
             </div>       

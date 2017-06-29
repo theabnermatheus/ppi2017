@@ -174,15 +174,17 @@ class ControleMusica {
              $musicas = explode("/",$lista);
              $listaDeMusicas = null;
              
-             for($i = 0; $i < sizeof($musicas); $i++){
+             for($i = 0; $i < count($musicas); $i++){
                  $listaDeMusicas[] = $modelo->getMusicaOfList($musicas[$i]);
              }
              
-             $tamanho = sizeof($listaDeMusicas);
+             $tamanho = count($listaDeMusicas);
+             
              if($tamanho != 1){
-                 return $this->response->setContent($this->twig->render('MusicasDoUser.html',array('list' => $listaDeMusicas, 'user' => $this->sessao->get("usuario"))));                   
+                 return $this->response->setContent($this->twig->render('MusicasDoUser.html',array('codigoDaList'=> $param, 'list' => $listaDeMusicas, 'user' => $this->sessao->get("usuario"))));                   
              }else{
-                 echo '<script>alert("Você não tem Músicas");</script>';                         
+                 echo '<script>alert("Você não tem Músicas");</script>';  
+                 return $this->response->setContent($this->twig->render('MusicasDoUser.html',array('list' => null, 'user' => $this->sessao->get("usuario"))));                   
              }
              
         }else{
