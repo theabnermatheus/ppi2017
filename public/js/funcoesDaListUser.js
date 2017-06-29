@@ -19,7 +19,7 @@ $(document).ready(function () {
              var form = document.getElementById('formOculto');
              var idDaLista = form.inputOculto.value;
              
-             alert(id+"/"+" o id da playlist é :" + idDaLista);
+             alert(id+" o id da playlist é :" + idDaLista);
         }else if(val == "voltarList"){
              window.location.href = "/myList";
         }

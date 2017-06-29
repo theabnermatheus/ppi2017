@@ -170,14 +170,13 @@ class ControleMusica {
         $resp = $modelo->verificaDono($user, $param);
         if($resp){
              $lista = $modelo->trazLista($param);
-             $lista = $lista[0]->musicas;
-             $musicas = explode("/",$lista);
-             $listaDeMusicas = null;
+             $lista = $lista[0]->musicas;           
+             $listaDeIdMusicas = str_split($lista);
              
-             for($i = 0; $i < count($musicas); $i++){
-                 $listaDeMusicas[] = $modelo->getMusicaOfList($musicas[$i]);
+             for($i = 0; $i < count($listaDeIdMusicas); $i++){
+                 $listaDeMusicas[] = $modelo->getMusicaOfList($listaDeIdMusicas[$i]);
              }
-             
+                       
              $tamanho = count($listaDeMusicas);
              
              if($tamanho != 1){
