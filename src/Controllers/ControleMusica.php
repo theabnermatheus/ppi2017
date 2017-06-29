@@ -199,5 +199,16 @@ class ControleMusica {
         }else{
             echo 'Falha ao deletar';
         }
+    }
+    
+    public function alterarList() {
+        $id = $_POST['id'];
+        $novoNome = $_POST['nome'];
+        $modelo = new ModeloMusica();
+        if($modelo->alterarList($id, $novoNome)){
+            echo 'PlayList Alterada';    
+        }else{
+            echo 'Falha ao Alterar';
+        }
     }      
 }

@@ -135,4 +135,20 @@ class ModeloMusica {
              echo "Ocorreu um erro ao tentar executar esta ação. <br> $e";
         }
     }   
+    
+    public function alterarList($id , $nome) {
+          try {
+            $sql = "UPDATE `playlist` SET `nome`= ? WHERE playlist.idlist = ?";
+            $p_sql = Conexao::getInstance()->prepare($sql);
+            $p_sql->bindValue(1, $nome);
+            $p_sql->bindValue(2, $id);
+            if($p_sql->execute()){
+                return true;
+            }else{
+                return false;
+            }        
+        } catch (Exception $ex) {
+             echo "Ocorreu um erro ao tentar executar esta ação. <br> $e";
+        }
+    }  
 }

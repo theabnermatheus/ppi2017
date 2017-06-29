@@ -27,22 +27,30 @@ $(document).ready(function () {
             } else {
                 alert("Cancelado");
             }
-
-
-
-
-
-
-
-
-
-
-
-
-
         } else if (val == "Alterar") {
-            alert("o id da lista que vai ser alterado é : " + id);
+            //alert("o id da lista que vai ser alterado é : " + id);
+            var novoNome = prompt("Digite o novo nome:");                    
+            if(novoNome == "" || novoNome == null){
+                alert("cancelado");
+            }else{
+                $.ajax({
+                    type: 'POST',
+                    url: '/alterarLista',
+                    data: {
+                        id: id,
+                        nome : novoNome
+                    },
+                    success: function (data) {
+                        alert(data);
+                        window.location.reload()
+                    },
+                    error: function (data) {
+                        alert(data);
+                        window.location.reload()
+                    }
+                });
+            }
+            
         }
-
     });
 });
