@@ -2,7 +2,7 @@ $(document).ready(function () {
     $('button').on('click touchstart', function () {
         var id = this.id;
         var val = this.value;
-       
+
         if (val == "btnPlay") {
             play();
         } else if (val == "btnPause") {
@@ -10,31 +10,47 @@ $(document).ready(function () {
         } else if (val == "BtnDiminuirVol") {
             volumeMenos();
         } else if (val == "BtnAumentarVol") {
-               volumeMais();    
-        }else if(val == "BtnmutarVol"){
+            volumeMais();
+        } else if (val == "BtnmutarVol") {
             volumeMudo();
-        }else if(val == "tocar"){
+        } else if (val == "tocar") {
             tocar(id);
-        }else if(val == "Excluir"){
-             var form = document.getElementById('formOculto');
-             var idDaLista = form.inputOculto.value;
-             
-             alert(id+" o id da playlist é :" + idDaLista);
-        }else if(val == "voltarList"){
-             window.location.href = "/myList";
+        } else if (val == "Excluir") {
+            var form = document.getElementById('formOculto');
+            var idDaLista = form.inputOculto.value;
+            if (confirm("Deseja Excluir?")) {
+                $.ajax({
+                    type: 'POST',
+                    url: '/tirarMusica',
+                    data: {
+                        idDaMusica: id,
+                        idDaPlaylist: idDaLista
+                    },
+                    success: function (data) {
+                        alert(data);
+                        window.location.reload()
+                    },
+                    error: function (data) {
+                        alert(data);
+                        window.location.reload()
+                    }
+                });
+            }
+        } else if (val == "voltarList") {
+            window.location.href = "/myList";
         }
     });
 });
 
 function tocar(id) {
-        var tocador = document.getElementById("tocador");
-        tocador.src = "/"+id;
-        tocador.play();
-        var btnPlay = document.getElementById("btnPlay");
-        btnPlay.disabled = true;
-        
-        var pause = document.getElementById("btnPause");
-        pause.disabled = false;
+    var tocador = document.getElementById("tocador");
+    tocador.src = "/" + id;
+    tocador.play();
+    var btnPlay = document.getElementById("btnPlay");
+    btnPlay.disabled = true;
+
+    var pause = document.getElementById("btnPause");
+    pause.disabled = false;
 }
 
 function play() {

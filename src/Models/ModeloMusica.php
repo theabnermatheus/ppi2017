@@ -150,5 +150,21 @@ class ModeloMusica {
         } catch (Exception $ex) {
              echo "Ocorreu um erro ao tentar executar esta ação. <br> $e";
         }
-    }  
+    }
+    
+    public function tirarDaLista($novalista,$idDaPlayList) {
+          try {
+            $sql = "UPDATE `playlist` SET `musicas`= ? WHERE playlist.idlist = ?";
+            $p_sql = Conexao::getInstance()->prepare($sql);
+            $p_sql->bindValue(1, $novalista);
+            $p_sql->bindValue(2, $idDaPlayList);
+            if($p_sql->execute()){
+                return true;
+            }else{
+                return false;
+            }        
+        } catch (Exception $ex) {
+             echo "Ocorreu um erro ao tentar executar esta ação. <br> $e";
+        }
+    }        
 }

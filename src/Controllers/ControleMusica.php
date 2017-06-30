@@ -164,52 +164,68 @@ class ControleMusica {
         }
     }
 
-     public function trazList($param) {
+    public function trazList($param) {
         $user = $this->sessao->get("usuario")->idUsuario;
         $modelo = new ModeloMusica();
         $resp = $modelo->verificaDono($user, $param);
-        if($resp){
-             $lista = $modelo->trazLista($param);
-             $lista = $lista[0]->musicas;           
-             $listaDeIdMusicas = str_split($lista);
-             
-             for($i = 0; $i < count($listaDeIdMusicas); $i++){
-                 $listaDeMusicas[] = $modelo->getMusicaOfList($listaDeIdMusicas[$i]);
-             }
-                       
-             $tamanho = count($listaDeMusicas);
-             
-             if($tamanho != 1){
-                 return $this->response->setContent($this->twig->render('MusicasDoUser.html',array('codigoDaList'=> $param, 'list' => $listaDeMusicas, 'user' => $this->sessao->get("usuario"))));                   
-             }else{
-                 echo '<script>alert("Você não tem Músicas");</script>';  
-                 return $this->response->setContent($this->twig->render('MusicasDoUser.html',array('list' => null, 'user' => $this->sessao->get("usuario"))));                   
-             }
-             
-        }else{
-             echo '<script>alert("voce não tem permissão para acessar aqui");</script>';           
-             echo '<script>window.location.href = "/"</script>';
-        }      
+        if ($resp) {
+            $lista = $modelo->trazLista($param);
+            $lista = $lista[0]->musicas;
+            $listaDeIdMusicas = str_split($lista);
+
+            for ($i = 0; $i < count($listaDeIdMusicas); $i++) {
+                $listaDeMusicas[] = $modelo->getMusicaOfList($listaDeIdMusicas[$i]);
+            }
+
+            $tamanho = count($listaDeMusicas);
+
+            if ($tamanho != 1) {
+                return $this->response->setContent($this->twig->render('MusicasDoUser.html', array('codigoDaList' => $param, 'list' => $listaDeMusicas, 'user' => $this->sessao->get("usuario"))));
+            } else {
+                echo '<script>alert("Você não tem Músicas");</script>';
+                return $this->response->setContent($this->twig->render('MusicasDoUser.html', array('list' => null, 'user' => $this->sessao->get("usuario"))));
+            }
+        } else {
+            echo '<script>alert("voce não tem permissão para acessar aqui");</script>';
+            echo '<script>window.location.href = "/"</script>';
+        }
     }
-    
+
     public function deletarList() {
         $id = $_POST['id'];
         $modelo = new ModeloMusica();
-        if($modelo->deletarList($id)){
-            echo 'PlayList Deletada';    
-        }else{
+        if ($modelo->deletarList($id)) {
+            echo 'PlayList Deletada';
+        } else {
             echo 'Falha ao deletar';
         }
     }
-    
+
     public function alterarList() {
         $id = $_POST['id'];
         $novoNome = $_POST['nome'];
         $modelo = new ModeloMusica();
-        if($modelo->alterarList($id, $novoNome)){
-            echo 'PlayList Alterada';    
-        }else{
+        if ($modelo->alterarList($id, $novoNome)) {
+            echo 'PlayList Alterada';
+        } else {
             echo 'Falha ao Alterar';
         }
-    }      
+    }
+
+    public function tirarMusica() {
+        $idDaMusica = $_POST['idDaMusica'];
+        $idDaPlaylist = $_POST['idDaPlaylist'];
+        $modelo = new ModeloMusica();
+        $atuais = $modelo->trazLista($idDaPlaylist);
+        $atuais = $atuais[0];
+        $atuais = str_split($atuais->musicas);
+        $posicao = array_search($idDaMusica,$atuais);  
+        unset($atuais[$posicao]);
+        $novalista = implode($atuais);
+        if($modelo->tirarDaLista($novalista , $idDaPlaylist)){
+            echo 'Musica Deletada';
+        }else{
+            echo 'Erro';
+        }   
+    }
 }
