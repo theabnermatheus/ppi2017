@@ -37,4 +37,5 @@ $rotas->add('trazerLista', new Route('/trazLista/{_param}', array('_controller' 
 $rotas->add('deletarLista', new Route('/deletarLista', array('_controller' =>'MeuProjeto\Controllers\ControleMusica','_method' => 'deletarList')));
 $rotas->add('alterarLista', new Route('/alterarLista', array('_controller' =>'MeuProjeto\Controllers\ControleMusica','_method' => 'alterarList')));
 $rotas->add('tirarMusica', new Route('/tirarMusica', array('_controller' =>'MeuProjeto\Controllers\ControleMusica','_method' => 'tirarMusica'))); 
+$rotas->add('setarSessionList', new Route('/setarSessionList', array('_controller' =>'MeuProjeto\Controllers\ControleMusica','_method' => 'setarSessionList'))); 
 return $rotas;

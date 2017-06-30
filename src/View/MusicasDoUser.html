@@ -18,7 +18,7 @@
 
 </head>
 
-<body>     
+<body onbeforeunload="return removeSession()">     
     {{include ('MenuLogadoUser.html')}}
     <div class="container">
         <div class="row">
@@ -56,7 +56,7 @@
                     </div>
                     <form id="formOculto"><input type="hidden" id="inputOculto" value="{{codigoDaList}}" /></form>   
                     <div class="btn-group">                                                
-                        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Adicionar Música</button>                  
+                        <button type="button" id="addMusicList" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Adicionar Música</button>                  
                     </div>
                     <button type="button" class="btn btn-danger btn-lg" id="voltarList" name="voltarList" value="voltarList">Voltar</button>
                 </div>  
@@ -67,20 +67,18 @@
         <source src="" type="audio/mpeg">
     </audio>
 
-    <!-- Modal -->
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
-
-            <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Adicionar Música</h4>
+                    <h4 class="modal-title" id="{{codigoDaList}}">Adicionar Música</h4>
+                    <button class="modal-title" hidden="true" value="{{codigoDaList}}" id="codi"></button>>
                 </div>
                 <div class="modal-body">
                     <form class="navbar-form" role="search" id="formModal">
                         <input type="text" class="form-control"/>
-                        <button type="button" value="procurar" id="procurar" class="btn btn-default">
+                        <button type="button" value="procurar" id="procurar" name="" class="btn btn-default">
                             Procurar
                         </button>
                     </form>
@@ -91,7 +89,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-default" id="close" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>

@@ -182,7 +182,6 @@ class ControleMusica {
             if ($tamanho != 1) {
                 return $this->response->setContent($this->twig->render('MusicasDoUser.html', array('codigoDaList' => $param, 'list' => $listaDeMusicas, 'user' => $this->sessao->get("usuario"))));
             } else {
-                echo '<script>alert("Você não tem Músicas");</script>';
                 return $this->response->setContent($this->twig->render('MusicasDoUser.html', array('list' => null, 'user' => $this->sessao->get("usuario"))));
             }
         } else {
@@ -228,4 +227,8 @@ class ControleMusica {
             echo 'Erro';
         }   
     }
+    
+     public function resultadoDaBusca() {
+          
+     }   
 }

@@ -1,4 +1,17 @@
 $(document).ready(function () {
+    $('#close').on('click touchstart', function () {
+        $("#resposta").empty();
+    });
+});
+
+$(document).ready(function () {
+    $('#addMusicList').on('click touchstart', function () {
+        $("#resposta").empty();
+    });
+});
+
+
+$(document).ready(function () {
     $('button').on('click touchstart', function () {
         var id = this.id;
         var val = this.value;
@@ -38,23 +51,21 @@ $(document).ready(function () {
             }
         } else if (val == "voltarList") {
             window.location.href = "/myList";
-        }else if(val == "procurar"){
+        } else if (val == "procurar") {          
             var form = document.getElementById('formOculto');
             var idDaLista = form.inputOculto.value;
-            for(var i = 0; i < 30; i++){
-                var item1 = $("<li class='list-group-item' onclick='add("+i+","+idDaLista+")'></li>").text("Item 1");                           
-                $("#resposta").append(item1);  
-            }                              
+            for (var i = 0; i < 5; i++) {
+                var item1 = $("<li class='list-group-item' onclick='add(" + i + ")'></li>").text("Item 1");
+                $("#resposta").append(item1);
+            }
         }
     });
 });
 
-
-function add(idDaMusica){
-    alert(idDaMusica);
+function add(idDaMusica) { 
+    var idDaLista = $("#codi").val();
+    alert("O ID dá musica é : "+idDaMusica+ " O Id da lista é :" + idDaLista);
 }
-
-
 
 
 function tocar(id) {
