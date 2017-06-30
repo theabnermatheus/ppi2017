@@ -67,8 +67,9 @@ $(document).ready(function () {
                     alert(data);
                 }
             });
-            /*for (var i = 0; i < 5; i++) {
-                var item1 = $("<li class='list-group-item' onclick='add(" + i + ")'></li>").text("Item 1");
+            
+            /*for (var i = 0; i < 1; i++) {
+                var item1 = "<li class='list-group-item' onclick='add(" + i + ")'>1</li><li class='list-group-item' onclick='add(" + i + ")'>2</li>";
                 $("#resposta").append(item1);
             }*/
         }

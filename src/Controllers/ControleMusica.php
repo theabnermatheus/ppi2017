@@ -232,6 +232,7 @@ class ControleMusica {
         $chave = $_POST['chave'];
         $modelo = new ModeloMusica();
         $resultado = $modelo->resultadoDaBusca($chave);
+        print_r($resultado);
         /*if($resultado){
             print_r($resultado);
         }else{
