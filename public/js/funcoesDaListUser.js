@@ -38,6 +38,9 @@ $(document).ready(function () {
             }
         } else if (val == "voltarList") {
             window.location.href = "/myList";
+        }else if(val == "procurar"){
+            var item1 = $("<li class='list-group-item' id='item2'></li>").text("Item 1");                           
+            $("#resposta").append(item1);                      
         }
     });
 });
