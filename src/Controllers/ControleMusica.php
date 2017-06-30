@@ -218,25 +218,33 @@ class ControleMusica {
         $atuais = $modelo->trazLista($idDaPlaylist);
         $atuais = $atuais[0];
         $atuais = str_split($atuais->musicas);
-        $posicao = array_search($idDaMusica,$atuais);  
+        $posicao = array_search($idDaMusica, $atuais);
         unset($atuais[$posicao]);
         $novalista = implode($atuais);
-        if($modelo->tirarDaLista($novalista , $idDaPlaylist)){
+        if ($modelo->tirarDaLista($novalista, $idDaPlaylist)) {
             echo 'Musica Deletada';
-        }else{
+        } else {
             echo 'Erro';
-        }   
+        }
     }
-    
-     public function resultadoDaBusca() {
+
+    public function resultadoDaBusca() {
         $chave = $_POST['chave'];
         $modelo = new ModeloMusica();
         $resultado = $modelo->resultadoDaBusca($chave);
-        print_r($resultado);
-        /*if($resultado){
-            print_r($resultado);
-        }else{
-            echo 'Erro';
-        }*/
-     }   
+        $var = '';
+        
+         for($i = 0; $i < count($resultado); $i++){
+           $var .= "<li class='list-group-item' onclick='add(".$resultado[$i]->codigo.")'>".$resultado[$i]->titulo."</li>";
+          } 
+        print_r($var);
+
+        //print_r($resultado[0]->titulo);
+        /* if($resultado){
+          print_r($resultado);
+          }else{
+          echo 'Erro';
+          } */
+    }
+
 }

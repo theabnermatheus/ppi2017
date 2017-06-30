@@ -53,6 +53,7 @@ $(document).ready(function () {
             window.location.href = "/myList";
 
         } else if (val == "procurar") {
+            $("#resposta").empty();
             var chave = $("#chave").val()
             $.ajax({
                 type: 'POST',
@@ -61,15 +62,17 @@ $(document).ready(function () {
                     chave: chave
                 },
                 success: function (data) {
-                    alert(data);
+                    
+                    var item = data;
+                    $("#resposta").append(item);
                 },
                 error: function (data) {
-                    alert(data);
+                    alert("Erro"+data);
                 }
             });
             
             /*for (var i = 0; i < 1; i++) {
-                var item1 = "<li class='list-group-item' onclick='add(" + i + ")'>1</li><li class='list-group-item' onclick='add(" + i + ")'>2</li>";
+                var item = "<li class='list-group-item' onclick='add(" + i + ")'>1</li><br><li class='list-group-item' onclick='add(" + i + ")'>2</li>";
                 $("#resposta").append(item1);
             }*/
         }
