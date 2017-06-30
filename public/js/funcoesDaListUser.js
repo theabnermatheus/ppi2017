@@ -39,11 +39,23 @@ $(document).ready(function () {
         } else if (val == "voltarList") {
             window.location.href = "/myList";
         }else if(val == "procurar"){
-            var item1 = $("<li class='list-group-item' id='item2'></li>").text("Item 1");                           
-            $("#resposta").append(item1);                      
+            var form = document.getElementById('formOculto');
+            var idDaLista = form.inputOculto.value;
+            for(var i = 0; i < 30; i++){
+                var item1 = $("<li class='list-group-item' onclick='add("+i+","+idDaLista+")'></li>").text("Item 1");                           
+                $("#resposta").append(item1);  
+            }                              
         }
     });
 });
+
+
+function add(idDaMusica){
+    alert(idDaMusica);
+}
+
+
+
 
 function tocar(id) {
     var tocador = document.getElementById("tocador");
