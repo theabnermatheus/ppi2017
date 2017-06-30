@@ -238,13 +238,5 @@ class ControleMusica {
            $var .= "<li class='list-group-item' onclick='add(".$resultado[$i]->codigo.")'>".$resultado[$i]->titulo."</li>";
           } 
         print_r($var);
-
-        //print_r($resultado[0]->titulo);
-        /* if($resultado){
-          print_r($resultado);
-          }else{
-          echo 'Erro';
-          } */
     }
-
 }
