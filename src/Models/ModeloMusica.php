@@ -166,5 +166,16 @@ class ModeloMusica {
         } catch (Exception $ex) {
              echo "Ocorreu um erro ao tentar executar esta ação. <br> $e";
         }
-    }        
+    }  
+    
+    public function resultadoDaBusca($chave) {
+        try {
+            $sql = "SELECT * from musicas where musicas.titulo like '% ? %'";
+            $p_sql = Conexao::getInstance()->prepare($sql);
+            $p_sql->bindValue(1, $chave);
+            $p_sql->fetchAll(PDO::FETCH_OBJ);
+        } catch (Exception $ex) {
+             echo "Ocorreu um erro ao tentar executar esta ação. <br> $e";
+        }
+    }
 }

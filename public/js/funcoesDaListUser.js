@@ -51,20 +51,33 @@ $(document).ready(function () {
             }
         } else if (val == "voltarList") {
             window.location.href = "/myList";
-        } else if (val == "procurar") {          
-            var form = document.getElementById('formOculto');
-            var idDaLista = form.inputOculto.value;
-            for (var i = 0; i < 5; i++) {
+
+        } else if (val == "procurar") {
+            var chave = $("#chave").val()
+            $.ajax({
+                type: 'POST',
+                url: '/resultadoDaBusca',
+                data: {
+                    chave: chave
+                },
+                success: function (data) {
+                    alert(data);
+                },
+                error: function (data) {
+                    alert(data);
+                }
+            });
+            /*for (var i = 0; i < 5; i++) {
                 var item1 = $("<li class='list-group-item' onclick='add(" + i + ")'></li>").text("Item 1");
                 $("#resposta").append(item1);
-            }
+            }*/
         }
     });
 });
 
-function add(idDaMusica) { 
+function add(idDaMusica) {
     var idDaLista = $("#codi").val();
-    alert("O ID dá musica é : "+idDaMusica+ " O Id da lista é :" + idDaLista);
+    alert("O ID dá musica é : " + idDaMusica + " O Id da lista é :" + idDaLista);
 }
 
 

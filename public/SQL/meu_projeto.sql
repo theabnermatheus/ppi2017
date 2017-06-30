@@ -17,4 +17,5 @@ titulo text not null,
 artista text not null,
 genero text not null,
 caminho text not null 
+
 );
