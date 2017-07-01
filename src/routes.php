@@ -38,4 +38,5 @@ $rotas->add('deletarLista', new Route('/deletarLista', array('_controller' =>'Me
 $rotas->add('alterarLista', new Route('/alterarLista', array('_controller' =>'MeuProjeto\Controllers\ControleMusica','_method' => 'alterarList')));
 $rotas->add('tirarMusica', new Route('/tirarMusica', array('_controller' =>'MeuProjeto\Controllers\ControleMusica','_method' => 'tirarMusica'))); 
 $rotas->add('respostaPesquisa', new Route('/resultadoDaBusca', array('_controller' =>'MeuProjeto\Controllers\ControleMusica','_method' => 'resultadoDaBusca'))); 
+$rotas->add('addMusicaInListPessoal', new Route('/addMusicaInListPessoal', array('_controller' =>'MeuProjeto\Controllers\ControleMusica','_method' => 'addMusicaInListPessoal'))); 
 return $rotas;

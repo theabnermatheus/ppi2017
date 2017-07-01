@@ -233,10 +233,24 @@ class ControleMusica {
         $modelo = new ModeloMusica();
         $resultado = $modelo->resultadoDaBusca($chave);
         $var = '';
-        
          for($i = 0; $i < count($resultado); $i++){
-           $var .= "<li class='list-group-item' onclick='add(".$resultado[$i]->codigo.")'>".$resultado[$i]->titulo."</li>";
+           $var .= "<a class='list-group-item' href='#' onclick='add(".$resultado[$i]->codigo.")'>".$resultado[$i]->titulo."</a>";
           } 
         print_r($var);
+    }
+    
+    public function addMusicaInListPessoal(){
+        $modelo = new ModeloMusica();
+        $IdDaList = $_POST['url'];
+        $idDaMusica = $_POST['idDamusica'];
+        $ex = explode('/', $IdDaList);
+        $ultima = $ex[count($ex)-1];
+        $musicas = $modelo->trazLista($ultima);
+        $novaLista = $idDaMusica.$musicas[0]->musicas;       
+        if($modelo->addDaLista($novaLista, $ultima)){
+            echo 'Música Adicionada';
+        }else{
+            echo 'Erro';
+        }   
     }
 }

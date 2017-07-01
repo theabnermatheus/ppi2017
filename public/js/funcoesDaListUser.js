@@ -62,26 +62,39 @@ $(document).ready(function () {
                     chave: chave
                 },
                 success: function (data) {
-                    
+
                     var item = data;
                     $("#resposta").append(item);
                 },
                 error: function (data) {
-                    alert("Erro"+data);
+                    alert("Erro" + data);
                 }
             });
-            
+
             /*for (var i = 0; i < 1; i++) {
-                var item = "<li class='list-group-item' onclick='add(" + i + ")'>1</li><br><li class='list-group-item' onclick='add(" + i + ")'>2</li>";
-                $("#resposta").append(item1);
-            }*/
+             var item = "<li class='list-group-item' onclick='add(" + i + ")'>1</li><br><li class='list-group-item' onclick='add(" + i + ")'>2</li>";
+             $("#resposta").append(item1);
+             }*/
         }
     });
 });
 
 function add(idDaMusica) {
-    var idDaLista = $("#codi").val();
-    alert("O ID dá musica é : " + idDaMusica + " O Id da lista é :" + idDaLista);
+    $.ajax({
+        type: 'POST',
+        url: '/addMusicaInListPessoal',
+        data: {
+            idDamusica : idDaMusica,
+            url : window.location.href
+        },
+        success: function (data) {
+            alert(data);
+        },
+        error: function (data) {
+            alert("Erro" + data);
+        }
+    });
+    //alert("O ID dá musica é : " + idDaMusica + " O Id da lista é :" + idDaLista);
 }
 
 
