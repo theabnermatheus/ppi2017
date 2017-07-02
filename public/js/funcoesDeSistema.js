@@ -40,11 +40,16 @@ $(document).ready(function () {
     });
 });
 $(document).ready(function () {
+    $('#relM').on('click touchstart', function () {
+        window.location.href = "/relatorioMusica";
+    });
+});
+
+$(document).ready(function () {
     $('#voltarListPadrao').on('click touchstart', function () {
         window.location.href = "/";
     });
 });
-
 
 $(document).ready(function () {
     $('#alterarSenha').on('click touchstart', function () {

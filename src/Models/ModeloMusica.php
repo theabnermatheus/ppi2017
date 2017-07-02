@@ -53,5 +53,16 @@ class ModeloMusica {
         } catch (Exception $ex) {
             
         }
-    }      
+    }
+    
+     public function relatorioMusica() {
+        try {
+            $sql = "SELECT * FROM musicas";
+            $p_sql = Conexao::getInstance()->prepare($sql);
+            $p_sql->execute();         
+                return $p_sql->fetchAll(PDO::FETCH_OBJ);          
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
 }

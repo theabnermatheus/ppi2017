@@ -106,4 +106,16 @@ class ControleMusica {
             return $this->response->setContent($this->twig->render('rock.html', array('musicas' => $musicas, 'user' => $this->sessao->get("usuario"))));
         }
     }   
+    public function relatorioDeMusicaAjax() {
+        $modelo = new ModeloMusica();
+        $u = $modelo->relatorioMusica();
+        if ($this->sessao->get("usuario") == "") {
+            echo '<script>alert("Faça login para continuar");</script>';
+            echo '<script>window.location.href = "/"</script>';
+        } else if ($this->sessao->get("usuario")->status == 0) {
+            echo '<script>window.location.href = "/"</script>';
+        } else if ($this->sessao->get("usuario")->status == 1) {
+            return $this->response->setContent($this->twig->render('TemplateRelMusic.html', array('dados' => $u, 'user' => $this->sessao->get("usuario"))));
+        }
+    }
 }
