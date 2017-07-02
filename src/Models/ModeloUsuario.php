@@ -142,5 +142,32 @@ class ModeloUsuario {
             echo $exc->getTraceAsString();
         }
     }
+    
+    public function verificaSenha($senha) {
+        try {
+            $sql = "SELECT * FROM usuario where senha = ?";
+            $p_sql = Conexao::getInstance()->prepare($sql);
+            $p_sql->bindValue(1, $senha);
+            $p_sql->execute();         
+            return $p_sql->fetch(PDO::FETCH_OBJ);          
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
+ public function alterarSenha($senha , $id) {
+        try {
+            $sql = "UPDATE usuario set senha = ? WHERE usuario.idUsuario = ?";
+            $p_sql = Conexao::getInstance()->prepare($sql);
+            $p_sql->bindValue(1, $senha);
+            $p_sql->bindValue(2, $id);
+            if ($p_sql->execute()) {
+                return true;
+            } else
+                return false;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }   
 }
 ?>

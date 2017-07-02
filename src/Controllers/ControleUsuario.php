@@ -25,7 +25,7 @@ class ControleUsuario {
 
     public function CadastroDeClientes() {
         return $this->response->setContent($this->twig->render('TemplateCadastroDeClientes.html'));
-    }    
+    }
 
     public function Cadastrar() {
         try {
@@ -167,20 +167,20 @@ class ControleUsuario {
         if ($this->sessao->get("usuario") == "") {
             echo '<script>alert("Faça login para continuar");</script>';
             echo '<script>window.location.href = "/"</script>';
-        } else if($this->sessao->get("usuario")->status == 0){
-            echo '<script>window.location.href = "/"</script>';        
-        } else if ($this->sessao->get("usuario")->status == 1){
-             return $this->response->setContent($this->twig->render('TemplateEditarUserAdmin.html', array('user' => $this->sessao->get("usuario")))); 
-        }    
+        } else if ($this->sessao->get("usuario")->status == 0) {
+            echo '<script>window.location.href = "/"</script>';
+        } else if ($this->sessao->get("usuario")->status == 1) {
+            return $this->response->setContent($this->twig->render('TemplateEditarUserAdmin.html', array('user' => $this->sessao->get("usuario"))));
+        }
     }
-   
+
     public function buscarUserAdmin() {
         $cpf = $_POST['id'];
         $modelo = new ModeloUsuario();
         $u = $modelo->buscaClienteCPF($cpf);
-        if($u == null){
-             echo "Nada Encontrado";
-        }else if ($u) {
+        if ($u == null) {
+            echo "Nada Encontrado";
+        } else if ($u) {
             echo $u->nome . "#" . $u->cpf . "#" . $u->telefone . "#" . $u->email . "#" . $u->login . "#" . $u->senha;
         } else {
             echo 'Error';
@@ -210,17 +210,50 @@ class ControleUsuario {
         $modelo->excluirCliente($id);
         echo '<script>window.location.href = "/"</script>';
     }
-    
+
     public function relatorioDeClientesAjax() {
         $modelo = new ModeloUsuario();
         $u = $modelo->relatorioCliente();
-         if ($this->sessao->get("usuario") == "") {
+        if ($this->sessao->get("usuario") == "") {
             echo '<script>alert("Faça login para continuar");</script>';
             echo '<script>window.location.href = "/"</script>';
-        } else if($this->sessao->get("usuario")->status == 0){
-            echo '<script>window.location.href = "/"</script>';        
-        } else if ($this->sessao->get("usuario")->status == 1){
-            return $this->response->setContent($this->twig->render('TemplateRel.html', array('dados' => $u,'user' => $this->sessao->get("usuario")))); 
-        }      
+        } else if ($this->sessao->get("usuario")->status == 0) {
+            echo '<script>window.location.href = "/"</script>';
+        } else if ($this->sessao->get("usuario")->status == 1) {
+            return $this->response->setContent($this->twig->render('TemplateRel.html', array('dados' => $u, 'user' => $this->sessao->get("usuario"))));
+        }
+    }
+    
+    public function alterarSenha() {
+        if ($this->sessao->get("usuario") == "") {
+            echo '<script>alert("Faça login para continuar");</script>';
+            echo '<script>window.location.href = "/"</script>';
+        } else if ($this->sessao->get("usuario")->status == 0) {
+            return $this->response->setContent($this->twig->render('mudarSenha.html',array('user' => $this->sessao->get("usuario"))));
+        } else if ($this->sessao->get("usuario")->status == 1) {
+                        return $this->response->setContent($this->twig->render('mudarSenha.html',array('user' => $this->sessao->get("usuario"))));
+        }
+    }
+
+    public function alterarSenhaAjax() {
+        $novaSenha =  $_POST['novaSenha'];
+        $senhaAntiga =  $_POST['senhaAntiga'];
+        $modelo = new ModeloUsuario();
+        
+        $verifica = $modelo->verificaSenha($senhaAntiga);
+        
+        if($verifica){
+            if($verifica->idUsuario == $this->sessao->get("usuario")->idUsuario){
+                if($modelo->alterarSenha($novaSenha,$this->sessao->get("usuario")->idUsuario)){
+                    echo 'Senha Alterada';
+                }else{
+                    echo 'Erro';
+                }                         
+            }else{
+                echo 'Senha Antiga Invalida';
+            }
+        }else{
+            echo 'Senha Antiga Invalida';
+        }
     }
 }

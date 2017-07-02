@@ -1,24 +1,54 @@
 $(document).ready(function () {
-   $('a').on('click touchstart', function () {
+    $('a').on('click touchstart', function () {
         var genero = this.id;
 
-        if(genero == "Eletronica"){
+        if (genero == "Eletronica") {
             window.location.href = "/Eletronica";
         }
-        
-        if(genero == "Pop"){
+
+        if (genero == "Pop") {
             window.location.href = "Pop";
         }
-        
-        if(genero == "Rock"){
+
+        if (genero == "Rock") {
             window.location.href = "/Rock";
         }
     });
 });
 
 $(document).ready(function () {
+    $('#btnAlterarSenha').on('click touchstart', function () {
+        var form = document.getElementById('formAlterarSenha');
+        var senhaAntiga = form.senhaAntiga.value;
+        var novaSenha = form.novaSenha.value;
+        if (confirm("Deseja alterar Sua senha?")) {
+            $.ajax({
+                type: 'POST',
+                url: '/alterarSenhaAjax',
+                data: {
+                    senhaAntiga: senhaAntiga,
+                    novaSenha : novaSenha
+                },
+                success: function (data) {
+                    alert(data);
+                },
+                error: function (data) {
+                    alert("Erro : "+data);
+                }
+            });
+        }
+    });
+});
+$(document).ready(function () {
     $('#voltarListPadrao').on('click touchstart', function () {
         window.location.href = "/";
+    });
+});
+
+
+$(document).ready(function () {
+    $('#alterarSenha').on('click touchstart', function () {
+        window.location.href = "/alterarSenha";
     });
 });
 
@@ -108,7 +138,7 @@ $(document).ready(function () {
             type: 'POST',
             url: '/addlistajax',
             data: {
-                nome: f.nome.value,               
+                nome: f.nome.value,
             },
             success: function (data) {
                 $('#retornoValidacao').html(data);
@@ -116,7 +146,7 @@ $(document).ready(function () {
             error: function (data) {
                 $('#retornoValidacao').html(data);
             }
-        });     
+        });
     });
 });
 $(document).ready(function () {

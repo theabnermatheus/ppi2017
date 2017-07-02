@@ -39,4 +39,6 @@ $rotas->add('alterarLista', new Route('/alterarLista', array('_controller' =>'Me
 $rotas->add('tirarMusica', new Route('/tirarMusica', array('_controller' =>'MeuProjeto\Controllers\ControlePlayList','_method' => 'tirarMusica'))); 
 $rotas->add('respostaPesquisa', new Route('/resultadoDaBusca', array('_controller' =>'MeuProjeto\Controllers\ControlePlayList','_method' => 'resultadoDaBusca'))); 
 $rotas->add('addMusicaInListPessoal', new Route('/addMusicaInListPessoal', array('_controller' =>'MeuProjeto\Controllers\ControlePlayList','_method' => 'addMusicaInListPessoal'))); 
+$rotas->add('alterarSenha', new Route('/alterarSenha', array('_controller' =>'MeuProjeto\Controllers\ControleUsuario','_method' => 'alterarSenha'))); 
+$rotas->add('alterarSenhaAjax', new Route('/alterarSenhaAjax', array('_controller' =>'MeuProjeto\Controllers\ControleUsuario','_method' => 'alterarSenhaAjax'))); 
 return $rotas;
