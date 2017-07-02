@@ -75,6 +75,10 @@ class ControlePlayList {
         $modelo = new ModeloPlayList();
         $resp = $modelo->verificaDono($user, $param);
         if ($resp) {
+            $listaDeIdMusicas = array();
+            $lista = array();
+            $listaDeMusicas = array();
+            
             $lista = $modelo->trazLista($param);
             $lista = $lista[0]->musicas;
             $listaDeIdMusicas = str_split($lista);
@@ -82,14 +86,14 @@ class ControlePlayList {
             for ($i = 0; $i < count($listaDeIdMusicas); $i++) {
                 $listaDeMusicas[] = $modelo->getMusicaOfList($listaDeIdMusicas[$i]);
             }
-
+           
             $tamanho = count($listaDeMusicas);
-
-            if ($tamanho != 1) {
-                return $this->response->setContent($this->twig->render('MusicasDoUser.html', array('codigoDaList' => $param, 'list' => $listaDeMusicas, 'user' => $this->sessao->get("usuario"))));
+            
+            if ($tamanho == 0) {
+                return $this->response->setContent($this->twig->render('MusicasDoUser.html', array('codigoDaList' => $param, 'list' => null, 'user' => $this->sessao->get("usuario"))));
             } else {
-                return $this->response->setContent($this->twig->render('MusicasDoUser.html', array('list' => $listaDeMusicas, 'user' => $this->sessao->get("usuario"))));
-            }
+                return $this->response->setContent($this->twig->render('MusicasDoUser.html', array('codigoDaList' => $param, 'list' => $listaDeMusicas, 'user' => $this->sessao->get("usuario"))));
+            }        
         } else {
             echo '<script>alert("voce não tem permissão para acessar aqui");</script>';
             echo '<script>window.location.href = "/"</script>';
