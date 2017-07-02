@@ -29,15 +29,13 @@ $(document).ready(function () {
         } else if (val == "tocar") {
             tocar(id);
         } else if (val == "Excluir") {
-            var form = document.getElementById('formOculto');
-            var idDaLista = form.inputOculto.value;
             if (confirm("Deseja Excluir?")) {
                 $.ajax({
                     type: 'POST',
                     url: '/tirarMusica',
                     data: {
                         idDaMusica: id,
-                        idDaPlaylist: idDaLista
+                        url: window.location.href
                     },
                     success: function (data) {
                         alert(data);

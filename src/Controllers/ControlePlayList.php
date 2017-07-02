@@ -1,5 +1,7 @@
 <?php
+
 namespace MeuProjeto\Controllers;
+
 use MeuProjeto\models\ModeloMusica;
 use MeuProjeto\models\ModeloPlayList;
 use MeuProjeto\Util\Sessao;
@@ -7,8 +9,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\RequestContext;
 
-
 class ControlePlayList {
+
     private $response;
     private $request;
     private $twig;
@@ -20,7 +22,7 @@ class ControlePlayList {
         $this->twig = $twig;
         $this->sessao = $sessao;
     }
-    
+
     public function listPadrao() {
         $modelo = new ModeloMusica();
         $tudo = $modelo->seleconaPlayListDaRadio("Eletronica");
@@ -117,7 +119,9 @@ class ControlePlayList {
 
     public function tirarMusica() {
         $idDaMusica = $_POST['idDaMusica'];
-        $idDaPlaylist = $_POST['idDaPlaylist'];
+        $IdDaList = $_POST['url'];
+        $ex = explode('/', $IdDaList);
+        $idDaPlaylist = $ex[count($ex) - 1];
         $modelo = new ModeloPlayList();
         $atuais = $modelo->trazLista($idDaPlaylist);
         $atuais = $atuais[0];
@@ -134,27 +138,29 @@ class ControlePlayList {
 
     public function resultadoDaBusca() {
         $chave = $_POST['chave'];
-        $modelo = new ModeloPlayList();;
+        $modelo = new ModeloPlayList();
+        ;
         $resultado = $modelo->resultadoDaBusca($chave);
         $var = '';
-         for($i = 0; $i < count($resultado); $i++){
-           $var .= "<a class='list-group-item' href='#' onclick='add(".$resultado[$i]->codigo.")'>".$resultado[$i]->titulo."</a>";
-          } 
+        for ($i = 0; $i < count($resultado); $i++) {
+            $var .= "<a class='list-group-item' href='#' onclick='add(" . $resultado[$i]->codigo . ")'>" . $resultado[$i]->titulo . "</a>";
+        }
         print_r($var);
     }
-    
-    public function addMusicaInListPessoal(){
+
+    public function addMusicaInListPessoal() {
         $modelo = new ModeloPlayList();
         $IdDaList = $_POST['url'];
         $idDaMusica = $_POST['idDamusica'];
         $ex = explode('/', $IdDaList);
-        $ultima = $ex[count($ex)-1];
+        $ultima = $ex[count($ex) - 1];
         $musicas = $modelo->trazLista($ultima);
-        $novaLista = $idDaMusica.$musicas[0]->musicas;       
-        if($modelo->addDaLista($novaLista, $ultima)){
+        $novaLista = $idDaMusica . $musicas[0]->musicas;
+        if ($modelo->addDaLista($novaLista, $ultima)) {
             echo 'Música Adicionada';
-        }else{
+        } else {
             echo 'Erro';
-        }   
+        }
     }
+
 }
