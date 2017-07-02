@@ -118,4 +118,15 @@ class ControleMusica {
             return $this->response->setContent($this->twig->render('TemplateRelMusic.html', array('dados' => $u, 'user' => $this->sessao->get("usuario"))));
         }
     }
+    
+    public function ListSiteDeslog() {
+        $modelo = new ModeloMusica();
+        $tudo = $modelo->seleconaPlayListDaRadio("Eletronica");
+        $caminhos = null;
+
+        for ($i = 0; $i < count($tudo); $i++) {
+            $caminhos = $caminhos . $tudo[$i]->caminho . "*";
+        }
+        return $this->response->setContent($this->twig->render('listPadraodeslog.html', array('lista' => $tudo, 'caminhos' => $caminhos, 'user' => $this->sessao->get("usuario"))));
+    }
 }

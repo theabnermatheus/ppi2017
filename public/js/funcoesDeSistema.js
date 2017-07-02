@@ -39,6 +39,13 @@ $(document).ready(function () {
         }
     });
 });
+
+$(document).ready(function () {
+    $('#btnListSiteDeslog').on('click touchstart', function () {
+        window.location.href = "/ListSiteDeslog";
+    });
+});
+
 $(document).ready(function () {
     $('#relM').on('click touchstart', function () {
         window.location.href = "/relatorioMusica";

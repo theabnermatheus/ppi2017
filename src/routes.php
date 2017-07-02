@@ -42,4 +42,6 @@ $rotas->add('addMusicaInListPessoal', new Route('/addMusicaInListPessoal', array
 $rotas->add('alterarSenha', new Route('/alterarSenha', array('_controller' =>'MeuProjeto\Controllers\ControleUsuario','_method' => 'alterarSenha'))); 
 $rotas->add('alterarSenhaAjax', new Route('/alterarSenhaAjax', array('_controller' =>'MeuProjeto\Controllers\ControleUsuario','_method' => 'alterarSenhaAjax'))); 
 $rotas->add('relatorioMusicas', new Route('/relatorioMusica', array('_controller' =>'MeuProjeto\Controllers\ControleMusica','_method' => 'relatorioDeMusicaAjax')));
+$rotas->add('ListSiteDeslog', new Route('/ListSiteDeslog', array('_controller' =>'MeuProjeto\Controllers\ControleMusica','_method' => 'ListSiteDeslog')));
+
 return $rotas;
