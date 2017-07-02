@@ -13,7 +13,6 @@ class ModeloMusica {
     }
     
     public function setMusica($titulo , $artista , $genero , $caminho) {
-        echo 'cheguei aqui';
         try {
             $sql = "INSERT INTO `musicas` (`codigo`, `titulo`, `artista`, `genero`, `caminho`) "
                     . "VALUES (NULL, ?, ?, ?, ?)";                      

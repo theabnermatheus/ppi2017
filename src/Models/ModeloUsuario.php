@@ -65,6 +65,21 @@ class ModeloUsuario {
             echo $exc->getTraceAsString();
         }
     }
+    
+     public function buscaClienteCPF($cpf) {
+        try {
+            $sql = "SELECT * FROM `usuario` WHERE cpf = ?";
+            $p_sql = Conexao::getInstance()->prepare($sql);
+            $p_sql->bindValue(1, $cpf);
+            $p_sql->execute();
+            if ($p_sql->rowCount() == 1) {
+                return $p_sql->fetch(PDO::FETCH_OBJ);
+            } else
+                return false;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
 
     public function excluirCliente($id) {
         try {
@@ -119,7 +134,7 @@ class ModeloUsuario {
     
     public function relatorioCliente() {
         try {
-            $sql = "SELECT * FROM usuario";
+            $sql = "SELECT * FROM usuario where status <> 2";
             $p_sql = Conexao::getInstance()->prepare($sql);
             $p_sql->execute();         
                 return $p_sql->fetchAll(PDO::FETCH_OBJ);          

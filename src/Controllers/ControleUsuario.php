@@ -120,10 +120,8 @@ class ControleUsuario {
                 $this->sessao->add("usuario", $usuario);
                 if ($this->sessao->get("usuario")->status == 0) {
                     echo '<script>window.location.href = "/indexUser"</script>';
-//redireciona pra index do usuario;
                 } else if ($this->sessao->get("usuario")->status == 1) {
                     echo '<script>window.location.href = "/indexAdmin"</script>';
-//redireciona para a index do admin;
                 }
             }
         } else {
@@ -157,7 +155,6 @@ class ControleUsuario {
         $modelo = new ModeloUsuario();
         if ($modelo->alterarCliente($id, $nome, $cpf, $telefone, $email)) {
             $this->sessao->rem("usuario");
-// adicionar a sessão de novo;
             $u = $modelo->buscaCliente($id);
             $this->sessao->add("usuario", $u);
             echo '<script>window.location.href = "/editarUser"</script>';
@@ -178,10 +175,12 @@ class ControleUsuario {
     }
    
     public function buscarUserAdmin() {
-        $id = $_POST['id'];
+        $cpf = $_POST['id'];
         $modelo = new ModeloUsuario();
-        $u = $modelo->buscaCliente($id);
-        if ($u) {
+        $u = $modelo->buscaClienteCPF($cpf);
+        if($u == null){
+             echo "Nada Encontrado";
+        }else if ($u) {
             echo $u->nome . "#" . $u->cpf . "#" . $u->telefone . "#" . $u->email . "#" . $u->login . "#" . $u->senha;
         } else {
             echo 'Error';

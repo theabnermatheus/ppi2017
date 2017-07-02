@@ -54,6 +54,7 @@ class ControleMusica {
             $caminho = $diretorio . $novo_nome . $extensao;
             $modelo = new ModeloMusica();
             $modelo->setMusica($titulo, $artista, $genero, $caminho);
+            echo 'Sucesso';
         } else {
             echo 'Erro ao fazer upload';
         }
@@ -67,7 +68,7 @@ class ControleMusica {
     }
 
     public function paginaDeUpload() {
-        return $this->response->setContent($this->twig->render('subirMusica.html'));
+        return $this->response->setContent($this->twig->render('subirMusica.html',array('user' => $this->sessao->get("usuario"))));
     }
 
     public function eletronica() {
