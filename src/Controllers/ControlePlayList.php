@@ -86,7 +86,7 @@ class ControlePlayList {
             if ($tamanho != 1) {
                 return $this->response->setContent($this->twig->render('MusicasDoUser.html', array('codigoDaList' => $param, 'list' => $listaDeMusicas, 'user' => $this->sessao->get("usuario"))));
             } else {
-                return $this->response->setContent($this->twig->render('MusicasDoUser.html', array('list' => null, 'user' => $this->sessao->get("usuario"))));
+                return $this->response->setContent($this->twig->render('MusicasDoUser.html', array('list' => $listaDeMusicas, 'user' => $this->sessao->get("usuario"))));
             }
         } else {
             echo '<script>alert("voce não tem permissão para acessar aqui");</script>';
