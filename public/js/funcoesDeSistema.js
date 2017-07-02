@@ -45,6 +45,7 @@ $(document).ready(function () {
     });
 });
 
+
 $(document).ready(function () {
     $('#voltarListPadrao').on('click touchstart', function () {
         window.location.href = "/";
