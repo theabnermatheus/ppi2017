@@ -16,6 +16,17 @@ $(document).ready(function () {
     });
 });
 
+$(document).ready(function () {
+    $('#voltarListPadrao').on('click touchstart', function () {
+        window.location.href = "/";
+    });
+});
+
+$(document).ready(function () {
+    $('#voltarParaListPadrao').on('click touchstart', function () {
+        window.location.href = "/playlistpadrao";
+    });
+});
 
 $(document).ready(function () {
     $('#enviarMusica').on('click touchstart', function () {
@@ -60,8 +71,6 @@ $(document).ready(function () {
         window.location.href = "/myList";
     });
 });
-
-
 
 $(document).ready(function () {
     $('#addmusic').on('click touchstart', function () {
