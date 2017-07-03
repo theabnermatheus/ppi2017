@@ -257,15 +257,15 @@ $(document).ready(function () {
                 form.telefone.value = res[2];
                 form.email.value = res[3];
                 form.login.value = res[4];
-                form.senha.value = res[5];
-
                 form.btnAlterarClienteAdmin.disabled = false;
                 form.btnExcluirClienteAdmin.disabled = false;
+                form.btnSalvarClienteAdmin.disabled = false;
+                form.btnCancelarClienteAdmin.disabled = false;
             },
             error: function (data) {
                 $('#retornoValidacao').html(data.toString());
             }
-        })
+        });       
     });
 });
 
@@ -311,7 +311,6 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     $('#btnSalvarClienteAdmin').on('click touchstart', function () {
-
         var form = document.getElementById('formEditarAdmin');
         $.ajax({
             type: 'POST',
@@ -322,14 +321,13 @@ $(document).ready(function () {
                 cpf: form.cpf.value,
                 telefone: form.telefone.value,
                 email: form.email.value,
-                login: form.login.value,
-                senha: form.senha.value
+                login: form.login.value
             },
             success: function (data) {
-                $('#retornoValidacao').html(data.toString());
+                $('#retornoValidacao').html(data);
             },
             error: function (data) {
-                $('#retornoValidacao').html(data.toString());
+                $('#retornoValidacao').html(data);
             }
         });
     });

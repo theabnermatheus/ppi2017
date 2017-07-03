@@ -195,10 +195,9 @@ class ControleUsuario {
         $telefone = $_POST['telefone'];
         $email = $_POST['email'];
         $login = $_POST['login'];
-        $senha = $_POST['senha'];
         $modelo = new ModeloUsuario();
-        if ($modelo->alterarClienteAdmin($id, $nome, $cpf, $telefone, $email, $login, $senha)) {
-            echo '<script>window.location.href = "/editarUserAdmin"</script>';
+        if ($modelo->alterarClienteAdmin($id, $nome, $cpf, $telefone, $email, $login)) {
+            echo 'Sucesso';
         } else {
             echo 'Erro';
         }

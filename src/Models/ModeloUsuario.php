@@ -65,8 +65,8 @@ class ModeloUsuario {
             echo $exc->getTraceAsString();
         }
     }
-    
-     public function buscaClienteCPF($cpf) {
+
+    public function buscaClienteCPF($cpf) {
         try {
             $sql = "SELECT * FROM `usuario` WHERE cpf = ?";
             $p_sql = Conexao::getInstance()->prepare($sql);
@@ -95,7 +95,7 @@ class ModeloUsuario {
         }
     }
 
-    public function alterarCliente($id , $nome, $cpf, $telefone, $email) {
+    public function alterarCliente($id, $nome, $cpf, $telefone, $email) {
         try {
             $sql = "UPDATE usuario set usuario.nome = ? , usuario.cpf = ? , usuario.telefone = ? , usuario.email = ? WHERE usuario.idUsuario = ?";
             $p_sql = Conexao::getInstance()->prepare($sql);
@@ -112,17 +112,17 @@ class ModeloUsuario {
             echo $exc->getTraceAsString();
         }
     }
- public function alterarClienteAdmin($id , $nome, $cpf, $telefone, $email, $login , $senha) {
+
+    public function alterarClienteAdmin($id, $nome, $cpf, $telefone, $email, $login) {
         try {
-            $sql = "UPDATE usuario set usuario.nome = ? , usuario.cpf = ? , usuario.telefone = ? , usuario.email = ? ,usuario.login = ? ,usuario.senha = ? WHERE usuario.idUsuario = ?";
+            $sql = "UPDATE usuario set usuario.nome = ? , usuario.cpf = ? , usuario.telefone = ? , usuario.email = ? , usuario.login = ? WHERE usuario.idUsuario = ?";
             $p_sql = Conexao::getInstance()->prepare($sql);
             $p_sql->bindValue(1, $nome);
             $p_sql->bindValue(2, $cpf);
             $p_sql->bindValue(3, $telefone);
             $p_sql->bindValue(4, $email);
             $p_sql->bindValue(5, $login);
-            $p_sql->bindValue(6, $senha);
-            $p_sql->bindValue(7, $id);
+            $p_sql->bindValue(6, $id);
             if ($p_sql->execute()) {
                 return true;
             } else
@@ -131,31 +131,31 @@ class ModeloUsuario {
             echo $exc->getTraceAsString();
         }
     }
-    
+
     public function relatorioCliente() {
         try {
             $sql = "SELECT * FROM usuario where status <> 2";
             $p_sql = Conexao::getInstance()->prepare($sql);
-            $p_sql->execute();         
-                return $p_sql->fetchAll(PDO::FETCH_OBJ);          
+            $p_sql->execute();
+            return $p_sql->fetchAll(PDO::FETCH_OBJ);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
     }
-    
+
     public function verificaSenha($senha) {
         try {
             $sql = "SELECT * FROM usuario where senha = ?";
             $p_sql = Conexao::getInstance()->prepare($sql);
             $p_sql->bindValue(1, $senha);
-            $p_sql->execute();         
-            return $p_sql->fetch(PDO::FETCH_OBJ);          
+            $p_sql->execute();
+            return $p_sql->fetch(PDO::FETCH_OBJ);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
     }
-    
- public function alterarSenha($senha , $id) {
+
+    public function alterarSenha($senha, $id) {
         try {
             $sql = "UPDATE usuario set senha = ? WHERE usuario.idUsuario = ?";
             $p_sql = Conexao::getInstance()->prepare($sql);
@@ -168,6 +168,8 @@ class ModeloUsuario {
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
-    }   
+    }
+
 }
+
 ?>
