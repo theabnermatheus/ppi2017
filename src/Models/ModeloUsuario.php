@@ -113,25 +113,6 @@ class ModeloUsuario {
         }
     }
 
-    public function alterarClienteAdmin($id, $nome, $cpf, $telefone, $email, $login) {
-        try {
-            $sql = "UPDATE usuario set usuario.nome = ? , usuario.cpf = ? , usuario.telefone = ? , usuario.email = ? , usuario.login = ? WHERE usuario.idUsuario = ?";
-            $p_sql = Conexao::getInstance()->prepare($sql);
-            $p_sql->bindValue(1, $nome);
-            $p_sql->bindValue(2, $cpf);
-            $p_sql->bindValue(3, $telefone);
-            $p_sql->bindValue(4, $email);
-            $p_sql->bindValue(5, $login);
-            $p_sql->bindValue(6, $id);
-            if ($p_sql->execute()) {
-                return true;
-            } else
-                return false;
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
-
     public function relatorioCliente() {
         try {
             $sql = "SELECT * FROM usuario where status <> 2";

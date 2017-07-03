@@ -256,7 +256,6 @@ $(document).ready(function () {
                 form.cpf.value = res[1];
                 form.telefone.value = res[2];
                 form.email.value = res[3];
-                form.login.value = res[4];
                 form.btnAlterarClienteAdmin.disabled = false;
                 form.btnExcluirClienteAdmin.disabled = false;
                 form.btnSalvarClienteAdmin.disabled = false;
@@ -321,7 +320,6 @@ $(document).ready(function () {
                 cpf: form.cpf.value,
                 telefone: form.telefone.value,
                 email: form.email.value,
-                login: form.login.value
             },
             success: function (data) {
                 $('#retornoValidacao').html(data);

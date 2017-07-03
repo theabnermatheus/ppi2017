@@ -194,9 +194,8 @@ class ControleUsuario {
         $cpf = $_POST['cpf'];
         $telefone = $_POST['telefone'];
         $email = $_POST['email'];
-        $login = $_POST['login'];
         $modelo = new ModeloUsuario();
-        if ($modelo->alterarClienteAdmin($id, $nome, $cpf, $telefone, $email, $login)) {
+        if ($modelo->alterarCliente($id, $nome, $cpf, $telefone, $email)) {
             echo 'Sucesso';
         } else {
             echo 'Erro';
