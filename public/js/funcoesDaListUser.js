@@ -136,7 +136,7 @@ function volumeMenos() {
 function volumeMudo() {
     var tocador = document.getElementById("tocador");
     var volume = tocador.volume;
-    if (tocador.muted) { // true se tiver mutado
+    if (tocador.muted) {
         tocador.volume = volume;
     } else {
         tocador.volume = 0;

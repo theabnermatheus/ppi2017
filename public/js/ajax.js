@@ -1,4 +1,4 @@
-//cadastrar cliente
+
 $(document).ready(function () {
     $("#btnCadastrarCliente").on('click touchstart', function () {
         var form = document.getElementById('formCadastrarCliente');
@@ -24,7 +24,7 @@ $(document).ready(function () {
     })
 })
 
-//logar cliente
+
 $(document).ready(function () {
     $('#btnLogin').on('click touchstart', function () {
         var form = document.getElementById('formLogin');      

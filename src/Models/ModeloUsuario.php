@@ -36,7 +36,6 @@ class ModeloUsuario {
 
     public function validaLogin($login, $senha) {
         try {
-            //se o status for 2 , não logar
             $sql = "SELECT * FROM `usuario` WHERE login = ? and senha = ?";
             $p_sql = Conexao::getInstance()->prepare($sql);
             $p_sql->bindValue(1, $login);
